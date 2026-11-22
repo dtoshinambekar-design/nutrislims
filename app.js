@@ -1014,7 +1014,7 @@
       var service = (serviceSelect ? serviceSelect.value : '') || 'Nutrition Consultation';
       if (!service) service = 'Nutrition Consultation';
       var msg = 'Hello Dietitian Oshin Ambekar at NutriSlims, I would like to enquire about the ' + service + ' program. My name is ' + name + '.';
-      var url = 'https://wa.me/917828491478?text=' + encodeURIComponent(msg);
+      var url = 'https://wa.me/917828149178?text=' + encodeURIComponent(msg);
       if (whatsappBtn) {
         whatsappBtn.href = url;
         whatsappBtn.setAttribute('title', 'WhatsApp enquiry for ' + service);
@@ -1091,7 +1091,7 @@
           '<p>Thank you, <strong>' + escapeHtml(name) + '</strong>! Your request for <strong>' + escapeHtml(service) + '</strong> (' + escapeHtml(mode) + ') has been registered.</p>' +
           '<div class="booking-ref-box">Reference ID: <strong>' + refId + '</strong></div>' +
           '<p>Our clinic coordinator will contact you on <strong>+91 ' + cleanPhone + '</strong> within 24 business hours.</p>' +
-          '<a href="https://wa.me/917828491478?text=' + encodeURIComponent(confirmMsg) + '" target="_blank" rel="noopener" class="button primary small">Confirm via WhatsApp ↗</a>' +
+          '<a href="https://wa.me/917828149178?text=' + encodeURIComponent(confirmMsg) + '" target="_blank" rel="noopener" class="button primary small">Confirm via WhatsApp ↗</a>' +
         '</div>';
 
         form.reset();
