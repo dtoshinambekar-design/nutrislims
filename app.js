@@ -220,16 +220,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatSendBtn = document.getElementById('chat-send-btn');
     const chatTabQA = document.getElementById('chat-tab-qa');
     const chatTabSymptoms = document.getElementById('chat-tab-symptoms');
-    const chatTabAnalyzer = document.getElementById('chat-tab-analyzer');
-    const chatPhotoPanel = document.getElementById('chat-photo-panel');
-
-    // Dashboard Portal logic
-    const headerPortalBtn = document.getElementById('header-portal-btn');
-    const dashboardLoggedOut = document.getElementById('dashboard-logged-out');
-    const dashboardLoggedIn = document.getElementById('dashboard-logged-in');
-    const clientLoginForm = document.getElementById('client-login-form');
-    const dashboardLogoutBtn = document.getElementById('dashboard-logout-btn');
-    const navDashboardLink = document.getElementById('nav-dashboard-link');
 
     // ==========================================
     // 4. MICRO-INTERACTION & UTILITY MOTIFS
@@ -397,36 +387,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            const targetSectionId = link.getAttribute('data-target');
-            if (targetSectionId) {
-                e.preventDefault();
-                playClick();
-                
-                // Toggle active tags
-                navLinks.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-                
-                // Close mobile dropdown if open
-                if (mainNavbar && mainNavbar.classList.contains('active')) {
-                    mainNavbar.classList.remove('active');
-                    const icon = menuToggleBtn?.querySelector('i');
-                    if (icon) {
-                        icon.classList.remove('fa-xmark');
-                        icon.classList.add('fa-bars');
-                        menuToggleBtn?.setAttribute('aria-expanded', 'false');
-                    }
+            const targetSectionId = link.getAttribute('data-target') || 'home-section';
+            const hash = link.getAttribute('href');
+            
+            e.preventDefault();
+            playClick();
+            
+            // Toggle active tags
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            
+            // Close mobile dropdown if open
+            if (mainNavbar && mainNavbar.classList.contains('active')) {
+                mainNavbar.classList.remove('active');
+                const icon = menuToggleBtn?.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                    menuToggleBtn?.setAttribute('aria-expanded', 'false');
                 }
-                
-                appPages.forEach(page => {
-                    page.classList.remove('active');
-                    if (page.id === targetSectionId) {
-                        page.classList.add('active');
-                    }
-                });
-
-                // Scroll to top of window
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+            
+            appPages.forEach(page => {
+                page.classList.remove('active');
+                if (page.id === targetSectionId) {
+                    page.classList.add('active');
+                }
+            });
+
+            // Scroll to target element if hash is present
+            if (hash && hash !== '#' && !hash.startsWith('#tools') && !hash.startsWith('#recipes')) {
+                const targetEl = document.querySelector(hash);
+                if (targetEl) {
+                    setTimeout(() => {
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                    return;
+                }
+            }
+
+            // Scroll to top of window for main sections
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
 
@@ -1460,20 +1461,14 @@ document.addEventListener('DOMContentLoaded', () => {
         playClick();
         chatTabQA.classList.add('active');
         chatTabSymptoms.classList.remove('active');
-        chatTabAnalyzer.classList.remove('active');
-        
         chatConversationBody.classList.remove('hidden');
-        chatPhotoPanel.classList.add('hidden');
     });
 
     chatTabSymptoms.addEventListener('click', () => {
         playClick();
         chatTabSymptoms.classList.add('active');
         chatTabQA.classList.remove('active');
-        chatTabAnalyzer.classList.remove('active');
-        
         chatConversationBody.classList.remove('hidden');
-        chatPhotoPanel.classList.add('hidden');
         
         // Show starter symptom guidelines
         const sysMsg = document.createElement('div');
@@ -1481,16 +1476,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sysMsg.innerHTML = `<p><strong>Symptom Screening Guide:</strong> Type physical signs (e.g. 'cramps', 'dizzy', 'skin') and I will check potential vitamin/mineral deficiency flags.</p>`;
         chatConversationBody.appendChild(sysMsg);
         chatConversationBody.scrollTop = chatConversationBody.scrollHeight;
-    });
-
-    chatTabAnalyzer.addEventListener('click', () => {
-        playClick();
-        chatTabAnalyzer.classList.add('active');
-        chatTabQA.classList.remove('active');
-        chatTabSymptoms.classList.remove('active');
-        
-        chatConversationBody.classList.add('hidden');
-        chatPhotoPanel.classList.remove('hidden');
     });
 
     // Trigger AI Chat response logic
@@ -1546,492 +1531,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter') handleChatSubmit();
     });
 
-    // Mock Meal photo upload analyzer triggers
-    const chatMealDropzone = document.getElementById('chat-meal-dropzone');
-    const chatMealFile = document.getElementById('chat-meal-file');
-    const chatPhotoAnalysisRes = document.getElementById('chat-photo-analysis-res');
 
-    if (chatMealDropzone) {
-        chatMealDropzone.addEventListener('click', () => {
-            chatMealFile.click();
-        });
-        chatMealFile.addEventListener('change', () => {
-            playClick();
-            showToast("Uploading plate image...", "info");
-            
-            setTimeout(() => {
-                chatPhotoAnalysisRes.classList.remove('hidden');
-                playComplete();
-                showToast("Plate scan complete!", "success");
-            }, 1500);
-        });
-    }
-
-    // ==========================================
-    // 10. CLIENT DASHBOARD PORTAL & STATE LOGS
-    // ==========================================
-
-    // Show authentication portal
-    headerPortalBtn.addEventListener('click', () => {
-        playClick();
-        document.querySelector('[data-target="dashboard-section"]').click();
-    });
-
-    // Handle authentication login
-    if (clientLoginForm) {
-        clientLoginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            playClick();
-            
-            const email = document.getElementById('login-email').value.trim();
-            const pass = document.getElementById('login-pass').value.trim();
-            
-            if (email === "oshin@nutrislims.com" && pass === "portal123") {
-                isUserLoggedIn = true;
-                dashboardLoggedOut.classList.add('hidden');
-                dashboardLoggedIn.classList.remove('hidden');
-                
-                // Show Logout inside portal button
-                headerPortalBtn.innerHTML = '<i class="fa-solid fa-sign-out-alt"></i> Logout';
-                headerPortalBtn.classList.remove('primary-btn');
-                headerPortalBtn.classList.add('dark-btn');
-                
-                showToast("Sign in successful. Welcome, Oshin!", "success");
-                playComplete();
-                
-                // Initial updates console dashboard metrics
-                updateDashboardConsole();
-            } else {
-                showToast("Invalid credentials. Try our demo account details.", "error");
-            }
-        });
-    }
-
-    // Handle logout action
-    function handleLogout() {
-        playClick();
-        isUserLoggedIn = false;
-        dashboardLoggedIn.classList.add('hidden');
-        dashboardLoggedOut.classList.remove('hidden');
-        
-        headerPortalBtn.innerHTML = '<i class="fa-solid fa-user-lock"></i> Portal Login';
-        headerPortalBtn.classList.remove('dark-btn');
-        headerPortalBtn.classList.add('primary-btn');
-        
-        showToast("Signed out successfully.", "info");
-        document.querySelector('[data-target="home-section"]').click();
-    }
-    
-    dashboardLogoutBtn.addEventListener('click', handleLogout);
-    headerPortalBtn.addEventListener('click', () => {
-        if (isUserLoggedIn) {
-            handleLogout();
-        }
-    });
-
-    // Helper functions for Dashboard UI values updates
-    function updateDashboardConsole() {
-        // Text labels
-        document.getElementById('dash-cal-target').innerText = userStats.caloriesTarget;
-        document.getElementById('dash-cal-logged').innerText = userStats.caloriesLogged;
-        
-        const calRem = Math.max(0, userStats.caloriesTarget - userStats.caloriesLogged);
-        document.getElementById('dash-cal-rem').innerText = calRem;
-        
-        document.getElementById('dash-water-target').innerText = userStats.waterTarget;
-        document.getElementById('dash-water-logged').innerText = userStats.waterLogged.toFixed(2);
-        
-        document.getElementById('dash-sleep-target').innerText = userStats.sleepTarget;
-        document.getElementById('dash-sleep-logged').innerText = userStats.sleepLogged;
-        
-        document.getElementById('dash-streak-count').innerText = userStats.streakDays;
-
-        // Circular progress rings logic (dashoffset)
-        const totalOffset = 264; // ring circumf
-        
-        const calPct = Math.min(1.0, userStats.caloriesLogged / userStats.caloriesTarget);
-        document.getElementById('ring-calories-fill').style.strokeDashoffset = totalOffset - (calPct * totalOffset);
-        
-        const watPct = Math.min(1.0, userStats.waterLogged / userStats.waterTarget);
-        document.getElementById('ring-water-fill').style.strokeDashoffset = totalOffset - (watPct * totalOffset);
-        
-        const slpPct = Math.min(1.0, userStats.sleepLogged / userStats.sleepTarget);
-        document.getElementById('ring-sleep-fill').style.strokeDashoffset = totalOffset - (slpPct * totalOffset);
-
-        // Update list of logged foods
-        renderLoggedFoodsList();
-        
-        // Update list of workouts
-        renderWorkoutList();
-
-        // Update SVG Chart points
-        renderWeightChartSVG();
-    }
-
-    // Toggle Settings Target Panel
-    const btnShowSettings = document.getElementById('btn-show-settings');
-    const settingsTargetsPanel = document.getElementById('settings-targets-panel');
-    const btnSaveTargets = document.getElementById('btn-save-targets');
-
-    btnShowSettings.addEventListener('click', () => {
-        playClick();
-        settingsTargetsPanel.classList.toggle('hidden');
-    });
-
-    btnSaveTargets.addEventListener('click', () => {
-        playClick();
-        const cal = parseInt(document.getElementById('set-cal-target').value);
-        const wat = parseFloat(document.getElementById('set-water-target').value);
-        const slp = parseInt(document.getElementById('set-sleep-target').value);
-        
-        userStats.caloriesTarget = cal;
-        userStats.waterTarget = wat;
-        userStats.sleepTarget = slp;
-        
-        settingsTargetsPanel.classList.add('hidden');
-        updateDashboardConsole();
-        showToast("Health goals targets updated!", "success");
-    });
-
-    // Hydration tracking log buttons
-    document.getElementById('btn-add-water')?.addEventListener('click', () => {
-        playClick();
-        userStats.waterLogged += 0.25; // 250ml
-        updateDashboardConsole();
-        showToast("Logged 250ml water!", "success");
-    });
-
-    document.getElementById('btn-clear-water')?.addEventListener('click', () => {
-        playClick();
-        userStats.waterLogged = 0.0;
-        updateDashboardConsole();
-        showToast("Water log reset.", "info");
-    });
-
-    // Sleep tracking log button
-    document.getElementById('btn-log-sleep')?.addEventListener('click', () => {
-        playClick();
-        const val = parseInt(document.getElementById('sleep-input-val')?.value) || 0;
-        userStats.sleepLogged = val;
-        updateDashboardConsole();
-        showToast(`Logged ${val} hours of sleep!`, "success");
-    });
-
-    // Food logging preset/custom options toggling
-    const foodPresetSelect = document.getElementById('food-select-preset');
-    const customFoodInputs = document.getElementById('custom-food-inputs');
-
-    foodPresetSelect?.addEventListener('change', () => {
-        if (foodPresetSelect.value === 'custom') {
-            customFoodInputs?.classList.remove('hidden');
-        } else {
-            customFoodInputs?.classList.add('hidden');
-        }
-    });
-
-    document.getElementById('btn-log-food')?.addEventListener('click', () => {
-        playClick();
-        let name = "";
-        let cal = 0;
-        
-        if (foodPresetSelect.value === 'custom') {
-            name = document.getElementById('food-custom-name').value.trim();
-            cal = parseInt(document.getElementById('food-custom-cal').value) || 0;
-        } else {
-            const selectEl = foodPresetSelect.options[foodPresetSelect.selectedIndex];
-            name = selectEl.value;
-            cal = parseInt(selectEl.getAttribute('data-c')) || 0;
-        }
-
-        if (!name || cal <= 0) {
-            showToast("Please enter a valid food name and calories.", "error");
-            return;
-        }
-
-        userStats.loggedFoods.push({ name, calories: cal });
-        userStats.caloriesLogged += cal;
-        
-        updateDashboardConsole();
-        showToast(`Logged: ${name} (${cal} kcal)`, "success");
-        
-        // Reset form inputs
-        document.getElementById('food-custom-name').value = '';
-        document.getElementById('food-custom-cal').value = '';
-        foodPresetSelect.value = 'custom';
-        customFoodInputs.classList.remove('hidden');
-    });
-
-    function renderLoggedFoodsList() {
-        const listUl = document.getElementById('logged-foods-list');
-        listUl.innerHTML = '';
-        
-        if (userStats.loggedFoods.length === 0) {
-            listUl.innerHTML = '<li class="empty-log-msg">No foods logged today. Log calories above.</li>';
-        } else {
-            userStats.loggedFoods.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <span>${item.name}</span>
-                    <div>
-                        <strong>${item.calories} kcal</strong>
-                        <button class="delete-item-btn" data-idx="${index}"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                `;
-                listUl.appendChild(li);
-            });
-
-            // Attach food deletions triggers
-            listUl.querySelectorAll('.delete-item-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    playClick();
-                    const idx = parseInt(btn.getAttribute('data-idx'));
-                    const item = userStats.loggedFoods[idx];
-                    userStats.caloriesLogged -= item.calories;
-                    userStats.loggedFoods.splice(idx, 1);
-                    updateDashboardConsole();
-                    showToast("Food item removed.", "info");
-                });
-            });
-        }
-    }
-
-    // Workout Logger controls
-    document.getElementById('btn-log-workout')?.addEventListener('click', () => {
-        playClick();
-        const name = document.getElementById('workout-name-input').value.trim();
-        const cal = parseInt(document.getElementById('workout-calories-input').value) || 0;
-        
-        if (!name || cal <= 0) {
-            showToast("Enter workout name and active calorie burn.", "error");
-            return;
-        }
-
-        userStats.loggedWorkouts.push({ name, calories: cal });
-        updateDashboardConsole();
-        showToast(`Logged workout: ${name}`, "success");
-        
-        document.getElementById('workout-name-input').value = '';
-        document.getElementById('workout-calories-input').value = '';
-    });
-
-    function renderWorkoutList() {
-        const listUl = document.getElementById('workout-list-ul');
-        listUl.innerHTML = '';
-        
-        if (userStats.loggedWorkouts.length === 0) {
-            listUl.innerHTML = '<li class="empty-log-msg">No exercises logged today.</li>';
-        } else {
-            userStats.loggedWorkouts.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <span>${item.name}</span>
-                    <strong>-${item.calories} kcal</strong>
-                `;
-                listUl.appendChild(li);
-            });
-        }
-    }
-
-    // Interactive weight checks logger
-    document.getElementById('btn-log-weight')?.addEventListener('click', () => {
-        playClick();
-        const val = parseFloat(document.getElementById('input-log-weight-val').value);
-        if (isNaN(val) || val <= 30) {
-            showToast("Please enter a valid weight in kg.", "error");
-            return;
-        }
-        
-        userStats.weightHistory.push(val);
-        // Shift history keeping maximum 6 points on SVG grid
-        if (userStats.weightHistory.length > 6) {
-            userStats.weightHistory.shift();
-        }
-        
-        document.getElementById('input-log-weight-val').value = '';
-        updateDashboardConsole();
-        showToast("New weight record logged!", "success");
-    });
-
-    // Render weight graph points on SVG coordinates
-    function renderWeightChartSVG() {
-        const pathLine = document.getElementById('chart-path-line');
-        const dotsGroup = document.getElementById('chart-dots-group');
-        if (!pathLine || !dotsGroup) return;
-
-        const pts = userStats.weightHistory;
-        const xStep = 80;
-        const xStart = 60;
-        const yBaseline = 180;
-        
-        // Weight mapping margins (Min weight: 60kg mapping to y=180, Max: 100kg mapping to y=20)
-        let pathD = "";
-        dotsGroup.innerHTML = '';
-        
-        pts.forEach((w, i) => {
-            const x = xStart + (i * xStep);
-            
-            // Map weight 60-100 to y coordinate 180-20
-            const pct = (w - 60) / 40;
-            const y = yBaseline - (pct * 160);
-            
-            if (i === 0) {
-                pathD = `M ${x} ${y}`;
-            } else {
-                pathD += ` L ${x} ${y}`;
-            }
-
-            // Create SVG Circle node
-            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            circle.setAttribute("cx", x);
-            circle.setAttribute("cy", y);
-            circle.setAttribute("r", "5");
-            circle.setAttribute("class", "chart-dot");
-            
-            // tooltip title
-            const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
-            title.textContent = `${w} kg`;
-            circle.appendChild(title);
-            
-            dotsGroup.appendChild(circle);
-        });
-
-        pathLine.setAttribute("d", pathD);
-    }
-
-    // Grocery checklist toggle generator
-    document.getElementById('btn-generate-groceries')?.addEventListener('click', () => {
-        playClick();
-        document.getElementById('grocery-list-panel')?.classList.remove('hidden');
-        showToast("Shopping list auto-compiled!", "success");
-    });
-
-    document.getElementById('btn-close-grocery')?.addEventListener('click', () => {
-        playClick();
-        document.getElementById('grocery-list-panel')?.classList.add('hidden');
-    });
-
-    // Health Vault drag & drop triggers
-    const reportDropzone = document.getElementById('report-dropzone');
-    const reportFileInput = document.getElementById('report-file-input');
-    const reportVaultUl = document.getElementById('report-vault-ul');
-
-    if (reportDropzone) {
-        reportDropzone.addEventListener('click', () => {
-            reportFileInput?.click();
-        });
-        reportFileInput?.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                playClick();
-                showToast(`Uploading ${file.name}...`, "info");
-                
-                setTimeout(() => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        <div class="report-info"><i class="fa-solid fa-file-pdf"></i> <span>${file.name}</span></div>
-                        <span class="report-status-badge success">Verified</span>
-                    `;
-                    reportVaultUl?.insertBefore(li, reportVaultUl.firstChild);
-                    playComplete();
-                    showToast("Document verified and vaulted!", "success");
-                }, 1200);
-            }
-        });
-    }
-
-    // ==========================================
-    // 11. PRINTABLE HEALTH REPORT PDF BUILDER
-    // ==========================================
-
-    document.getElementById('btn-generate-pdf')?.addEventListener('click', () => {
-        playClick();
-        showToast("Compiling clinical metrics report PDF...", "info");
-
-        setTimeout(() => {
-            // Build report window block
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(`
-                <html>
-                <head>
-                    <title>Nutrislims Clinical Progress Report</title>
-                    <style>
-                        body { font-family: 'DM Sans', sans-serif; padding: 40px; color: #1E2022; line-height: 1.6; }
-                        h1 { color: #6F9B4B; border-bottom: 2px solid #6F9B4B; padding-bottom: 10px; font-size: 2.2rem; }
-                        .meta-info { margin-bottom: 30px; font-size: 1rem; color: #64748B; }
-                        .meta-info strong { color: #1E2022; }
-                        .section-card { border: 1px solid #E2E8F0; padding: 20px; border-radius: 12px; margin-bottom: 25px; }
-                        .section-card h3 { color: #6F9B4B; margin-top: 0; font-size: 1.25rem; text-transform: uppercase; }
-                        .stats-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-                        .stats-table th, .stats-table td { padding: 12px; border-bottom: 1px solid #E2E8F0; text-align: left; }
-                        .stats-table th { background: #f8fafc; font-weight: bold; }
-                        .stamp { float: right; border: 3px double #6F9B4B; color: #6F9B4B; font-weight: bold; padding: 10px 20px; text-transform: uppercase; transform: rotate(-5deg); margin-top: 20px; font-size: 1rem; }
-                    </style>
-                </head>
-                <body>
-                    <div class="stamp">Verified Clinical</div>
-                    <h1>Nutrislims Clinic Report</h1>
-                    <div class="meta-info">
-                        Patient Name: <strong>${userStats.name}</strong><br>
-                        Patient Identifier: <strong>${userStats.id}</strong><br>
-                        Date of Report: <strong>${new Date().toLocaleDateString()}</strong><br>
-                        Supervising Consultant: <strong>Oshin Ambekar (Certified Dietician)</strong>
-                    </div>
-                    
-                    <div class="section-card">
-                        <h3>Daily Goals Progress Status</h3>
-                        <table class="stats-table">
-                            <thead>
-                                <tr>
-                                    <th>Parameter</th>
-                                    <th>Logged Value</th>
-                                    <th>Prescribed Goal Target</th>
-                                    <th>Adherence Rate %</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Caloric Energy Intake</td>
-                                    <td>${userStats.caloriesLogged} kcal</td>
-                                    <td>${userStats.caloriesTarget} kcal</td>
-                                    <td>${Math.min(100, Math.round((userStats.caloriesLogged / userStats.caloriesTarget) * 100))}%</td>
-                                </tr>
-                                <tr>
-                                    <td>Fluid Hydration Volume</td>
-                                    <td>${userStats.waterLogged.toFixed(2)} L</td>
-                                    <td>${userStats.waterTarget} L</td>
-                                    <td>${Math.min(100, Math.round((userStats.waterLogged / userStats.waterTarget) * 100))}%</td>
-                                </tr>
-                                <tr>
-                                    <td>Sleep Duration</td>
-                                    <td>${userStats.sleepLogged} Hours</td>
-                                    <td>${userStats.sleepTarget} Hours</td>
-                                    <td>${Math.min(100, Math.round((userStats.sleepLogged / userStats.sleepTarget) * 100))}%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="section-card">
-                        <h3>Recent Bi-Weekly Weight History Log</h3>
-                        <p>Latest Weight Record: <strong>${userStats.weightHistory[userStats.weightHistory.length - 1]} kg</strong></p>
-                        <p>Weight Records Trend points: [${userStats.weightHistory.join(' kg, ')} kg]</p>
-                    </div>
-
-                    <p style="font-size:0.8rem; color:#64748B; margin-top:50px; text-align:center;">This is a system generated progress sheet based on patient input data. For professional clinical diagnosis adjustments, visit our Rajendra Nagar clinic in Indore.</p>
-                </body>
-                </html>
-            `);
-            printWindow.document.close();
-            printWindow.focus();
-            
-            setTimeout(() => {
-                printWindow.print();
-            }, 500);
-            
-            playComplete();
-            showToast("Report compiled. Print dialog loaded.", "success");
-        }, 1500);
-    });
 
     // ==========================================
     // 12. GLOBAL SEARCH ENGINE DISPATCH
@@ -2244,31 +1744,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Telehealth Room Modals details
-    const virtualRoomModal = document.getElementById('virtual-room-modal');
-    const roomCloseBtn = document.getElementById('room-close-btn');
-
-    // Trigger tele-health session mockup when booking complete
+    // Service cards click triggers - smoothly scroll to appointment booking
     document.querySelectorAll('.srv-link').forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
             playClick();
             const srv = link.getAttribute('data-service');
-            showToast(`Loading telemedicine mockup for: ${srv}`, "info");
             
-            setTimeout(() => {
-                if (virtualRoomModal) {
-                    virtualRoomModal.classList.remove('hidden');
-                    playComplete();
-                }
-            }, 1000);
+            // Map service key to booking dropdown option
+            const programSelect = document.getElementById('book-program');
+            if (programSelect) {
+                if (srv === 'weight') programSelect.value = 'Weight Loss Clinic Indore';
+                else if (srv === 'diabetes') programSelect.value = 'Diabetes & Metabolic Health';
+                else if (srv === 'pcos') programSelect.value = 'PCOS / PCOD Hormonal Care';
+                else if (srv === 'pregnancy') programSelect.value = 'General Diet Consultation';
+                else if (srv === 'child') programSelect.value = 'General Diet Consultation';
+            }
+            
+            // Switch to home page and scroll to booking section
+            appPages.forEach(page => page.classList.remove('active'));
+            document.getElementById('home-section')?.classList.add('active');
+            
+            const bookingSec = document.getElementById('appointment-booking');
+            if (bookingSec) {
+                bookingSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
     });
-
-    if (roomCloseBtn) {
-        roomCloseBtn.addEventListener('click', () => {
-            playClick();
-            virtualRoomModal.classList.add('hidden');
-        });
-    }
 
 });
