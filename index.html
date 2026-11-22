@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrislims | Premium Health & Wellness Clinic</title>
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Nutrislims Health & Wellness Clinic in Indore by Certified Dietician Oshin Ambekar offers personalized diet plans, expert nutritional guidance, and lifestyle support to help you achieve your health goals.">
+    <meta name="keywords" content="dietician, nutritionist, Indore, weight loss, PCOS, diabetes management, pre pregnancy nutrition, child nutrition, corporate wellness">
+    <meta property="og:title" content="Nutrislims - Health & Wellness Clinic">
+    <meta property="og:description" content="Personalized nutrition, diet planning, and metabolic analysis with dietician Oshin Ambekar.">
+    <meta property="og:image" content="assets/hero_banner.png">
+    <meta property="og:url" content="https://nutrislims.com">
+    <link rel="shortcut icon" href="https://nutrislims.com/wp-content/uploads/2025/03/nutrislims-logo-100x100.png" />
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@100..900&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+
+    <!-- SEO Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "Nutrislims Health & Wellness Clinic",
+      "alternateName": "Nutrislims",
+      "url": "https://nutrislims.com",
+      "logo": "https://nutrislims.com/wp-content/uploads/2025/03/nutrislims-logo.png",
+      "image": "assets/hero_banner.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1st Floor B, 109, Rajendra Nagar Main Rd",
+        "addressLocality": "Indore",
+        "addressRegion": "M.P.",
+        "postalCode": "452012",
+        "addressCountry": "IN"
+      },
+      "telephone": "+91-7828149178",
+      "priceRange": "$$",
+      "founder": {
+        "@type": "Person",
+        "name": "Oshin Ambekar"
+      }
+    }
+    </script>
+
+    <!-- Sound Element for Audio Feedback -->
+    <audio id="audio-click" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav" preload="auto"></audio>
+    <audio id="audio-complete" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-84.wav" preload="auto"></audio>
+    <audio id="audio-alarm" src="https://assets.mixkit.co/active_storage/sfx/911/911-84.wav" preload="auto"></audio>
+
+    <!-- Particles Background for Hero -->
+    <div id="particles-container"></div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- MAIN HEADER & NAVIGATION -->
+    <header id="main-header" class="header-sticky">
+        <div class="header-topbar">
+            <div class="topbar-info">
+                <span><i class="fa-solid fa-location-dot"></i> Rajendra Nagar, Indore, M.P.</span>
+                <span><i class="fa-solid fa-clock"></i> Mon-Sat 9:00 AM - 8:00 PM</span>
+                <a href="tel:+917828149178" class="topbar-call-link"><i class="fa-solid fa-phone"></i> <strong>07828149178</strong></a>
+            </div>
+            <div class="topbar-links">
+                <span class="live-status-badge" id="live-clinic-status">Checking clinic hours...</span>
+                <a href="mailto:info@nutrislims.com"><i class="fa-solid fa-envelope"></i> info@nutrislims.com</a>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/nutrislims_oshin/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61571275047709" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-navbar">
+            <a href="#" class="brand-logo" id="nav-logo-link">
+                <img src="https://nutrislims.com/wp-content/uploads/2025/03/nutrislims-logo.png" alt="Nutrislims Logo" class="logo-img">
+                <span class="logo-text">Nutri<span>slims</span></span>
+            </a>
+            
+            <nav class="navbar-links" id="main-navbar" aria-label="Main Navigation">
+                <a href="#" class="nav-link active" data-target="home-section">Home</a>
+                <a href="#services" class="nav-link" data-target="services-section">Services</a>
+                <a href="#tools" class="nav-link" data-target="tools-section">Calculators Hub</a>
+                <a href="#recipes" class="nav-link" data-target="recipes-section">Recipes</a>
+                <a href="#dashboard" class="nav-link" data-target="dashboard-section" id="nav-dashboard-link">Client Portal</a>
+            </nav>
+            
+            <div class="navbar-actions">
+                <div class="global-search-container">
+                    <i class="fa-solid fa-magnifying-glass search-trigger" id="search-icon-btn"></i>
+                    <input type="text" id="global-search-input" placeholder="Search recipes, tools, articles..." aria-label="Global Search">
+                    <div id="search-dropdown-results" class="search-results-popup"></div>
+                </div>
+                
+                <button id="theme-toggle" class="icon-action-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                
+                <button id="sound-toggle" class="icon-action-btn" title="Mute/Unmute Sounds" aria-label="Mute/Unmute Sounds">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+
+                <button id="accessibility-toggle" class="icon-action-btn" title="High Contrast Mode" aria-label="Toggle Accessibility Contrast">
+                    <i class="fa-solid fa-universal-access"></i>
+                </button>
+                
+                <button class="theme-btn primary-btn btn-sm" id="header-portal-btn"><i class="fa-solid fa-user-lock"></i> Portal Login</button>
+            </div>
+            
+            <button class="mobile-nav-toggle" id="menu-toggle-btn" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <!-- ==================== HOME SECTION ==================== -->
+        <section id="home-section" class="app-page active">
+            <!-- Hero Banner -->
+            <div class="hero-banner-section" style="background-image: linear-gradient(135deg, rgba(30,32,34,0.85) 0%, rgba(111,155,75,0.4) 100%), url('assets/hero_banner.png');">
+                <div class="container hero-container">
+                    <div class="hero-content">
+                        <div class="hero-trust-badge">
+                            <span class="trust-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                            <span><strong>4.9/5 Rating</strong> (500+ Patients in Indore) &bull; <i class="fa-solid fa-location-dot"></i> Rajendra Nagar</span>
+                        </div>
+                        <h1 class="hero-title animate-text">Indore's Leading Weight Loss &amp; PCOS Clinic</h1>
+                        <p class="hero-desc">Certified Dietitian Oshin Ambekar delivers science-backed, customized diet &amp; lifestyle reversal plans. Experience natural, long-term weight loss &amp; hormonal balance without starvation or extreme crash diets.</p>
+                        
+                        <div class="hero-cta-buttons">
+                            <a href="tel:+917828149178" class="theme-btn call-now-btn pulse-glow"><i class="fa-solid fa-phone-volume"></i> Call Clinic: 07828149178</a>
+                            <a href="https://wa.me/917828149178?text=Hi%20Nutrislims%20Clinic,%20I%20want%20to%20book%20a%20diet%20consultation" target="_blank" class="theme-btn whatsapp-cta-btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp Consultation</a>
+                            <a href="#appointment-booking" class="theme-btn outline-btn scroll-to-btn" data-target="home-section"><i class="fa-solid fa-calendar-check"></i> Book In-Person Visit</a>
+                            <a href="#tools-section" id="hero-tools-btn" class="theme-btn outline-btn scroll-to-btn" data-target="tools-section"><i class="fa-solid fa-calculator"></i> Health Calculators</a>
+                        </div>
+
+                        <div class="hero-location-bar">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <span>1st Floor B, 109, Rajendra Nagar Main Rd (Near Jain Temple), Indore 452012</span>
+                            <a href="https://maps.google.com/?q=Nutrislims+Health+%26+Wellness+Clinic+Rajendra+Nagar+Indore" target="_blank" class="directions-pill">Get Directions <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+
+                        <!-- Statistics Counter -->
+                        <div class="hero-stats">
+                            <div class="stat-card">
+                                <span class="stat-num" data-val="1200">1200+</span>
+                                <span class="stat-label">Happy Clients</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-num" data-val="10">10+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-num" data-val="98">98%</span>
+                                <span class="stat-label">Success Rate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick BMI Calculator Side Widget -->
+                    <div class="hero-widget-bmi glass-card">
+                        <div class="widget-header">
+                            <h3><i class="fa-solid fa-heart-pulse"></i> Quick BMI Check</h3>
+                            <p>Calculate your Body Mass Index in seconds</p>
+                        </div>
+                        <div class="widget-body">
+                            <div class="form-toggle-system">
+                                <button type="button" class="toggle-tab-btn active" id="hero-unit-metric">Metric</button>
+                                <button type="button" class="toggle-tab-btn" id="hero-unit-imperial">Imperial</button>
+                            </div>
+                            
+                            <div class="input-row">
+                                <div class="input-grp">
+                                    <label for="hero-weight">Weight</label>
+                                    <div class="input-addon">
+                                        <input type="number" id="hero-weight" placeholder="70" min="20" max="300" required>
+                                        <span id="hero-weight-lbl">kg</span>
+                                    </div>
+                                </div>
+                                <div class="input-grp">
+                                    <label for="hero-height">Height</label>
+                                    <div class="input-addon">
+                                        <input type="number" id="hero-height" placeholder="170" min="50" max="250" required>
+                                        <span id="hero-height-lbl">cm</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="theme-btn accent-btn w-full" id="hero-bmi-calc-btn">Get Results</button>
+                            
+                            <div class="bmi-result-wrapper hidden" id="hero-bmi-results">
+                                <div class="divider"></div>
+                                <div class="bmi-score-row">
+                                    <span>Your BMI Score:</span>
+                                    <strong id="hero-bmi-score">24.2</strong>
+                                </div>
+                                <div class="bmi-badge normal" id="hero-bmi-badge">Normal Weight</div>
+                                <p class="bmi-suggestion" id="hero-bmi-msg">Looking healthy! Keep up the balanced meal routines.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mega Grid Services Section -->
+            <div class="services-overview-section" id="services">
+                <div class="container text-center section-spacing">
+                    <span class="section-subtitle">What We Excel In</span>
+                    <h2 class="section-title">Our Specialized Programs</h2>
+                    <p class="section-desc">Scientifically curated plans, designed for your specific health markers, lifestyle constraints, and nutritional requirements.</p>
+                    
+                    <div class="services-grid">
+                        <div class="service-card hover-glow">
+                            <div class="srv-icon-box"><i class="fa-solid fa-weight-scale"></i></div>
+                            <h3>Weight Management</h3>
+                            <p>Healthy weight loss and muscle gain packages based on metabolic rate audits, portion controls, and muscle retention guidelines.</p>
+                            <span class="srv-link" data-service="weight">Explore Details <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                        
+                        <div class="service-card hover-glow">
+                            <div class="srv-icon-box"><i class="fa-solid fa-syringe"></i></div>
+                            <h3>Diabetes Lifestyle Management</h3>
+                            <p>Holistic blood sugar stabilization regimens focus on lowering HbA1c values using natural food combinations and low Glycemic Index (GI) ingredients.</p>
+                            <span class="srv-link" data-service="diabetes">Explore Details <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+
+                        <div class="service-card hover-glow">
+                            <div class="srv-icon-box"><i class="fa-solid fa-circle-dot"></i></div>
+                            <h3>PCOS / PCOD Recovery</h3>
+                            <p>Target insulin resistance, endocrine balance, and weight management. Our plans assist in restoring regular menstrual cycles naturally.</p>
+                            <span class="srv-link" data-service="pcos">Explore Details <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+
+                        <div class="service-card hover-glow">
+                            <div class="srv-icon-box"><i class="fa-solid fa-baby-carriage"></i></div>
+                            <h3>Pre & Post Pregnancy Care</h3>
+                            <p>Nourishing meal grids rich in folate, iron, and key minerals for both expecting and breastfeeding mothers to support safe fetal development.</p>
+                            <span class="srv-link" data-service="pregnancy">Explore Details <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+
+                        <div class="service-card hover-glow">
+                            <div class="srv-icon-box"><i class="fa-solid fa-child"></i></div>
+                            <h3>Child Growth & Nutrition</h3>
+                            <p>Tackling fussy eating habits, nutritional deficits, child obesity, and building immunity through fun, kid-friendly, nutrition-dense recipes.</p>
+                            <span class="srv-link" data-service="child">Explore Details <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+
+                        <div class="service-card hover-glow">
+                            <div class="srv-icon-box"><i class="fa-solid fa-building-user"></i></div>
+                            <h3>Corporate Wellness</h3>
+                            <p>Custom wellness webinars, corporate BMI health camps, desk-friendly exercises, stress-relieving diet recommendations, and ergonomics auditing.</p>
+                            <span class="srv-link" data-service="corporate">Explore Details <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Dietician Section -->
+            <div class="about-dietician-section light-gray-bg">
+                <div class="container dietician-layout">
+                    <div class="dietician-image-wrapper">
+                        <img src="assets/dietician_portrait.png" alt="Oshin Ambekar dietician" class="diet-avatar shadow-lg">
+                        <div class="experience-badge animate-float">
+                            <h3>10+</h3>
+                            <span>Years in Practice</span>
+                        </div>
+                    </div>
+                    <div class="dietician-bio-content">
+                        <span class="section-subtitle">Meet Our Chief Nutritionist</span>
+                        <h2>Dietician Oshin Ambekar</h2>
+                        <p class="bio-intro">Healing starts with the kitchen. My approach rejects starvation diets, pills, or artificial shakes, focusing instead on sustainable, locally sourced foods that heal your body from the cell level.</p>
+                        
+                        <div class="credentials-checklist">
+                            <div class="cred-item"><i class="fa-solid fa-graduation-cap"></i> <span>M.Sc. Public Health - Brunel University London</span></div>
+                            <div class="cred-item"><i class="fa-solid fa-certificate"></i> <span>Certified Clinical Dietician & Diabetes Educator</span></div>
+                            <div class="cred-item"><i class="fa-solid fa-users"></i> <span>Member, British & Indian Diabetes Associations</span></div>
+                            <div class="cred-item"><i class="fa-solid fa-award"></i> <span>Featured in Elite Health Forums for PCOS Research</span></div>
+                        </div>
+
+                        <div class="timeline-steps">
+                            <h4>Our Balanced Wellness Framework:</h4>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">1</div>
+                                <div>
+                                    <h5>Metabolic Profiling</h5>
+                                    <p>We analyze your active metabolic index, visceral fat ratio, and vitamin deficits.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">2</div>
+                                <div>
+                                    <h5>Customized Meal Maps</h5>
+                                    <p>We craft easy-to-cook, nutritious meal schedules customized to your home kitchen.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">3</div>
+                                <div>
+                                    <h5>Continuous Adjustment</h5>
+                                    <p>Bi-weekly updates based on body changes, cravings, and continuous feedback.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Awards and Affiliations Carousel -->
+            <div class="carousel-section">
+                <div class="container text-center">
+                    <span class="section-subtitle">Trusted Worldwide</span>
+                    <h3 class="subsection-title">Credentials & Honors</h3>
+                    <div class="awards-slider-container">
+                        <div class="awards-track" id="awards-scroller">
+                            <!-- Duplicate items for loop -->
+                            <div class="award-logo"><i class="fa-solid fa-ribbon"></i> <span>UK Health Council Certified</span></div>
+                            <div class="award-logo"><i class="fa-solid fa-medal"></i> <span>Best Dietitian Indore 2024</span></div>
+                            <div class="award-logo"><i class="fa-solid fa-award"></i> <span>IDA Association Member</span></div>
+                            <div class="award-logo"><i class="fa-solid fa-shield-halved"></i> <span>WHO Public Health Alumnus</span></div>
+                            <div class="award-logo"><i class="fa-solid fa-scroll"></i> <span>Diabetes Educator Gold Medal</span></div>
+                            <!-- Duplicates -->
+                            <div class="award-logo"><i class="fa-solid fa-ribbon"></i> <span>UK Health Council Certified</span></div>
+                            <div class="award-logo"><i class="fa-solid fa-medal"></i> <span>Best Dietitian Indore 2024</span></div>
+                            <div class="award-logo"><i class="fa-solid fa-award"></i> <span>IDA Association Member</span></div>
+                            <div class="award-logo"><i class="fa-solid fa-shield-halved"></i> <span>WHO Public Health Alumnus</span></div>
+                            <div class="award-logo"><i class="fa-solid fa-scroll"></i> <span>Diabetes Educator Gold Medal</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Before & After Testimonials -->
+            <div class="testimonials-section section-spacing">
+                <div class="container text-center">
+                    <span class="section-subtitle">Inspiring Success Stories</span>
+                    <h2>Before & After Success Journeys</h2>
+                    <p class="section-desc text-center">Real stories from our clinic showing sustainable, life-altering improvements in weight and metabolic control.</p>
+
+                    <div class="success-slider">
+                        <div class="success-card glass-card">
+                            <div class="progress-view-slider">
+                                <div class="progress-panel">
+                                    <div class="weight-label before">Before (96 Kg)</div>
+                                    <div class="weight-circle before-circle">96 <small>kg</small></div>
+                                </div>
+                                <div class="progress-arrow-indicator"><i class="fa-solid fa-angles-right"></i></div>
+                                <div class="progress-panel">
+                                    <div class="weight-label after">After (72 Kg)</div>
+                                    <div class="weight-circle after-circle">72 <small>kg</small></div>
+                                </div>
+                            </div>
+                            <div class="testimonial-txt">
+                                <h3>"Lost 24 kgs and stabilized insulin resistance!"</h3>
+                                <p>"Dietician Oshin did not restrict my favorite home foods. She modified portions and timings. My thyroid is now balanced, energy levels are sky-high, and I've kept the weight off for over a year."</p>
+                                <span class="client-name">- Rohan Gupta, Software Lead</span>
+                            </div>
+                        </div>
+
+                        <div class="success-card glass-card">
+                            <div class="progress-view-slider">
+                                <div class="progress-panel">
+                                    <div class="weight-label before">HbA1c: 8.9%</div>
+                                    <div class="weight-circle diabetic-before">8.9%</div>
+                                </div>
+                                <div class="progress-arrow-indicator"><i class="fa-solid fa-angles-right"></i></div>
+                                <div class="progress-panel">
+                                    <div class="weight-label after">HbA1c: 5.7%</div>
+                                    <div class="weight-circle diabetic-after">5.7%</div>
+                                </div>
+                            </div>
+                            <div class="testimonial-txt">
+                                <h3>"Completely reversed my Type-2 Pre-Diabetes"</h3>
+                                <p>"My doctor wanted to increase my medication, but I wanted to try nutrition management first. Oshin's diabetic meal map helped lower my HbA1c to normal limits in just 4 months. Life-saving guidance."</p>
+                                <span class="client-name">- Meera Sharma, School Administrator</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== AD-FOCUSED HIGH CONVERSION SECTIONS ==================== -->
+            <!-- Weight Loss Specific Anchor Module -->
+            <section class="ad-conversion-section" id="weight-loss">
+                <div class="container section-spacing">
+                    <div class="ad-focus-banner weight-banner glass-card">
+                        <div class="ad-focus-content">
+                            <span class="badge-pill green-pill"><i class="fa-solid fa-fire"></i> Most Popular in Indore</span>
+                            <h2>Medical &amp; Sustainable Weight Loss Program</h2>
+                            <p class="ad-sub">Tired of belly fat, crash diets, and rebound weight gain? Our clinic crafts personalized, Indore-friendly diet plans calibrated to your resting metabolic rate, body fat percentage, and everyday routine.</p>
+                            <div class="benefits-check-grid">
+                                <div class="check-item"><i class="fa-solid fa-circle-check text-green"></i> <span><strong>Zero Starvation:</strong> Enjoy tasty home meals with smart portion distribution.</span></div>
+                                <div class="check-item"><i class="fa-solid fa-circle-check text-green"></i> <span><strong>Visceral Belly Fat Focus:</strong> Target stubborn midsection fat while maintaining muscle.</span></div>
+                                <div class="check-item"><i class="fa-solid fa-circle-check text-green"></i> <span><strong>Weekly Progress Reviews:</strong> Regular in-clinic or WhatsApp accountability checks.</span></div>
+                                <div class="check-item"><i class="fa-solid fa-circle-check text-green"></i> <span><strong>Clinically Safe:</strong> Tailored for Thyroid, Cholesterol, and Hypertension management.</span></div>
+                            </div>
+                            <div class="ad-btn-row">
+                                <a href="tel:+917828149178" class="theme-btn primary-btn pulse-glow"><i class="fa-solid fa-phone-volume"></i> Call 07828149178 For Diet Plan</a>
+                                <a href="https://wa.me/917828149178?text=Hi%20Nutrislims%20Clinic,%20I%20am%20interested%20in%20the%20Weight%20Loss%20Program" target="_blank" class="theme-btn whatsapp-cta-btn"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+                            </div>
+                        </div>
+                        <div class="ad-focus-sidebar">
+                            <div class="stat-highlight-box">
+                                <span class="stat-badge">Expected Results</span>
+                                <div class="big-metric">4 - 7 Kg</div>
+                                <span class="metric-caption">Healthy Fat Loss in 30–45 Days</span>
+                                <div class="social-proof-quote">
+                                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                    <p>"Lost 9.5 kg in 2 months with Dietitian Oshin without giving up home food!"</p>
+                                    <small>- Pooja M., Rajendra Nagar, Indore</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PCOS / PCOD Specific Anchor Module -->
+            <section class="ad-conversion-section pcos-section" id="pcos-care">
+                <div class="container section-spacing">
+                    <div class="ad-focus-banner pcos-banner glass-card">
+                        <div class="ad-focus-content">
+                            <span class="badge-pill gold-pill"><i class="fa-solid fa-ribbon"></i> Specialized Women's Wellness</span>
+                            <h2>Natural PCOS &amp; PCOD Hormonal Balance Program</h2>
+                            <p class="ad-sub">Struggling with irregular cycles, unexplained weight gain, acne, or facial hair? Our evidence-based nutritional protocols address the root biological driver: <em>Insulin Resistance and Hormonal Imbalance</em>.</p>
+                            <div class="benefits-check-grid">
+                                <div class="check-item"><i class="fa-solid fa-circle-check text-gold"></i> <span><strong>Natural Cycle Regularity:</strong> Balance estrogen &amp; progesterone without lifelong birth control pills.</span></div>
+                                <div class="check-item"><i class="fa-solid fa-circle-check text-gold"></i> <span><strong>Hormonal Weight Drop:</strong> Specialized low-androgen meal patterns to stop hormonal fat storage.</span></div>
+                                <div class="check-item"><i class="fa-solid fa-circle-check text-gold"></i> <span><strong>Skin &amp; Hair Care:</strong> Eliminate stubborn cystic acne, facial hair, and scalp thinning from the inside out.</span></div>
+                                <div class="check-item"><i class="fa-solid fa-circle-check text-gold"></i> <span><strong>Compassionate Care:</strong> Private, dedicated consultations with Certified Dietitian Oshin Ambekar.</span></div>
+                            </div>
+                            <div class="ad-btn-row">
+                                <a href="tel:+917828149178" class="theme-btn accent-btn pulse-glow"><i class="fa-solid fa-phone-volume"></i> Consult PCOS Specialist: 07828149178</a>
+                                <a href="https://wa.me/917828149178?text=Hi%20Nutrislims%20Clinic,%20I%20want%20a%20consultation%20for%20PCOS/PCOD%20care" target="_blank" class="theme-btn whatsapp-cta-btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp PCOS Support</a>
+                            </div>
+                        </div>
+                        <div class="ad-focus-sidebar">
+                            <div class="stat-highlight-box gold-accent">
+                                <span class="stat-badge">Clinical Success</span>
+                                <div class="big-metric">91%</div>
+                                <span class="metric-caption">Patients Restore Regular Periods in 90 Days</span>
+                                <div class="social-proof-quote">
+                                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                                    <p>"After 3 years of irregular periods, Oshin ma'am's plan normalized my cycle naturally in 60 days."</p>
+                                    <small>- Sneha K., Vijay Nagar, Indore</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Booking Section -->
+            <div class="booking-section-wrapper light-gray-bg" id="appointment-booking">
+                <div class="container booking-container">
+                    <div class="booking-left">
+                        <span class="section-subtitle">Take Control of Your Health</span>
+                        <h2>Schedule Your Clinic Consultation</h2>
+                        <p>Choose the fastest, proven way to connect with Dietitian Oshin Ambekar at our Rajendra Nagar clinic in Indore or via secure online tele-health.</p>
+                        
+                        <div class="booking-benefits-grid">
+                            <div class="benefit-tag"><i class="fa-solid fa-circle-check"></i> 1-on-1 Diet Assessment</div>
+                            <div class="benefit-tag"><i class="fa-solid fa-circle-check"></i> Metabolism &amp; Fat Audit</div>
+                            <div class="benefit-tag"><i class="fa-solid fa-circle-check"></i> Customized Indore Meal Plan</div>
+                            <div class="benefit-tag"><i class="fa-solid fa-circle-check"></i> Instant WhatsApp Confirmation</div>
+                        </div>
+
+                        <!-- 1-Click Fast WhatsApp Booking Card -->
+                        <div class="whatsapp-instant-box glass-card">
+                            <div class="wa-instant-header">
+                                <i class="fa-brands fa-whatsapp text-green"></i>
+                                <div>
+                                    <strong>⚡ 1-Click Instant WhatsApp Booking</strong>
+                                    <span>Direct chat with Dietitian Oshin (Reply in 15 mins)</span>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/917828149178?text=Hi%20Nutrislims%20Clinic,%20I%20want%20to%20book%20a%20diet%20consultation%20with%20Dietitian%20Oshin%20in%20Indore" target="_blank" class="theme-btn whatsapp-cta-btn w-full pulse-glow" id="direct-wa-booking-link">
+                                <i class="fa-brands fa-whatsapp"></i> Tap to Book on WhatsApp (07828149178)
+                            </a>
+                        </div>
+
+                        <div class="booking-hotlines-box">
+                            <a href="tel:+917828149178" class="booking-hotline-item">
+                                <i class="fa-solid fa-phone-volume"></i>
+                                <div>
+                                    <span>Call Clinic Directly</span>
+                                    <strong>07828149178</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="booking-right-form glass-card">
+                        <div id="booking-form-wrapper">
+                            <h3>Reserve Consultation Slot</h3>
+                            <p class="form-micro-text">Submit below to receive instant booking confirmation &amp; WhatsApp verification.</p>
+                            
+                            <form id="clinic-booking-form" class="clinic-form">
+                                <div class="form-group-single">
+                                    <label for="book-name">Full Name *</label>
+                                    <input type="text" id="book-name" placeholder="Enter your name" required>
+                                </div>
+                                
+                                <div class="form-group-single">
+                                    <label for="book-phone">WhatsApp Mobile Number *</label>
+                                    <input type="tel" id="book-phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                                </div>
+
+                                <div class="form-group-single">
+                                    <label for="book-program">Primary Health Goal *</label>
+                                    <select id="book-program" required>
+                                        <option value="Weight Loss Clinic Indore">Weight Loss Program (Indore Clinic)</option>
+                                        <option value="PCOS / PCOD Hormonal Care">PCOS / PCOD Hormonal Balance</option>
+                                        <option value="Diabetes & Metabolic Health">Diabetes &amp; Blood Sugar Control</option>
+                                        <option value="Thyroid & Cholesterol Nutrition">Thyroid / Cholesterol Diet Plan</option>
+                                        <option value="General Diet Consultation">General Wellness Consultation</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="theme-btn primary-btn w-full" id="btn-submit-booking">
+                                    <i class="fa-brands fa-whatsapp"></i> Confirm &amp; WhatsApp Clinic Now
+                                </button>
+                                <span class="form-secure-note"><i class="fa-solid fa-shield-halved"></i> 100% Privacy Protected &bull; No Spam Ever</span>
+                            </form>
+                        </div>
+
+                        <!-- On-Screen Verified Booking Proof Receipt Card -->
+                        <div id="booking-proof-receipt" class="booking-proof-receipt hidden">
+                            <div class="receipt-header">
+                                <div class="receipt-icon"><i class="fa-solid fa-circle-check"></i></div>
+                                <h3>Appointment Request Verified!</h3>
+                                <p>Your consultation slot request has been recorded with proof ID below.</p>
+                            </div>
+                            
+                            <div class="receipt-details">
+                                <div class="receipt-row">
+                                    <span>Booking Reference:</span>
+                                    <strong id="receipt-id" class="receipt-code">#NUTRI-7821</strong>
+                                </div>
+                                <div class="receipt-row">
+                                    <span>Patient Name:</span>
+                                    <strong id="receipt-name">-</strong>
+                                </div>
+                                <div class="receipt-row">
+                                    <span>Contact Number:</span>
+                                    <strong id="receipt-phone">-</strong>
+                                </div>
+                                <div class="receipt-row">
+                                    <span>Program:</span>
+                                    <strong id="receipt-program">-</strong>
+                                </div>
+                                <div class="receipt-row">
+                                    <span>Clinic Location:</span>
+                                    <strong>Rajendra Nagar, Indore 452012</strong>
+                                </div>
+                                <div class="receipt-row">
+                                    <span>Verification Status:</span>
+                                    <span class="badge-status-green"><i class="fa-solid fa-check"></i> Pre-Approved</span>
+                                </div>
+                            </div>
+                            
+                            <div class="receipt-actions">
+                                <a href="#" id="receipt-wa-btn" target="_blank" class="theme-btn whatsapp-cta-btn w-full pulse-glow">
+                                    <i class="fa-brands fa-whatsapp"></i> Open WhatsApp to Confirm Slot
+                                </a>
+                                <a href="tel:+917828149178" class="theme-btn outline-btn w-full">
+                                    <i class="fa-solid fa-phone"></i> Call Clinic: 07828149178
+                                </a>
+                                <button type="button" id="receipt-reset-btn" class="receipt-reset-link">Book Another Consultation</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQs Section -->
+            <div class="faq-section-wrapper section-spacing">
+                <div class="container max-width-md">
+                    <div class="text-center">
+                        <span class="section-subtitle">Common Questions</span>
+                        <h2>Frequently Asked Questions</h2>
+                    </div>
+
+                    <div class="faq-accordion-list">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Do you prescribe weight loss pills or strict calorie dieting?</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Absolutely not. We believe that lasting changes do not rely on pills or severe starvation. We modify your existing home-cooked diets by adjusting portions, ingredient combinations, and eating windows to naturally boost metabolism.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Can diet plans help with high HbA1c levels in Diabetes?</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yes. By shifting to high-fiber, low-glycemic index foods and optimal meal timings, we help control spikes and reduce glycemic variability. Many of our clients see notable improvements in blood glucose levels within 8 to 12 weeks.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>What is included in the bi-weekly health checkups?</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>During our review cycles, we perform weight evaluations, BMR checks, water percentage monitoring, and macro ratio adjustments. This helps verify that weight lost consists of visceral fat while preserving active muscle tissue.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>Can I manage consultation sessions remotely online?</span>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yes, we run structured tele-nutrition consultations globally. We use video calls, online log sharing, and app-based trackers to manage client goals worldwide.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Subscription -->
+            <div class="newsletter-sub-section accent-bg">
+                <div class="container text-center">
+                    <h2>Get Free Weekly Health & Diet Tips</h2>
+                    <p>Subscribe to our wellness email newsletter. No spam, only certified guidelines and healthy recipes.</p>
+                    <form id="newsletter-form" class="newsletter-form">
+                        <input type="email" id="news-email" placeholder="Enter your email address" required aria-label="Newsletter email">
+                        <button type="submit" class="theme-btn dark-btn">Join Newsletter</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CALCULATORS HUB ==================== -->
+        <section id="tools-section" class="app-page">
+            <div class="page-title-banner text-center" style="background-image: linear-gradient(135deg, rgba(30,32,34,0.9) 0%, rgba(111,155,75,0.85) 100%);">
+                <div class="container">
+                    <span class="sub-lbl">Interactive Diagnostic Suite</span>
+                    <h1>Scientific Health Calculators Hub</h1>
+                    <p>Utilize clinical algorithms to analyze weight parameters, daily energy balances, water needs, and nutrient deficiencies.</p>
+                </div>
+            </div>
+
+            <div class="container section-spacing">
+                <div class="tools-layout-wrapper">
+                    <!-- Calculator Sidebar Navigation -->
+                    <aside class="tools-sidebar-nav" aria-label="Calculator Categories">
+                        <button class="sidebar-tab-btn active" data-calc="bmi-adv"><i class="fa-solid fa-weight-scale"></i> Advanced BMI</button>
+                        <button class="sidebar-tab-btn" data-calc="bmr-adv"><i class="fa-solid fa-fire"></i> BMR Harris-Benedict</button>
+                        <button class="sidebar-tab-btn" data-calc="tdee-adv"><i class="fa-solid fa-bolt"></i> TDEE & Activity</button>
+                        <button class="sidebar-tab-btn" data-calc="bodyfat-adv"><i class="fa-solid fa-percent"></i> Body Fat (US Navy)</button>
+                        <button class="sidebar-tab-btn" data-calc="water-adv"><i class="fa-solid fa-droplet"></i> Daily Water Intake</button>
+                        <button class="sidebar-tab-btn" data-calc="macro-adv"><i class="fa-solid fa-pie-chart"></i> Macro Nutrient Split</button>
+                        <button class="sidebar-tab-btn" data-calc="idealweight-adv"><i class="fa-solid fa-heart"></i> Ideal Body Weight</button>
+                        <button class="sidebar-tab-btn" data-calc="whr-adv"><i class="fa-solid fa-arrows-left-right"></i> Waist-to-Hip Ratio</button>
+                        <button class="sidebar-tab-btn" data-calc="pcos-screener"><i class="fa-solid fa-clipboard-question"></i> PCOS Symptom Screener</button>
+                        <button class="sidebar-tab-btn" data-calc="diabetes-screener"><i class="fa-solid fa-clipboard-check"></i> Diabetes Risk Index</button>
+                        <button class="sidebar-tab-btn" data-calc="heart-calc"><i class="fa-solid fa-wave-square"></i> Heart Rate Zones</button>
+                        <button class="sidebar-tab-btn" data-calc="activity-burn"><i class="fa-solid fa-person-running"></i> Calorie Burn Estimator</button>
+                        <button class="sidebar-tab-btn" data-calc="nutrient-screener"><i class="fa-solid fa-apple-whole"></i> Vitamin Deficiency Screener</button>
+                    </aside>
+
+                    <!-- Calculator Content Panels -->
+                    <div class="calculator-display-card glass-card">
+                        
+                        <!-- 1. Advanced BMI Calculator -->
+                        <div class="calc-panel active" id="calc-panel-bmi-adv">
+                            <h2>Advanced Body Mass Index (BMI)</h2>
+                            <p>Evaluates weight categories and calculates specific weight thresholds for your height.</p>
+                            <form id="adv-bmi-form">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="bmi-weight">Weight (kg)</label>
+                                        <input type="number" id="bmi-weight" min="20" max="350" required placeholder="70">
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="bmi-height">Height (cm)</label>
+                                        <input type="number" id="bmi-height" min="50" max="260" required placeholder="170">
+                                    </div>
+                                </div>
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="bmi-age">Age (Years)</label>
+                                        <input type="number" id="bmi-age" min="2" max="120" required placeholder="28">
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="bmi-gender">Assigned Gender</label>
+                                        <select id="bmi-gender" required>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Calculate Advanced BMI</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="bmi-adv-output">
+                                <div class="result-score-block">
+                                    <span>Calculated BMI:</span>
+                                    <strong id="bmi-adv-score">24.2</strong>
+                                </div>
+                                <div id="bmi-adv-range" class="bmi-badge normal">Normal</div>
+                                <div class="result-details-table">
+                                    <p id="bmi-adv-range-summary"></p>
+                                    <p id="bmi-adv-limits"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. BMR Harris-Benedict -->
+                        <div class="calc-panel" id="calc-panel-bmr-adv">
+                            <h2>BMR Harris-Benedict Metabolic Rate</h2>
+                            <p>Computes the Basal Metabolic Rate (calories burned if at complete rest all day).</p>
+                            <form id="adv-bmr-form">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="bmr-weight">Weight (kg)</label>
+                                        <input type="number" id="bmr-weight" min="30" max="250" required placeholder="65">
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="bmr-height">Height (cm)</label>
+                                        <input type="number" id="bmr-height" min="80" max="240" required placeholder="165">
+                                    </div>
+                                </div>
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="bmr-age">Age (Years)</label>
+                                        <input type="number" id="bmr-age" min="10" max="100" required placeholder="30">
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="bmr-gender">Gender</label>
+                                        <select id="bmr-gender">
+                                            <option value="female">Female</option>
+                                            <option value="male">Male</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Calculate BMR</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="bmr-adv-output">
+                                <div class="result-score-block">
+                                    <span>Your Daily BMR:</span>
+                                    <strong><span id="bmr-adv-calories">1450</span> kcal</strong>
+                                </div>
+                                <p class="result-note">This is the minimum energy your body requires to maintain normal respiration, circulation, and temperature systems.</p>
+                            </div>
+                        </div>
+
+                        <!-- 3. TDEE & Activity -->
+                        <div class="calc-panel" id="calc-panel-tdee-adv">
+                            <h2>Total Daily Energy Expenditure (TDEE)</h2>
+                            <p>Factors in physical activity multipliers to estimate the calories you burn daily.</p>
+                            <form id="adv-tdee-form">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="tdee-bmr">BMR Value (Or enter estimate)</label>
+                                        <input type="number" id="tdee-bmr" min="800" max="4000" required placeholder="1500">
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="tdee-activity">Typical Daily Activity</label>
+                                        <select id="tdee-activity">
+                                            <option value="1.2">Sedentary (Office desk, minimal walks)</option>
+                                            <option value="1.375">Lightly Active (1-3 days light exercise/week)</option>
+                                            <option value="1.55">Moderately Active (3-5 days gym/sports/week)</option>
+                                            <option value="1.725">Very Active (6-7 days intense sports/job)</option>
+                                            <option value="1.9">Extra Active (Hard physical labor & daily double training)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Calculate TDEE</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="tdee-adv-output">
+                                <div class="result-score-block">
+                                    <span>Your Daily TDEE:</span>
+                                    <strong><span id="tdee-adv-calories">2050</span> kcal</strong>
+                                </div>
+                                <div class="tdee-zones-grid">
+                                    <div class="zone-card cut">
+                                        <h4>Weight Loss (Cut)</h4>
+                                        <span id="tdee-zone-cut">1640 kcal</span>
+                                    </div>
+                                    <div class="zone-card maintain">
+                                        <h4>Maintenance</h4>
+                                        <span id="tdee-zone-maintain">2050 kcal</span>
+                                    </div>
+                                    <div class="zone-card bulk">
+                                        <h4>Weight Gain (Bulk)</h4>
+                                        <span id="tdee-zone-bulk">2350 kcal</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Body Fat (US Navy) -->
+                        <div class="calc-panel" id="calc-panel-bodyfat-adv">
+                            <h2>Body Fat Percentage Calculator</h2>
+                            <p>Evaluates fat content based on body measurements using the US Navy Formula.</p>
+                            <form id="adv-bodyfat-form">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="bf-gender">Gender</label>
+                                        <select id="bf-gender" required>
+                                            <option value="female">Female</option>
+                                            <option value="male">Male</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="bf-height">Height (cm)</label>
+                                        <input type="number" id="bf-height" min="100" max="250" placeholder="170" required>
+                                    </div>
+                                </div>
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="bf-neck">Neck Circumference (cm)</label>
+                                        <input type="number" id="bf-neck" min="20" max="60" placeholder="36" required>
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="bf-waist">Waist Circumference (cm)</label>
+                                        <input type="number" id="bf-waist" min="40" max="180" placeholder="80" required>
+                                    </div>
+                                </div>
+                                <div class="form-group-single" id="bf-hip-wrapper">
+                                    <label for="bf-hip">Hip Circumference (cm) - Required for females</label>
+                                    <input type="number" id="bf-hip" min="40" max="180" placeholder="95">
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Calculate Body Fat %</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="bodyfat-adv-output">
+                                <div class="result-score-block">
+                                    <span>Est. Body Fat Ratio:</span>
+                                    <strong><span id="bodyfat-score">22.4</span>%</strong>
+                                </div>
+                                <div class="bmi-badge normal" id="bodyfat-range-badge">Acceptable Healthy Limit</div>
+                                <p class="result-note mt-2">Visceral body fat analysis helps design ideal caloric thresholds for targeted fat reduction.</p>
+                            </div>
+                        </div>
+
+                        <!-- 5. Daily Water Intake -->
+                        <div class="calc-panel" id="calc-panel-water-adv">
+                            <h2>Daily Hydration Target Calculator</h2>
+                            <p>Computes custom fluid goals based on user body parameters and active exercise duration.</p>
+                            <form id="adv-water-form">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="water-weight">Weight (kg)</label>
+                                        <input type="number" id="water-weight" min="30" max="200" required placeholder="70">
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="water-exercise">Daily Exercise Duration (Minutes)</label>
+                                        <input type="number" id="water-exercise" min="0" max="300" required placeholder="30">
+                                    </div>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Calculate Fluid Goal</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="water-adv-output">
+                                <div class="result-score-block">
+                                    <span>Fluid Goal:</span>
+                                    <strong><span id="water-liters">2.7</span> Liters / Day</strong>
+                                </div>
+                                <p class="result-note">Equivalent to approximately <strong id="water-glasses">11</strong> standard 250ml glasses of water.</p>
+                            </div>
+                        </div>
+
+                        <!-- 6. Macro Nutrient Split -->
+                        <div class="calc-panel" id="calc-panel-macro-adv">
+                            <h2>Macro Nutrient Splitter</h2>
+                            <p>Distribute daily calories across protein, carbohydrate, and fat targets based on your weight goals.</p>
+                            <form id="adv-macro-form">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="macro-calories">Daily Calorie Target (kcal)</label>
+                                        <input type="number" id="macro-calories" min="800" max="6000" placeholder="1800" required>
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="macro-goal">Target Nutrition Profile</label>
+                                        <select id="macro-goal">
+                                            <option value="balanced">Balanced Diet (50% Carbs, 20% Protein, 30% Fat)</option>
+                                            <option value="highprotein">High Protein (40% Carbs, 30% Protein, 30% Fat)</option>
+                                            <option value="lowcarb">Low Carb / Keto (10% Carbs, 25% Protein, 65% Fat)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Split Macros</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="macro-adv-output">
+                                <h3>Macronutrient Target Distribution</h3>
+                                <div class="macro-bars-container">
+                                    <div class="macro-bar-item">
+                                        <div class="macro-header">
+                                            <span>Carbohydrates (<span id="macro-carb-pct">50</span>%)</span>
+                                            <strong id="macro-carb-g">225 g</strong>
+                                        </div>
+                                        <div class="macro-progress-bar"><div class="progress-fill carbs" id="macro-bar-carb"></div></div>
+                                    </div>
+                                    <div class="macro-bar-item">
+                                        <div class="macro-header">
+                                            <span>Protein (<span id="macro-prot-pct">20</span>%)</span>
+                                            <strong id="macro-prot-g">90 g</strong>
+                                        </div>
+                                        <div class="macro-progress-bar"><div class="progress-fill protein" id="macro-bar-prot"></div></div>
+                                    </div>
+                                    <div class="macro-bar-item">
+                                        <div class="macro-header">
+                                            <span>Fats (<span id="macro-fat-pct">30</span>%)</span>
+                                            <strong id="macro-fat-g">60 g</strong>
+                                        </div>
+                                        <div class="macro-progress-bar"><div class="progress-fill fats" id="macro-bar-fat"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 7. Ideal Body Weight -->
+                        <div class="calc-panel" id="calc-panel-idealweight-adv">
+                            <h2>Ideal Body Weight (IBW)</h2>
+                            <p>Estimates biological weight limits based on height using the Devine formula.</p>
+                            <form id="adv-ibw-form">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="ibw-height">Height (cm)</label>
+                                        <input type="number" id="ibw-height" min="120" max="230" required placeholder="170">
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="ibw-gender">Biological Sex</label>
+                                        <select id="ibw-gender">
+                                            <option value="female">Female</option>
+                                            <option value="male">Male</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Calculate IBW</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="ibw-adv-output">
+                                <div class="result-score-block">
+                                    <span>Ideal Range:</span>
+                                    <strong><span id="ibw-score">58 - 66</span> kg</strong>
+                                </div>
+                                <p class="result-note">Provides baseline markers for healthy weight control goals based on height guidelines.</p>
+                            </div>
+                        </div>
+
+                        <!-- 8. Waist-to-Hip Ratio -->
+                        <div class="calc-panel" id="calc-panel-whr-adv">
+                            <h2>Waist-to-Hip Ratio (WHR)</h2>
+                            <p>Evaluates visceral body shape profiles to screen for cardiovascular disease indicators.</p>
+                            <form id="adv-whr-form">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="whr-waist">Waist Circumference (cm)</label>
+                                        <input type="number" id="whr-waist" min="40" max="180" placeholder="82" required>
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="whr-hip">Hip Circumference (cm)</label>
+                                        <input type="number" id="whr-hip" min="40" max="180" placeholder="94" required>
+                                    </div>
+                                </div>
+                                <div class="form-group-single">
+                                    <label for="whr-gender">Gender</label>
+                                    <select id="whr-gender">
+                                        <option value="female">Female</option>
+                                        <option value="male">Male</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Calculate Ratio</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="whr-adv-output">
+                                <div class="result-score-block">
+                                    <span>Waist-to-Hip Ratio:</span>
+                                    <strong><span id="whr-score">0.87</span></strong>
+                                </div>
+                                <div class="bmi-badge normal" id="whr-range-badge">Normal Risk Level</div>
+                                <p class="result-note" id="whr-desc"></p>
+                            </div>
+                        </div>
+
+                        <!-- 9. PCOS Symptom Screener -->
+                        <div class="calc-panel" id="calc-panel-pcos-screener">
+                            <h2>PCOS/PCOD Health Symptom Screener</h2>
+                            <p>A simple questionnaire evaluating symptoms associated with endocrine and metabolic imbalances.</p>
+                            <form id="pcos-screener-form">
+                                <div class="screener-questionnaire">
+                                    <div class="check-group">
+                                        <input type="checkbox" id="pcos-q1" value="1">
+                                        <label for="pcos-q1">Irregular menstrual cycles (delayed by more than 35 days or missed periods)</label>
+                                    </div>
+                                    <div class="check-group">
+                                        <input type="checkbox" id="pcos-q2" value="1">
+                                        <label for="pcos-q2">Excessive facial hair growth (hirsutism) or thinning scalp hair</label>
+                                    </div>
+                                    <div class="check-group">
+                                        <input type="checkbox" id="pcos-q3" value="1">
+                                        <label for="pcos-q3">Severe adult acne outbreaks or sudden dark skin patches (acanthosis nigricans)</label>
+                                    </div>
+                                    <div class="check-group">
+                                        <input type="checkbox" id="pcos-q4" value="1">
+                                        <label for="pcos-q4">Unexplained, stubborn abdominal weight gain that is difficult to lose</label>
+                                    </div>
+                                    <div class="check-group">
+                                        <input type="checkbox" id="pcos-q5" value="1">
+                                        <label for="pcos-q5">Intense sugar cravings or frequent mid-day fatigue spikes</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Screen Symptoms</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="pcos-screener-output">
+                                <div class="result-score-block">
+                                    <span>Indicated Symptoms:</span>
+                                    <strong><span id="pcos-score">2</span> out of 5</strong>
+                                </div>
+                                <div class="bmi-badge warning" id="pcos-badge">Moderate Risk Indicator</div>
+                                <p class="result-note mt-2" id="pcos-suggestion"></p>
+                            </div>
+                        </div>
+
+                        <!-- 10. Diabetes Risk Index -->
+                        <div class="calc-panel" id="calc-panel-diabetes-screener">
+                            <h2>Diabetes Health Risk Assessment</h2>
+                            <p>Calculates indicators based on age, genetics, and daily lifestyle habits.</p>
+                            <form id="diabetes-screener-form">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="db-family">Family History of Diabetes?</label>
+                                        <select id="db-family">
+                                            <option value="0">No relatives with Diabetes</option>
+                                            <option value="1">Second-degree relative (aunt/grandparent)</option>
+                                            <option value="2">First-degree relative (parent/sibling)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="db-activity">Weekly Exercise Level</label>
+                                        <select id="db-activity">
+                                            <option value="2">Sedentary (No sports)</option>
+                                            <option value="1">Light walking 2-3 times/week</option>
+                                            <option value="0">Active training (150+ minutes/week)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="db-bp">High Blood Pressure History?</label>
+                                        <select id="db-bp">
+                                            <option value="0">No, normal blood pressure</option>
+                                            <option value="1">Yes, diagnosed or taking BP pills</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="db-thirst">Experience frequent unexplained thirst/urination?</label>
+                                        <select id="db-thirst">
+                                            <option value="0">No, normal</option>
+                                            <option value="1">Yes, occasional spikes</option>
+                                            <option value="2">Yes, frequent symptoms</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Evaluate Risk Index</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="db-screener-output">
+                                <div class="result-score-block">
+                                    <span>Calculated Risk Level:</span>
+                                    <strong id="db-score">Low</strong>
+                                </div>
+                                <p class="result-note mt-2" id="db-msg"></p>
+                            </div>
+                        </div>
+
+                        <!-- 11. Heart Rate Zones -->
+                        <div class="calc-panel" id="calc-panel-heart-calc">
+                            <h2>Target Heart Rate Zone Calculator</h2>
+                            <p>Calculate target cardiovascular zones using your age (Karvonen method).</p>
+                            <form id="heart-calc-form">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="hr-age">Age (Years)</label>
+                                        <input type="number" id="hr-age" min="10" max="95" placeholder="30" required>
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="hr-rhr">Resting Heart Rate (BPM - Optional)</label>
+                                        <input type="number" id="hr-rhr" min="40" max="110" placeholder="70">
+                                    </div>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Show Training Zones</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="heart-calc-output">
+                                <h3>Optimal Cardio Training Ranges</h3>
+                                <div class="tdee-zones-grid">
+                                    <div class="zone-card">
+                                        <h4>Fat Burning Zone (60-70%)</h4>
+                                        <span id="hr-zone-fat">114 - 133 bpm</span>
+                                    </div>
+                                    <div class="zone-card">
+                                        <h4>Cardio (Aerobic) Zone (70-85%)</h4>
+                                        <span id="hr-zone-cardio">133 - 161 bpm</span>
+                                    </div>
+                                    <div class="zone-card">
+                                        <h4>Peak Zone (85%+)</h4>
+                                        <span id="hr-zone-peak">161+ bpm</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 12. Calorie Burn Estimator -->
+                        <div class="calc-panel" id="calc-panel-activity-burn">
+                            <h2>Calorie Burned by Activity</h2>
+                            <p>Estimates physical calorie burns based on activity parameters and body weight.</p>
+                            <form id="activity-burn-form">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="act-weight">Your Weight (kg)</label>
+                                        <input type="number" id="act-weight" min="30" max="220" required placeholder="70">
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="act-duration">Duration of Exercise (Minutes)</label>
+                                        <input type="number" id="act-duration" min="5" max="300" required placeholder="45">
+                                    </div>
+                                </div>
+                                <div class="form-group-single">
+                                    <label for="act-type">Exercise Type</label>
+                                    <select id="act-type">
+                                        <option value="8">Running (approx 8.5 km/hr)</option>
+                                        <option value="3">Light walking</option>
+                                        <option value="6">Bicycling / Spinning</option>
+                                        <option value="4">Yoga / Hatha stretching</option>
+                                        <option value="7">Gym weight lifting / Resistance</option>
+                                        <option value="9">High Intensity HIIT Training</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Estimate Burned Calories</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="activity-burn-output">
+                                <div class="result-score-block">
+                                    <span>Estimated Calories Burned:</span>
+                                    <strong><span id="act-burned">315</span> kcal</strong>
+                                </div>
+                                <p class="result-note">Actual energy expenditure depends on effort, cardiovascular efficiency, and genetic factors.</p>
+                            </div>
+                        </div>
+
+                        <!-- 13. Vitamin Deficiency Screener -->
+                        <div class="calc-panel" id="calc-panel-nutrient-screener">
+                            <h2>Vitamin & Mineral Deficiency Screener</h2>
+                            <p>Matches persistent physical symptoms to potential nutrient gaps.</p>
+                            <form id="nutrient-screener-form">
+                                <div class="screener-questionnaire">
+                                    <p>Select any symptoms you have been experiencing persistently:</p>
+                                    <div class="check-group">
+                                        <input type="checkbox" class="nut-symp" id="nut-q1" value="vitamin-d">
+                                        <label for="nut-q1">Persistent muscle aches, bone pain, or lack of sunlight exposure</label>
+                                    </div>
+                                    <div class="check-group">
+                                        <input type="checkbox" class="nut-symp" id="nut-q2" value="iron">
+                                        <label for="nut-q2">Chronic pale skin, cold fingers/feet, or frequent dizziness</label>
+                                    </div>
+                                    <div class="check-group">
+                                        <input type="checkbox" class="nut-symp" id="nut-q3" value="vitamin-b12">
+                                        <label for="nut-q3">Numbness or tingling sensation in hands or feet, fatigue on waking</label>
+                                    </div>
+                                    <div class="check-group">
+                                        <input type="checkbox" class="nut-symp" id="nut-q4" value="magnesium">
+                                        <label for="nut-q4">Frequent painful muscle cramps, eyelid twitches, or sleeping issues</label>
+                                    </div>
+                                    <div class="check-group">
+                                        <input type="checkbox" class="nut-symp" id="nut-q5" value="zinc">
+                                        <label for="nut-q5">Slow skin wound healing, white spots on fingernails, or hair loss</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="theme-btn primary-btn mt-3">Screen Deficiencies</button>
+                            </form>
+                            <div class="calc-results-output hidden" id="nutrient-screener-output">
+                                <h3>Deficiency Indicator Screening Results</h3>
+                                <div id="nut-results-list" class="nut-list-wrapper"></div>
+                                <p class="result-note caution mt-2"><i class="fa-solid fa-triangle-exclamation"></i> Warning: This is an educational screener, not a diagnostic medical evaluation. Consult Dietician Oshin for blood testing guidance.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== RECIPE DIRECTORY ==================== -->
+        <section id="recipes-section" class="app-page">
+            <div class="page-title-banner text-center" style="background-image: linear-gradient(135deg, rgba(30,32,34,0.9) 0%, rgba(111,155,75,0.85) 100%);">
+                <div class="container">
+                    <span class="sub-lbl">Delicious & Wholesome</span>
+                    <h1>Healthy Recipe Explorer</h1>
+                    <p>Access customized recipes with accurate calorie counts, macronutrient breakdowns, and adjustable serving controls.</p>
+                </div>
+            </div>
+
+            <!-- Intermittent Fasting Banner and Timer Widget -->
+            <div class="fasting-timer-container light-gray-bg">
+                <div class="container fasting-grid">
+                    <div class="fasting-info-left">
+                        <span class="badge-mini">Premium Tool</span>
+                        <h2>Intermittent Fasting (IF) Tracker</h2>
+                        <p>Track your eating windows to support insulin sensitivity and cell detoxification. Choose your program, start the countdown, and manage your fasts.</p>
+                        
+                        <div class="fasting-selectors">
+                            <label for="fast-plan-type">Choose Program:</label>
+                            <select id="fast-plan-type">
+                                <option value="16">16:8 Fasting Plan (Popular)</option>
+                                <option value="18">18:6 Fasting Plan (Intermediate)</option>
+                                <option value="20">20:4 Fasting Plan (Advanced Warrior)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="fasting-timer-right glass-card">
+                        <div class="timer-circle-widget">
+                            <svg class="timer-svg-ring" viewBox="0 0 160 160">
+                                <circle cx="80" cy="80" r="70" class="ring-track"></circle>
+                                <circle cx="80" cy="80" r="70" class="ring-fill" id="timer-progress-fill"></circle>
+                            </svg>
+                            <div class="timer-center-text">
+                                <span class="timer-status" id="fast-status-lbl">FASTING</span>
+                                <span class="timer-clock" id="fast-countdown-timer">16:00:00</span>
+                                <span class="timer-subtxt" id="fast-time-elapsed">Elapsed: 00:00:00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timer-controls">
+                            <button id="fast-start-btn" class="theme-btn accent-btn"><i class="fa-solid fa-play"></i> Start</button>
+                            <button id="fast-pause-btn" class="theme-btn outline-btn hidden"><i class="fa-solid fa-pause"></i> Pause</button>
+                            <button id="fast-reset-btn" class="theme-btn outline-btn"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container section-spacing">
+                <!-- Recipe Filter Buttons -->
+                <div class="recipe-filters-wrapper">
+                    <button class="filter-btn active" data-filter="all">All Dishes</button>
+                    <button class="filter-btn" data-filter="weight-loss">Weight Loss</button>
+                    <button class="filter-btn" data-filter="diabetic">Diabetic Friendly</button>
+                    <button class="filter-btn" data-filter="pcos">PCOS Approved</button>
+                    <button class="filter-btn" data-filter="high-protein">High Protein</button>
+                </div>
+
+                <!-- Recipes Grid -->
+                <div class="recipes-grid" id="recipes-card-grid">
+                    <!-- Recipes will be loaded dynamically by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Health Diet Swapper Section -->
+            <div class="diet-swapper-section light-gray-bg">
+                <div class="container text-center max-width-md">
+                    <h2>Dietary Substitution Engine</h2>
+                    <p>Swap unhealthy everyday items for nutrient-dense alternatives recommended by dietician Oshin.</p>
+                    <div class="swapper-box glass-card text-left">
+                        <div class="form-group-single">
+                            <label for="swap-source-select">Select a food item to substitute:</label>
+                            <select id="swap-source-select">
+                                <option value="white-rice">White Rice (High Glycemic Index)</option>
+                                <option value="refined-sugar">Refined White Sugar (Empty Calories)</option>
+                                <option value="potato-chips">Deep Fried Potato Chips (Trans Fats)</option>
+                                <option value="whole-milk">High Fat Dairy Milk (Visceral Weight)</option>
+                                <option value="soda">Sweetened Carbonated Soda (Fructose Spike)</option>
+                            </select>
+                        </div>
+                        <div class="swap-results-wrapper" id="swap-results-display">
+                            <div class="swap-panel from">
+                                <h4>Unhealthy Choice</h4>
+                                <span id="swap-from-name">White Rice</span>
+                                <p id="swap-from-desc">Causes rapid insulin spikes and lacks fiber content, contributing to hunger cycles.</p>
+                            </div>
+                            <div class="swap-arrow"><i class="fa-solid fa-right-left"></i></div>
+                            <div class="swap-panel to">
+                                <h4>Oshin's Recommendation</h4>
+                                <span id="swap-to-name">Quinoa / Cauliflower Rice</span>
+                                <p id="swap-to-desc">High protein, high fiber options that release energy slowly and support stable blood glucose.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CLIENT DASHBOARD PORTAL ==================== -->
+        <section id="dashboard-section" class="app-page">
+            
+            <!-- 1. Simulated Login Screen -->
+            <div class="dashboard-auth-gateway" id="dashboard-logged-out">
+                <div class="auth-card glass-card text-center">
+                    <div class="auth-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h2>Nutrislims Client Portal</h2>
+                    <p>Enter your patient portal details to access weight graphs, hydration trackers, calorie logs, and print your customized diet sheets.</p>
+                    
+                    <form id="client-login-form" class="auth-form text-left">
+                        <div class="form-group-single">
+                            <label for="login-email">Patient ID or Email</label>
+                            <input type="text" id="login-email" value="oshin@nutrislims.com" placeholder="oshin@nutrislims.com" required>
+                        </div>
+                        <div class="form-group-single">
+                            <label for="login-pass">Access Code</label>
+                            <input type="password" id="login-pass" value="portal123" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="theme-btn primary-btn w-full">Sign In to Dashboard</button>
+                    </form>
+                    <p class="auth-help-txt">Demo ID: <code>oshin@nutrislims.com</code> & Code: <code>portal123</code></p>
+                </div>
+            </div>
+
+            <!-- 2. Main Authenticated Dashboard -->
+            <div class="dashboard-client-console hidden" id="dashboard-logged-in">
+                
+                <!-- Dashboard Welcome Banner -->
+                <div class="dashboard-welcome-strip">
+                    <div class="welcome-left">
+                        <h2>Welcome back, <span id="client-user-name">Oshin</span>!</h2>
+                        <p>Patient ID: <strong id="client-user-id">NS-4982</strong> | Plan Level: <strong>Premium Clinical</strong></p>
+                    </div>
+                    <div class="welcome-actions">
+                        <button class="theme-btn outline-btn btn-sm" id="btn-show-settings"><i class="fa-solid fa-gear"></i> Targets</button>
+                        <button class="theme-btn accent-btn btn-sm" id="btn-generate-pdf"><i class="fa-solid fa-file-pdf"></i> Save PDF Report</button>
+                        <button class="theme-btn dark-btn btn-sm" id="dashboard-logout-btn"><i class="fa-solid fa-sign-out"></i> Log Out</button>
+                    </div>
+                </div>
+
+                <!-- Daily Status Rings Summary Grid -->
+                <div class="dashboard-summary-grid">
+                    <div class="metric-progress-card glass-card">
+                        <div class="card-title-row">
+                            <h3>Calorie Target</h3>
+                            <i class="fa-solid fa-cookie-bite"></i>
+                        </div>
+                        <div class="progress-ring-block">
+                            <svg class="progress-ring-svg" width="100" height="100">
+                                <circle cx="50" cy="50" r="42" class="ring-bg"></circle>
+                                <circle cx="50" cy="50" r="42" class="ring-fill-pct" id="ring-calories-fill"></circle>
+                            </svg>
+                            <div class="ring-inner-val">
+                                <span class="num-lbl" id="dash-cal-logged">0</span>
+                                <span class="unit-lbl">/ <span id="dash-cal-target">1600</span> kcal</span>
+                            </div>
+                        </div>
+                        <p class="summary-card-footer">Remaining: <strong id="dash-cal-rem">1600</strong> kcal</p>
+                    </div>
+
+                    <div class="metric-progress-card glass-card">
+                        <div class="card-title-row">
+                            <h3>Hydration Progress</h3>
+                            <i class="fa-solid fa-glass-water"></i>
+                        </div>
+                        <div class="progress-ring-block">
+                            <svg class="progress-ring-svg" width="100" height="100">
+                                <circle cx="50" cy="50" r="42" class="ring-bg"></circle>
+                                <circle cx="50" cy="50" r="42" class="ring-fill-pct" id="ring-water-fill"></circle>
+                            </svg>
+                            <div class="ring-inner-val">
+                                <span class="num-lbl" id="dash-water-logged">0.0</span>
+                                <span class="unit-lbl">/ <span id="dash-water-target">2.5</span> L</span>
+                            </div>
+                        </div>
+                        <div class="water-button-controls">
+                            <button class="theme-btn btn-xs outline-btn" id="btn-add-water"><i class="fa-solid fa-plus"></i> 250ml Glass</button>
+                            <button class="theme-btn btn-xs outline-btn" id="btn-clear-water"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                        </div>
+                    </div>
+
+                    <div class="metric-progress-card glass-card">
+                        <div class="card-title-row">
+                            <h3>Sleep Tracker</h3>
+                            <i class="fa-solid fa-bed"></i>
+                        </div>
+                        <div class="progress-ring-block">
+                            <svg class="progress-ring-svg" width="100" height="100">
+                                <circle cx="50" cy="50" r="42" class="ring-bg"></circle>
+                                <circle cx="50" cy="50" r="42" class="ring-fill-pct" id="ring-sleep-fill"></circle>
+                            </svg>
+                            <div class="ring-inner-val">
+                                <span class="num-lbl" id="dash-sleep-logged">0</span>
+                                <span class="unit-lbl">/ <span id="dash-sleep-target">8</span> hrs</span>
+                            </div>
+                        </div>
+                        <div class="sleep-input-controls">
+                            <input type="number" id="sleep-input-val" min="1" max="18" placeholder="8" style="width:50px; text-align:center;">
+                            <button class="theme-btn btn-xs primary-btn" id="btn-log-sleep">Log</button>
+                        </div>
+                    </div>
+
+                    <div class="metric-progress-card glass-card">
+                        <div class="card-title-row">
+                            <h3>Adherence Streak</h3>
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                        </div>
+                        <div class="streak-score-block">
+                            <h3 id="dash-streak-count">5</h3>
+                            <span>Days Streak</span>
+                        </div>
+                        <p class="summary-card-footer text-center">Maintain your meal controls to boost your streak!</p>
+                    </div>
+                </div>
+
+                <!-- Targets Configuration Panel (Hidden by default, toggled via Settings) -->
+                <div class="settings-targets-modal glass-card hidden" id="settings-targets-panel">
+                    <h3>Configure Health Targets</h3>
+                    <div class="form-group-split">
+                        <div class="form-group-single">
+                            <label for="set-cal-target">Daily Calorie Target (kcal)</label>
+                            <input type="number" id="set-cal-target" min="800" max="5000" value="1600">
+                        </div>
+                        <div class="form-group-single">
+                            <label for="set-water-target">Hydration Target (Liters)</label>
+                            <input type="number" id="set-water-target" min="1.0" max="6.0" step="0.1" value="2.5">
+                        </div>
+                        <div class="form-group-single">
+                            <label for="set-sleep-target">Sleep Target (Hours)</label>
+                            <input type="number" id="set-sleep-target" min="4" max="12" value="8">
+                        </div>
+                    </div>
+                    <button class="theme-btn primary-btn btn-sm" id="btn-save-targets">Save Targets</button>
+                </div>
+
+                <!-- Interactive Weight Chart and Calorie Logger -->
+                <div class="console-body-layout">
+                    
+                    <!-- Left Side: Calorie log lists and trackers -->
+                    <div class="console-column-left">
+                        
+                        <!-- Food Logger Card -->
+                        <div class="console-widget glass-card">
+                            <h3><i class="fa-solid fa-utensils"></i> Daily Calorie Food Logger</h3>
+                            <p>Select meals and log calories dynamically to monitor energy balance.</p>
+                            <div class="food-logger-inputs">
+                                <div class="form-group-split">
+                                    <div class="form-group-single">
+                                        <label for="food-meal-type">Meal Slot</label>
+                                        <select id="food-meal-type">
+                                            <option value="Breakfast">Breakfast</option>
+                                            <option value="Lunch">Lunch</option>
+                                            <option value="Dinner">Dinner</option>
+                                            <option value="Snack">Snack</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="food-select-preset">Preset Menu Options</label>
+                                        <select id="food-select-preset">
+                                            <option value="custom">-- Enter custom values --</option>
+                                            <option value="Oats Chia Bowl" data-c="280">Oats & Chia Bowl (280 kcal)</option>
+                                            <option value="Quinoa Khichdi" data-c="320">Quinoa Vegetable Khichdi (320 kcal)</option>
+                                            <option value="Paneer Tikka Salad" data-c="380">Paneer Tikka Salad (380 kcal)</option>
+                                            <option value="Mixed Fruit Bowl" data-c="120">Mixed Fruit Bowl (120 kcal)</option>
+                                            <option value="Multigrain Roti & Daal" data-c="420">Multigrain Roti & Daal (420 kcal)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group-split" id="custom-food-inputs">
+                                    <div class="form-group-single">
+                                        <label for="food-custom-name">Food Name</label>
+                                        <input type="text" id="food-custom-name" placeholder="E.g., Almonds">
+                                    </div>
+                                    <div class="form-group-single">
+                                        <label for="food-custom-cal">Calories (kcal)</label>
+                                        <input type="number" id="food-custom-cal" placeholder="150" min="0">
+                                    </div>
+                                </div>
+                                <button class="theme-btn primary-btn mt-3 w-full" id="btn-log-food">Add Food Item</button>
+                            </div>
+
+                            <!-- Logged items list -->
+                            <div class="logged-foods-wrapper">
+                                <h4>Food Items Logged Today</h4>
+                                <ul class="logged-items-list" id="logged-foods-list">
+                                    <li class="empty-log-msg">No foods logged yet. Fill out the form above to populate the tracker.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Weekly Meal Planner -->
+                        <div class="console-widget glass-card">
+                            <h3><i class="fa-solid fa-calendar-days"></i> Customized Weekly Meal Grid</h3>
+                            <p>Verify your bi-weekly diet framework prescribed by Dietician Oshin.</p>
+                            <div class="planner-table-container">
+                                <table class="planner-grid-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Day</th>
+                                            <th>Breakfast (8:30 AM)</th>
+                                            <th>Lunch (1:30 PM)</th>
+                                            <th>Evening Snack</th>
+                                            <th>Dinner (8:00 PM)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Monday</strong></td>
+                                            <td>Chia Seeds + Oats Bowl</td>
+                                            <td>Brown Rice + Palak Daal + Cucumber</td>
+                                            <td>Green Tea + Walnuts</td>
+                                            <td>Paneer Salad + Sautéed Veggies</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Tuesday</strong></td>
+                                            <td>Moong Daal Chilla + Curd</td>
+                                            <td>Quinoa Khichdi + Roasted Papad</td>
+                                            <td>Roasted Makhana</td>
+                                            <td>Sautéed Tofu + Vegetable Soup</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Wednesday</strong></td>
+                                            <td>Boiled Eggs / Sprouts Salad</td>
+                                            <td>Multigrain Chapati + Methi Sabzi</td>
+                                            <td>Buttermilk / Almonds</td>
+                                            <td>Baked Salmon / Paneer Bhurji</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Thursday</strong></td>
+                                            <td>Chia Seeds + Oats Bowl</td>
+                                            <td>Brown Rice + Palak Daal + Salad</td>
+                                            <td>Green Tea + Cashews</td>
+                                            <td>Sautéed Chicken / Paneer Wrap</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Friday</strong></td>
+                                            <td>Moong Daal Chilla + Curd</td>
+                                            <td>Quinoa Khichdi + Salad</td>
+                                            <td>Roasted Makhana</td>
+                                            <td>Paneer Salad + Veggie Soup</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Saturday</strong></td>
+                                            <td>Fruit & Nut Porridge</td>
+                                            <td>Multigrain Chapati + Gobi Sabzi</td>
+                                            <td>Sprouts Mix</td>
+                                            <td>Sautéed Tofu + Stir-fried Veg</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Sunday</strong></td>
+                                            <td>Cheat Meal (Portion Controlled)</td>
+                                            <td>Brown Rice + Dal Fry + Salad</td>
+                                            <td>Fruit Salad</td>
+                                            <td>Light Veg Soup + Multigrain Roti</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="planner-actions mt-3">
+                                <button class="theme-btn btn-sm primary-btn" id="btn-generate-groceries"><i class="fa-solid fa-list-check"></i> Generate Shopping Checklist</button>
+                            </div>
+                            
+                            <!-- Grocery list wrapper -->
+                            <div class="grocery-list-display glass-card mt-3 hidden" id="grocery-list-panel">
+                                <div class="grocery-header">
+                                    <h4>Auto-Generated Shopping List</h4>
+                                    <button class="icon-action-btn close-btn" id="btn-close-grocery" aria-label="Close Grocery List"><i class="fa-solid fa-times"></i></button>
+                                </div>
+                                <ul id="grocery-items-ul">
+                                    <li><input type="checkbox" id="g1"> <label for="g1">Chia Seeds (200g)</label></li>
+                                    <li><input type="checkbox" id="g2"> <label for="g2">Organic Rolled Oats (1kg)</label></li>
+                                    <li><input type="checkbox" id="g3"> <label for="g3">Paneer / Organic Tofu (1.5kg)</label></li>
+                                    <li><input type="checkbox" id="g4"> <label for="g4">Brown Rice / Quinoa grains (2kg)</label></li>
+                                    <li><input type="checkbox" id="g5"> <label for="g5">Fresh spinach & assorted greens</label></li>
+                                    <li><input type="checkbox" id="g6"> <label for="g6">Mixed nuts (Walnuts, Almonds)</label></li>
+                                    <li><input type="checkbox" id="g7"> <label for="g7">Makhana / Foxnuts (200g)</label></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side: Weight interactive tracker and uploads -->
+                    <div class="console-column-right">
+                        
+                        <!-- Dynamic Weight Analytics Card -->
+                        <div class="console-widget glass-card">
+                            <h3><i class="fa-solid fa-chart-line"></i> Interactive Weight Tracker</h3>
+                            <p>Bi-weekly progress indicators based on clinic evaluations.</p>
+                            
+                            <!-- SVG Chart -->
+                            <div class="svg-chart-container">
+                                <svg class="weight-svg-chart" viewBox="0 0 500 220" id="weight-svg-chart">
+                                    <!-- Grid lines -->
+                                    <line x1="40" y1="20" x2="480" y2="20" class="chart-grid-line"></line>
+                                    <line x1="40" y1="70" x2="480" y2="70" class="chart-grid-line"></line>
+                                    <line x1="40" y1="120" x2="480" y2="120" class="chart-grid-line"></line>
+                                    <line x1="40" y1="170" x2="480" y2="170" class="chart-grid-line"></line>
+                                    
+                                    <!-- Axes -->
+                                    <line x1="40" y1="20" x2="40" y2="180" class="chart-axis-line"></line>
+                                    <line x1="40" y1="180" x2="480" y2="180" class="chart-axis-line"></line>
+                                    
+                                    <!-- Labels -->
+                                    <text x="15" y="25" class="chart-lbl-txt">95</text>
+                                    <text x="15" y="75" class="chart-lbl-txt">85</text>
+                                    <text x="15" y="125" class="chart-lbl-txt">75</text>
+                                    <text x="15" y="175" class="chart-lbl-txt">65</text>
+                                    
+                                    <text x="60" y="195" class="chart-lbl-txt">Wk 1</text>
+                                    <text x="140" y="195" class="chart-lbl-txt">Wk 3</text>
+                                    <text x="220" y="195" class="chart-lbl-txt">Wk 5</text>
+                                    <text x="300" y="195" class="chart-lbl-txt">Wk 7</text>
+                                    <text x="380" y="195" class="chart-lbl-txt">Wk 9</text>
+                                    <text x="460" y="195" class="chart-lbl-txt">Wk 11</text>
+
+                                    <!-- Trend lines & dots (Loaded dynamically via JS) -->
+                                    <path d="M 60 40 L 140 70 L 220 95 L 300 110 L 380 120 L 460 140" class="chart-trend-line" fill="none" id="chart-path-line"></path>
+                                    <g id="chart-dots-group">
+                                        <circle cx="60" cy="40" r="5" class="chart-dot"></circle>
+                                        <circle cx="140" cy="70" r="5" class="chart-dot"></circle>
+                                        <circle cx="220" cy="95" r="5" class="chart-dot"></circle>
+                                        <circle cx="300" cy="110" r="5" class="chart-dot"></circle>
+                                        <circle cx="380" cy="120" r="5" class="chart-dot"></circle>
+                                        <circle cx="460" cy="140" r="5" class="chart-dot"></circle>
+                                    </g>
+                                </svg>
+                            </div>
+                            
+                            <!-- Input new weight logs -->
+                            <div class="log-weight-form-wrapper">
+                                <h4>Log Weight Check</h4>
+                                <div class="form-group-split">
+                                    <input type="number" id="input-log-weight-val" placeholder="Weight in kg" min="30" max="250" step="0.1">
+                                    <button class="theme-btn primary-btn btn-sm" id="btn-log-weight">Log Check</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Workout tracker -->
+                        <div class="console-widget glass-card">
+                            <h3><i class="fa-solid fa-person-running"></i> Workout Tracker</h3>
+                            <div class="workout-inputs">
+                                <div class="form-group-split">
+                                    <input type="text" id="workout-name-input" placeholder="Yoga / Walking">
+                                    <input type="number" id="workout-calories-input" placeholder="250 kcal" min="0">
+                                </div>
+                                <button class="theme-btn primary-btn btn-sm mt-2 w-full" id="btn-log-workout">Log Workout</button>
+                            </div>
+                            <div class="workout-logs-list mt-3">
+                                <h4>Logged Workouts Today</h4>
+                                <ul id="workout-list-ul">
+                                    <li class="empty-log-msg">No exercises logged today.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Drag and Drop Health Report Vault -->
+                        <div class="console-widget glass-card">
+                            <h3><i class="fa-solid fa-folder-open"></i> Clinical Report Vault</h3>
+                            <p>Upload your recent blood tests or medical records to share with Oshin.</p>
+                            
+                            <div class="drag-drop-zone" id="report-dropzone">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <p>Drag and drop medical PDF here, or <span>browse folders</span></p>
+                                <input type="file" id="report-file-input" class="hidden" accept=".pdf,.png,.jpg">
+                            </div>
+                            
+                            <ul class="uploaded-vault-list" id="report-vault-ul">
+                                <li>
+                                    <div class="report-info"><i class="fa-solid fa-file-pdf"></i> <span>Thyroid_Panel_April.pdf</span></div>
+                                    <span class="report-status-badge success">Verified</span>
+                                </li>
+                                <li>
+                                    <div class="report-info"><i class="fa-solid fa-file-pdf"></i> <span>HbA1c_March_Check.pdf</span></div>
+                                    <span class="report-status-badge success">Verified</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FLOATING CHAT ASSISTANT & QUICK BUTTONS -->
+    <div class="floating-triggers-hub">
+        <!-- Floating WhatsApp -->
+        <a href="https://wa.me/917828149178?text=Hi%20Nutrislims%20Clinic,%20I%20am%20interested%20in%20a%20diet%20consultation" target="_blank" class="float-btn whatsapp-color" title="WhatsApp Chat" aria-label="Chat on WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        
+        <!-- Floating Phone -->
+        <a href="tel:+917828149178" class="float-btn phone-color pulse-glow" title="Call Clinic Directly" aria-label="Call Clinic Directly">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+
+        <!-- Floating AI Dietitian Assistant Trigger -->
+        <button id="ai-chat-trigger" class="float-btn ai-color" title="Ask Virtual Dietitian" aria-label="Ask Virtual Dietitian">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+    </div>
+
+    <!-- MOCK AI CHAT MODAL WINDOW -->
+    <div id="ai-chat-modal" class="chat-modal-window hidden" role="dialog" aria-labelledby="ai-chat-header-title" aria-modal="true">
+        <div class="chat-header">
+            <div class="chat-agent-info">
+                <i class="fa-solid fa-robot"></i>
+                <div>
+                    <h3 id="ai-chat-header-title">Nutrislims Assistant</h3>
+                    <span>Virtual Wellness Coach</span>
+                </div>
+            </div>
+            <button class="icon-action-btn close-btn" id="ai-chat-close-btn" aria-label="Close Chat"><i class="fa-solid fa-times"></i></button>
+        </div>
+        
+        <!-- Mode toggle inside Chat window -->
+        <div class="chat-mode-tabs">
+            <button class="chat-tab-btn active" id="chat-tab-qa">Ask Q&A</button>
+            <button class="chat-tab-btn" id="chat-tab-symptoms">Symptom Checker</button>
+            <button class="chat-tab-btn" id="chat-tab-analyzer">Photo Analyser (Mock)</button>
+        </div>
+
+        <div class="chat-body" id="chat-conversation-body">
+            <!-- Starting system chat message -->
+            <div class="chat-msg system">
+                <p>Hello! I am your virtual Nutrislims dietitian assistant. Ask me questions about weight loss, low glycemic foods, water intake, or PCOS remedies.</p>
+            </div>
+        </div>
+
+        <!-- Meal Photo upload (Mock) -->
+        <div class="chat-photo-analyzer-panel hidden" id="chat-photo-panel">
+            <p>Upload a photo of your meal plate to analyze ingredients and estimate calorie/macro breakdowns.</p>
+            <div class="chat-drop-zone" id="chat-meal-dropzone">
+                <i class="fa-solid fa-camera"></i>
+                <p>Select a meal picture to mock-analyze macros</p>
+                <input type="file" id="chat-meal-file" class="hidden" accept="image/*">
+            </div>
+            <div id="chat-photo-analysis-res" class="photo-analysis-results hidden">
+                <h4>Plate Macronutrient Scan Results (Mocked)</h4>
+                <ul>
+                    <li>🥗 Vegetables Salad: 85 kcal (Low carb)</li>
+                    <li>🍳 Grilled Tofu / Egg: 140 kcal (High Protein)</li>
+                    <li>🍚 Quinoa portion: 180 kcal (Medium Fiber carb)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="chat-footer">
+            <input type="text" id="chat-user-input" placeholder="Type your nutritional query..." aria-label="Dietitian chat query">
+            <button id="chat-send-btn" class="chat-submit-btn" aria-label="Send Query"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- VIRTUAL CONSULTATION ZOOM ROOM MOCK -->
+    <div id="virtual-room-modal" class="room-modal-window hidden" role="dialog" aria-modal="true">
+        <div class="room-content glass-card">
+            <div class="room-header">
+                <h3><i class="fa-solid fa-video"></i> Virtual Consultation Room</h3>
+                <button class="icon-action-btn close-btn" id="room-close-btn" aria-label="Close Room"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div class="room-body">
+                <div class="video-feed-main">
+                    <!-- Dietician mock face/placeholder -->
+                    <div class="video-placeholder-title">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <span>Dietician Oshin Ambekar</span>
+                    </div>
+                    <span class="video-status-pulse">LIVE - Telehealth Session</span>
+                </div>
+                <div class="consultation-notes-box">
+                    <h4>Session Prescription Notes</h4>
+                    <p>1. Increase morning lemon-water intake.<br>2. Restrict heavy carbohydrate intakes post 7:30 PM.<br>3. Prioritize lean protein intake for breakfast to satisfy cravings.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN FOOTER -->
+    <footer id="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-widget-info">
+                <a href="#" class="brand-logo">
+                    <img src="https://nutrislims.com/wp-content/uploads/2025/03/nutrislims-logo.png" alt="Nutrislims logo" class="logo-img">
+                    <span class="logo-text">Nutri<span>slims</span></span>
+                </a>
+                <p class="footer-about-text">Premium clinical nutrition clinic helping patients balance hormones, lose body fat, control diabetes, and build sustainable healthy relationships with home-cooked food.</p>
+                <span class="footer-copyright">&copy; 2026 Nutrislims Clinic. All rights reserved. Developed by Antigravity.</span>
+            </div>
+
+            <div class="footer-widget-links">
+                <h4>Quick Navigation</h4>
+                <ul class="footer-links-list">
+                    <li><a href="#" class="scroll-to-btn" data-target="home-section">Home</a></li>
+                    <li><a href="#services" class="scroll-to-btn" data-target="home-section">Our Services</a></li>
+                    <li><a href="#tools" class="scroll-to-btn" data-target="tools-section">Calculators Hub</a></li>
+                    <li><a href="#recipes" class="scroll-to-btn" data-target="recipes-section">Healthy Recipes</a></li>
+                    <li><a href="#dashboard" class="scroll-to-btn" data-target="dashboard-section">Client Portal</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-widget-contact">
+                <h4>Contact Details</h4>
+                <ul class="footer-contact-list">
+                    <li><i class="fa-solid fa-location-dot"></i> <span>1st Floor B, 109, Rajendra Nagar Main Rd, Indore, M.P. 452012</span></li>
+                    <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@nutrislims.com">info@nutrislims.com</a></li>
+                    <li><i class="fa-solid fa-phone"></i> <a href="tel:+917828149178">07828149178 (+91 78281 49178)</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MOBILE STICKY BOTTOM CONVERSION BAR (Optimized for Mobile Ad Visitors) -->
+    <div class="mobile-sticky-action-bar" id="mobile-sticky-bar">
+        <a href="tel:+917828149178" class="sticky-action-btn call-action">
+            <i class="fa-solid fa-phone-volume"></i>
+            <span>Call Now</span>
+        </a>
+        <a href="https://wa.me/917828149178?text=Hi%20Nutrislims%20Clinic,%20I%20am%20interested%20in%20a%20diet%20consultation" target="_blank" class="sticky-action-btn whatsapp-action">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </a>
+        <a href="#appointment-booking" class="sticky-action-btn book-action scroll-to-btn" data-target="home-section">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Book Visit</span>
+        </a>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
