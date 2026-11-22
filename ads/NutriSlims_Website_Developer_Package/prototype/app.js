@@ -1215,11 +1215,230 @@
      INITIALIZATION
      ========================================================================== */
 
+  
+  /* ==========================================================================
+     12. LEGAL MODAL & TABS CONTROLLER (Privacy, Terms, Disclaimer, Cookies)
+     ========================================================================== */
+  function initLegalModal() {
+    var legalModal = qs('#legal-modal');
+    if (!legalModal) return;
+
+    var tabButtons = qsa('.legal-tab-btn');
+    var panels = qsa('.legal-panel');
+
+    function switchLegalTab(tabId) {
+      tabButtons.forEach(function (btn) {
+        var isMatch = btn.getAttribute('data-legal') === tabId;
+        btn.classList.toggle('active', isMatch);
+        btn.setAttribute('aria-selected', String(isMatch));
+      });
+      panels.forEach(function (panel) {
+        var isMatch = panel.id === ('legal-' + tabId);
+        panel.classList.toggle('active', isMatch);
+        if (isMatch) panel.removeAttribute('hidden');
+        else panel.setAttribute('hidden', 'true');
+      });
+    }
+
+    tabButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var tabId = btn.getAttribute('data-legal');
+        switchLegalTab(tabId);
+      });
+    });
+
+    // Intercept clicks on legal anchor links in footer
+    document.addEventListener('click', function (e) {
+      var legalLink = e.target.closest('a[href="#privacy"], a[href="#terms"], a[href="#medical-disclaimer"], a[href="#cookies"], #privacy-link, #terms-link, #disclaimer-link, #cookie-link');
+      if (legalLink) {
+        e.preventDefault();
+        var href = legalLink.getAttribute('href') || '';
+        var tabKey = 'privacy';
+        if (href.includes('terms') || legalLink.id.includes('terms')) tabKey = 'terms';
+        else if (href.includes('disclaimer') || legalLink.id.includes('disclaimer')) tabKey = 'disclaimer';
+        else if (href.includes('cookie') || legalLink.id.includes('cookie')) tabKey = 'cookies';
+        
+        switchLegalTab(tabKey);
+        openModal(legalModal);
+      }
+    });
+  }
+
+  /* ==========================================================================
+     13. RECIPE MODAL DETAILS CONTROLLER
+     ========================================================================== */
+  var RECIPE_DETAILS = {
+    'recipe-01': {
+      title: 'Spiced Moong Dal & Spinach Khichdi',
+      image: 'assets/images/spiced-moong-dal-khichdi.jpg',
+      prepTime: '15 mins',
+      cookTime: '20 mins',
+      calories: '280 kcal',
+      protein: '14g',
+      carbs: '48g',
+      fiber: '8g',
+      tags: ['Gut-Friendly', 'Post-Op Recovery', 'Low GI'],
+      ingredients: [
+        '1/2 cup split yellow moong dal (soaked 30 mins)',
+        '1/2 cup brown basmati or broken rice',
+        '2 cups fresh spinach (palak), finely chopped',
+        '1 tsp cold-pressed sesame or mustard oil',
+        '1/2 tsp cumin seeds (jeera) & pinch of asafoetida (hing)',
+        '1/2 tsp turmeric powder & freshly ground black pepper',
+        '3 cups warm water or vegetable broth'
+      ],
+      instructions: [
+        'Rinse yellow moong dal and rice until water runs clear; soak for 20–30 minutes.',
+        'In a pressure cooker or heavy-bottom pot, warm oil and temper cumin seeds and hing until aromatic.',
+        'Stir in turmeric, soaked lentils, rice, chopped spinach, and salt to taste.',
+        'Add 3 cups of water, cover, and pressure cook for 3 whistles on medium flame.',
+        'Rest pressure, garnish with fresh coriander and crushed black pepper, and serve warm with curd.'
+      ]
+    },
+    'recipe-02': {
+      title: 'High-Protein Tofu & Vegetable Stir-Fry',
+      image: 'assets/images/high-protein-tofu-stir-fry.jpg',
+      prepTime: '12 mins',
+      cookTime: '10 mins',
+      calories: '320 kcal',
+      protein: '24g',
+      carbs: '16g',
+      fiber: '7g',
+      tags: ['PCOS-Friendly', 'Muscle Protein', 'Low Carb'],
+      ingredients: [
+        '200g firm organic tofu, pressed and cubed',
+        '1 cup mixed bell peppers (red, yellow, green), diced',
+        '1/2 cup broccoli florets, blanched',
+        '1 tbsp low-sodium tamari or naturally fermented soy sauce',
+        '1 tsp grated fresh ginger & 2 cloves crushed garlic',
+        '1 tsp toasted white sesame seeds for garnish'
+      ],
+      instructions: [
+        'Lightly sear pressed tofu cubes in a non-stick skillet until golden on all sides.',
+        'Toss in minced ginger, garlic, bell peppers, and broccoli florets on high heat for 3–4 minutes.',
+        'Drizzle tamari sauce and black pepper, stirring vigorously to coat evenly.',
+        'Remove from heat, sprinkle toasted sesame seeds, and enjoy immediately.'
+      ]
+    },
+    'recipe-03': {
+      title: 'Overnight Chia & Rolled Oats Jar',
+      image: 'assets/images/overnight-oats-bowl.jpg',
+      prepTime: '5 mins',
+      cookTime: 'Overnight',
+      calories: '290 kcal',
+      protein: '11g',
+      carbs: '42g',
+      fiber: '10g',
+      tags: ['Heart Health', 'Cholesterol Care', 'High Fiber'],
+      ingredients: [
+        '1/2 cup whole rolled oats (gluten-free certified)',
+        '1 tbsp chia seeds',
+        '3/4 cup unsweetened almond or toned milk',
+        '1/4 tsp ground Ceylon cinnamon',
+        '1/4 cup fresh pomegranate pearls or blueberries',
+        '4 halves crushed walnuts'
+      ],
+      instructions: [
+        'In a clean glass mason jar, combine oats, chia seeds, and ground cinnamon.',
+        'Pour milk over the mix, stir thoroughly to eliminate seed clumping, and seal lid.',
+        'Refrigerate for at least 6 hours or overnight.',
+        'Top with fresh fruit and walnuts in the morning before enjoying cold.'
+      ]
+    }
+  };
+
+  function initRecipeModal() {
+    var modal = qs('#recipe-modal');
+    var contentBox = qs('#recipe-modal-content');
+    if (!modal || !contentBox) return;
+
+    document.addEventListener('click', function (e) {
+      var card = e.target.closest('.recipe-card');
+      // If clicked save or portion buttons, don't trigger modal
+      if (e.target.closest('.recipe-save-btn, [data-action="inc"], [data-action="dec"]')) return;
+
+      if (card) {
+        var title = card.getAttribute('data-title') || 'Nutrition Recipe';
+        var recipeId = card.getAttribute('data-video-id') || card.querySelector('[data-target]')?.getAttribute('data-target') || 'recipe-01';
+        var data = RECIPE_DETAILS[recipeId] || RECIPE_DETAILS['recipe-01'];
+
+        var tagsHtml = (data.tags || []).map(function (t) {
+          return '<span class="badge">' + escapeHtml(t) + '</span>';
+        }).join(' ');
+
+        var ingHtml = (data.ingredients || []).map(function (ing) {
+          return '<li><span class="bullet" aria-hidden="true">✔</span> ' + escapeHtml(ing) + '</li>';
+        }).join('');
+
+        var stepHtml = (data.instructions || []).map(function (step, idx) {
+          return '<li><strong>Step ' + (idx + 1) + ':</strong> ' + escapeHtml(step) + '</li>';
+        }).join('');
+
+        contentBox.innerHTML = '<div class="recipe-detail-header">' +
+          '<img src="' + data.image + '" alt="' + escapeHtml(data.title) + '" class="recipe-detail-thumb">' +
+          '<div class="recipe-detail-info">' +
+            '<h4>' + escapeHtml(data.title) + '</h4>' +
+            '<div class="recipe-tags-row">' + tagsHtml + '</div>' +
+            '<p class="recipe-meta-strip"><small>Prep: ' + data.prepTime + ' | Cook: ' + data.cookTime + ' | Energy: ' + data.calories + ' | Protein: ' + data.protein + '</small></p>' +
+          '</div>' +
+        '</div>' +
+        '<h5>Ingredients Checklist</h5>' +
+        '<ul class="recipe-ingredients-list">' + ingHtml + '</ul>' +
+        '<h5>Preparation Method</h5>' +
+        '<ol class="recipe-step-list">' + stepHtml + '</ol>' +
+        '<div class="recipe-modal-actions">' +
+          '<button type="button" class="button outline sm" onclick="window.print()">Print Recipe</button>' +
+        '</div>';
+
+        openModal(modal);
+      }
+    });
+  }
+
+  /* ==========================================================================
+     14. BACK TO TOP BUTTON CONTROLLER
+     ========================================================================== */
+  function initBackToTop() {
+    var btn = qs('#back-to-top');
+    if (!btn) return;
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 400) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ==========================================================================
+     15. BOOKING FORM DATE RESTRICTION (Tomorrow min date)
+     ========================================================================== */
+  function initDateRestriction() {
+    var dateInput = qs('#booking-date');
+    if (!dateInput) return;
+    try {
+      var tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      var minStr = tomorrow.toISOString().split('T')[0];
+      dateInput.setAttribute('min', minStr);
+    } catch (e) {}
+  }
+
   function init() {
     initHeaderScroll();
     initMobileNav();
     initNavDropdowns();
     initGlobalModalListeners();
+    initLegalModal();
+    initRecipeModal();
+    initBackToTop();
+    initDateRestriction();
+
     initSearchModal();
     initQuickBmi();
     initCalcTabs();

@@ -2939,3 +2939,324 @@ footer small,
     max-width: 100% !important;
   }
 }
+
+/* ==========================================================================
+   ENHANCED POLISH & ACCESSIBILITY STYLES (100 BUGS REMEDIATION)
+   ========================================================================== */
+
+/* 1. Skip Navigation Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary-dark, #0d3d2e);
+  color: #ffffff !important;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 0 0 8px 8px;
+  z-index: 99999;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: top 0.2s ease-in-out;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #f6be3c;
+  outline-offset: 2px;
+}
+
+/* 2. Search Highlights */
+mark.search-highlight {
+  background: rgba(246, 190, 60, 0.45);
+  color: inherit;
+  font-weight: 700;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+/* 3. Legal & Compliance Modal Styling */
+.legal-modal-box {
+  max-width: 760px;
+  width: 95%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+.modal-tabs {
+  display: flex;
+  background: #f1f5f2;
+  border-bottom: 1px solid #dde5e0;
+  padding: 6px 16px 0;
+  gap: 8px;
+  overflow-x: auto;
+}
+.legal-tab-btn {
+  background: none;
+  border: none;
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #4a5d52;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.legal-tab-btn:hover {
+  color: var(--color-primary, #1b4d3e);
+}
+.legal-tab-btn.active {
+  color: var(--color-primary, #1b4d3e);
+  border-bottom-color: var(--color-primary, #1b4d3e);
+  background: #ffffff;
+  border-radius: 6px 6px 0 0;
+}
+.legal-modal-body {
+  padding: 24px 28px;
+  overflow-y: auto;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #2b3b33;
+}
+.legal-panel {
+  display: none;
+}
+.legal-panel.active {
+  display: block;
+}
+.legal-modal-body h4 {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--color-primary, #1b4d3e);
+}
+.legal-modal-body h5 {
+  font-size: 1.02rem;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  color: #1a2a22;
+}
+
+/* 4. Recipe Modal Styling */
+.recipe-modal-box {
+  max-width: 720px;
+  width: 95%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+}
+.recipe-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+}
+.recipe-detail-header {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.recipe-detail-thumb {
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.recipe-detail-info h4 {
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: var(--color-primary, #1b4d3e);
+}
+.recipe-ingredients-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+}
+.recipe-ingredients-list li {
+  background: #f7faf8;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.recipe-step-list {
+  padding-left: 20px;
+  margin: 12px 0 20px;
+}
+.recipe-step-list li {
+  margin-bottom: 10px;
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+
+/* 5. Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-primary, #1b4d3e);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--color-primary-dark, #0f3327);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+}
+
+/* 6. Clean Topbar Alignment */
+.topbar {
+  background: var(--color-primary-dark, #143b2f);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.82rem;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.topbar-left, .topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.topbar-item, .topbar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.topbar-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.topbar-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.topbar-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.2s ease;
+}
+.topbar-social a:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    display: none; /* Hide cluttered topbar on small mobile in favor of sticky header */
+  }
+}
+
+/* ==========================================================================
+   EXTRA RESPONSIVE CONTAINMENT (320px-375px Ultra-Mobile Hardening)
+   ========================================================================== */
+
+/* 1. Global Box Sizing & Overflow Guard */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  position: relative !important;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box !important;
+}
+
+/* 2. Process Grid on Ultra-Compact Viewports (< 480px) */
+@media (max-width: 420px) {
+  .process-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .process-step,
+  .process-grid > div {
+    padding: 20px 16px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* 3. Calculator & Recipe Tab Overflow Scrolling */
+.calc-tabs,
+.calc-tab-nav,
+.recipe-filter-bar,
+.recipe-filters,
+.recipe-chips,
+.filter-chips {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+}
+.calc-tabs::-webkit-scrollbar,
+.recipe-chips::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* 4. Booking & WhatsApp Card Sizing */
+.whatsapp-direct-card,
+.whatsapp-direct,
+.wa-action-btn,
+.whatsapp-btn {
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  word-break: break-word !important;
+}
+
+/* 5. Containers on Ultra-Small Viewports */
+@media (max-width: 360px) {
+  .container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  .hero-title,
+  h1 {
+    font-size: 1.85rem !important;
+    line-height: 1.2 !important;
+  }
+  .section-heading h2,
+  h2 {
+    font-size: 1.5rem !important;
+  }
+}
