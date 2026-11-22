@@ -602,8 +602,17 @@ body.dark-mode .light-gray-bg {
 
 .hero-cta-buttons {
     display: flex;
-    gap: 15px;
-    margin-bottom: 40px;
+    gap: 12px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.hero-cta-buttons .theme-btn {
+    white-space: nowrap;
+    padding: 12px 18px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
 }
 
 .hero-stats {
@@ -1972,6 +1981,17 @@ body.dark-mode .recipe-nutrients-badge {
     color: var(--color-text-muted);
 }
 
+@media (max-width: 860px) {
+    .swap-results-wrapper {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    .swap-arrow {
+        transform: rotate(90deg) !important;
+        margin: 5px 0 !important;
+    }
+}
+
 /* Client Dashboard Console structure */
 .dashboard-auth-gateway {
     min-height: 80vh;
@@ -3087,18 +3107,25 @@ body.dark-mode .consultation-notes-box {
 }
 
 /* RESPONSIVE LAYOUTS SYSTEM */
-@media (max-width: 1024px) {
+@media (max-width: 1180px) {
     html {
         font-size: 15px;
     }
     
     .hero-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 35px !important;
+    }
+    
+    .hero-content {
+        width: 100% !important;
+        max-width: 100% !important;
     }
     
     .hero-widget-bmi {
-        max-width: 500px;
+        max-width: 480px;
         margin: 0 auto;
+        width: 100%;
     }
     
     .dietician-layout {
@@ -3442,6 +3469,13 @@ body.dark-mode .consultation-notes-box {
 
     .floating-triggers-hub {
         bottom: 75px !important;
+        right: 15px !important;
+    }
+
+    /* Hide redundant floating call & whatsapp icons on mobile since sticky bottom bar provides them */
+    .floating-triggers-hub .float-btn.whatsapp-color,
+    .floating-triggers-hub .float-btn.phone-color {
+        display: none !important;
     }
 
     .mobile-sticky-action-bar {
