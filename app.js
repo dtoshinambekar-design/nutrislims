@@ -330,14 +330,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Clinic open hours: Monday-Saturday 9:00 AM - 8:00 PM (hour 9 to 20)
         if (day === 0) {
-            liveClinicStatus.innerText = "Closed (Opens Monday 9:00 AM)";
-            liveClinicStatus.style.backgroundColor = "var(--color-danger)";
+            liveClinicStatus.innerText = "Online Booking Open (Walk-ins Mon 9 AM)";
+            liveClinicStatus.style.backgroundColor = "#0284c7"; // Calm professional medical blue
         } else if (hour >= 9 && hour < 20) {
             liveClinicStatus.innerText = "Clinic is Open (Walk-ins Welcome)";
             liveClinicStatus.style.backgroundColor = "var(--color-success)";
         } else {
-            liveClinicStatus.innerText = "Closed (Opens tomorrow 9:00 AM)";
-            liveClinicStatus.style.backgroundColor = "var(--color-warning)";
+            liveClinicStatus.innerText = "Online Booking Open (Walk-ins 9 AM)";
+            liveClinicStatus.style.backgroundColor = "#0284c7";
         }
     }
     evaluateClinicStatus();
