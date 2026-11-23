@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@100..900&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=3.2.0">
+    <link rel="stylesheet" href="styles.css?v=3.3.0">
 <style id="super-premium-critical-styles">
 /* =================================================================
    NUTRISLIMS SUPER-PREMIUM UX/UI LUXURY DESIGN SYSTEM (v3.1.0)
@@ -683,6 +683,216 @@
   margin: 0 !important;
 }
 
+
+/* 7. Super-Premium Hero Buttons & Google Business Integration (v3.3.0) */
+.hero-cta-buttons .hero-glass-btn,
+.hero-cta-buttons .outline-btn {
+  background: rgba(255, 255, 255, 0.18) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.75) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28) !important;
+  border-radius: 14px !important;
+  padding: 13px 22px !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  text-decoration: none !important;
+}
+
+.hero-cta-buttons .hero-glass-btn:hover,
+.hero-cta-buttons .outline-btn:hover {
+  background: #ffffff !important;
+  color: #12372a !important;
+  border-color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 26px rgba(255, 255, 255, 0.4) !important;
+}
+
+.dietician-image-wrapper {
+  position: relative !important;
+  border-radius: 28px !important;
+}
+
+.diet-avatar {
+  width: 100% !important;
+  max-height: 540px !important;
+  border-radius: 28px !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+  box-shadow: 0 24px 50px rgba(18, 55, 42, 0.16) !important;
+  border: 4px solid #ffffff !important;
+  display: block !important;
+}
+
+.whatsapp-instant-box {
+  background: #ffffff !important;
+  border: 1.5px solid #25D366 !important;
+  border-radius: 22px !important;
+  padding: 22px 24px !important;
+  margin-top: 24px !important;
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.16) !important;
+}
+
+.wa-instant-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  margin-bottom: 16px !important;
+}
+
+.dietitian-avatar-online {
+  position: relative !important;
+  width: 52px !important;
+  height: 52px !important;
+  flex-shrink: 0 !important;
+}
+
+.dietitian-avatar-online .mini-avatar {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 2.5px solid #25D366 !important;
+}
+
+.dietitian-avatar-online .online-indicator {
+  position: absolute !important;
+  bottom: 1px !important;
+  right: 1px !important;
+  width: 13px !important;
+  height: 13px !important;
+  background: #25D366 !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 50% !important;
+}
+
+.wa-text-group strong {
+  display: block !important;
+  font-size: 1.05rem !important;
+  color: #12372a !important;
+  font-weight: 700 !important;
+  margin-bottom: 2px !important;
+}
+
+.wa-text-group span {
+  font-size: 0.88rem !important;
+  color: #475569 !important;
+}
+
+.google-business-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(66, 133, 244, 0.25) !important;
+  border-radius: 22px !important;
+  padding: 24px !important;
+  margin-top: 24px !important;
+  box-shadow: 0 10px 30px rgba(66, 133, 244, 0.08) !important;
+}
+
+.gmb-badge-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  margin-bottom: 14px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+.gmb-logo-wrap {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.gmb-icon {
+  font-size: 2rem !important;
+  color: #4285F4 !important;
+}
+
+.gmb-logo-wrap strong {
+  display: block !important;
+  font-size: 1rem !important;
+  color: #1e293b !important;
+}
+
+.gmb-sub {
+  font-size: 0.8rem !important;
+  color: #64748b !important;
+}
+
+.gmb-stars-pill {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  padding: 6px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.gmb-stars {
+  color: #f59e0b !important;
+  letter-spacing: 1px !important;
+}
+
+.gmb-address-row {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  font-size: 0.9rem !important;
+  color: #334155 !important;
+  margin-bottom: 16px !important;
+  line-height: 1.45 !important;
+}
+
+.gmb-cta-row {
+  display: flex !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+}
+
+.gmb-map-btn {
+  background: #4285F4 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  padding: 10px 18px !important;
+  font-size: 0.88rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.25) !important;
+  text-decoration: none !important;
+}
+
+.gmb-map-btn:hover {
+  background: #2563eb !important;
+  color: #ffffff !important;
+}
+
+.gmb-review-link {
+  border: 1.5px solid #cbd5e1 !important;
+  color: #334155 !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  padding: 10px 16px !important;
+  font-size: 0.88rem !important;
+  text-decoration: none !important;
+}
+
+.gmb-review-link:hover {
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+}
+
 </style>
   <style id="section-heading-shield">
     /* Fluid Responsive Section Headings - Zero Clipping Across 320px-1440px */
@@ -768,7 +978,7 @@
     <header id="main-header" class="header-sticky">
         <div class="header-topbar">
             <div class="topbar-info">
-                <span><i class="fa-solid fa-location-dot"></i> Rajendra Nagar, Indore, M.P.</span>
+                <a href="https://maps.google.com/?q=Nutrislims+Diet+Clinic+Rajendra+Nagar+Indore" target="_blank" class="topbar-map-link" title="Open Nutrislims Clinic in Google Maps"><i class="fa-solid fa-location-dot" style="color:#4ade80;"></i> Rajendra Nagar, Indore, M.P. (Maps)</a>
                 <span><i class="fa-solid fa-clock"></i> Mon-Sat 9:00 AM - 8:00 PM</span>
                 <a href="tel:+917828149178" class="topbar-call-link"><i class="fa-solid fa-phone"></i> <strong>07828149178</strong></a>
             </div>
@@ -776,9 +986,9 @@
                 <span class="live-status-badge" id="live-clinic-status">Checking clinic hours...</span>
                 <a href="mailto:info@nutrislims.com"><i class="fa-solid fa-envelope"></i> info@nutrislims.com</a>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/nutrislims_oshin/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61571275047709" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://maps.google.com/?q=Nutrislims+Health+%26+Wellness+Clinic+Rajendra+Nagar+Indore" target="_blank" title="Google My Business Profile & Reviews"><i class="fa-brands fa-google" style="color:#4285F4;"></i></a>
+                    <a href="https://www.instagram.com/nutrislims_oshin/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61571275047709" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
                 </div>
             </div>
         </div>
@@ -832,7 +1042,7 @@
                     <div class="hero-content">
                         <div class="hero-trust-badge">
                             <span class="trust-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
-                            <span><strong>4.9/5 Rating</strong> (500+ Patients in Indore) &bull; <i class="fa-solid fa-location-dot"></i> Rajendra Nagar</span>
+                            <span><i class="fa-brands fa-google" style="color:#4285F4;"></i> <strong>4.9/5 Google Rating</strong> (500+ Reviews in Indore) &bull; <a href="https://maps.google.com/?q=Nutrislims+Diet+Clinic+Rajendra+Nagar+Indore" target="_blank" class="badge-map-link"><i class="fa-solid fa-location-dot"></i> Rajendra Nagar (Maps)</a></span>
                         </div>
                         <h1 class="hero-title animate-text">Indore's Leading Weight Loss &amp; PCOS Clinic</h1>
                         <p class="hero-desc">Certified Dietitian Oshin Ambekar delivers science-backed, customized diet &amp; lifestyle reversal plans. Experience natural, long-term weight loss &amp; hormonal balance without starvation or extreme crash diets.</p>
@@ -840,14 +1050,14 @@
                         <div class="hero-cta-buttons">
                             <a href="tel:+917828149178" class="theme-btn call-now-btn pulse-glow"><i class="fa-solid fa-phone-volume"></i> Call Clinic: 07828149178</a>
                             <a href="https://wa.me/917828149178?text=Hi%20Nutrislims%20Clinic,%20I%20want%20to%20book%20a%20diet%20consultation" target="_blank" class="theme-btn whatsapp-cta-btn"><i class="fa-brands fa-whatsapp"></i> WhatsApp Consultation</a>
-                            <a href="#appointment-booking" class="theme-btn outline-btn scroll-to-btn" data-target="home-section"><i class="fa-solid fa-calendar-check"></i> Book In-Person Visit</a>
-                            <a href="#tools-section" id="hero-tools-btn" class="theme-btn outline-btn scroll-to-btn" data-target="tools-section"><i class="fa-solid fa-calculator"></i> Health Calculators</a>
+                            <a href="#appointment-booking" class="theme-btn hero-glass-btn scroll-to-btn" data-target="home-section"><i class="fa-solid fa-calendar-check"></i> Book In-Person Visit</a>
+                            <a href="#tools-section" id="hero-tools-btn" class="theme-btn hero-glass-btn scroll-to-btn" data-target="tools-section"><i class="fa-solid fa-calculator"></i> Health Calculators</a>
                         </div>
 
                         <div class="hero-location-bar">
-                            <i class="fa-solid fa-map-location-dot"></i>
-                            <span>1st Floor B, 109, Rajendra Nagar Main Rd (Near Jain Temple), Indore 452012</span>
-                            <a href="https://maps.google.com/?q=Nutrislims+Health+%26+Wellness+Clinic+Rajendra+Nagar+Indore" target="_blank" class="directions-pill">Get Directions <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <i class="fa-brands fa-google" style="color:#4285F4; font-size:1.2rem;"></i>
+                            <span><strong>Clinic:</strong> 1st Floor B, 109, Rajendra Nagar Main Rd (Near Jain Temple), Indore 452012</span>
+                            <a href="https://maps.google.com/?q=Nutrislims+Health+%26+Wellness+Clinic+Rajendra+Nagar+Indore" target="_blank" class="directions-pill"><i class="fa-solid fa-map-location-dot"></i> Open Google Maps <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
 
                         <!-- Statistics Counter -->
@@ -969,7 +1179,7 @@
             <div class="about-dietician-section light-gray-bg">
                 <div class="container dietician-layout">
                     <div class="dietician-image-wrapper">
-                        <img src="assets/dietician_portrait.png" alt="Oshin Ambekar dietician" class="diet-avatar shadow-lg">
+                        <img src="assets/dietician_portrait.png?v=3.3.0" alt="Dietitian Oshin Ambekar (M.Sc. Public Health, London)" class="diet-avatar shadow-lg">
                         <div class="experience-badge animate-float">
                             <h3>10+</h3>
                             <span>Years in Practice</span>
@@ -1177,15 +1387,48 @@
                         <!-- 1-Click Fast WhatsApp Booking Card -->
                         <div class="whatsapp-instant-box glass-card">
                             <div class="wa-instant-header">
-                                <i class="fa-brands fa-whatsapp text-green"></i>
-                                <div>
+                                <div class="dietitian-avatar-online">
+                                    <img src="assets/dietician_portrait.png?v=3.3.0" alt="Dietitian Oshin Ambekar" class="mini-avatar">
+                                    <span class="online-indicator" title="Online & Available for Consultations"></span>
+                                </div>
+                                <div class="wa-text-group">
                                     <strong>⚡ 1-Click Instant WhatsApp Booking</strong>
-                                    <span>Direct chat with Dietitian Oshin (Reply in 15 mins)</span>
+                                    <span>Direct chat with <strong>Dietitian Oshin Ambekar</strong> (Reply in 15 mins)</span>
                                 </div>
                             </div>
                             <a href="https://wa.me/917828149178?text=Hi%20Nutrislims%20Clinic,%20I%20want%20to%20book%20a%20diet%20consultation%20with%20Dietitian%20Oshin%20in%20Indore" target="_blank" class="theme-btn whatsapp-cta-btn w-full pulse-glow" id="direct-wa-booking-link">
                                 <i class="fa-brands fa-whatsapp"></i> Tap to Book on WhatsApp (07828149178)
                             </a>
+                        </div>
+
+                        <!-- Google My Business & Maps Official Card -->
+                        <div class="google-business-card glass-card">
+                            <div class="gmb-badge-header">
+                                <div class="gmb-logo-wrap">
+                                    <i class="fa-brands fa-google gmb-icon"></i>
+                                    <div>
+                                        <strong>NutriSlims Health &amp; Wellness Clinic</strong>
+                                        <span class="gmb-sub">Official Google Business Profile &bull; Indore</span>
+                                    </div>
+                                </div>
+                                <div class="gmb-stars-pill">
+                                    <span class="gmb-rating-num">4.9</span>
+                                    <span class="gmb-stars">★★★★★</span>
+                                    <span class="gmb-reviews-count">(500+ Reviews)</span>
+                                </div>
+                            </div>
+                            <div class="gmb-address-row">
+                                <i class="fa-solid fa-location-dot text-emerald"></i>
+                                <span><strong>Clinic Address:</strong> 1st Floor, B-109, Rajendra Nagar Main Rd (Near Jain Temple), Indore, Madhya Pradesh 452012</span>
+                            </div>
+                            <div class="gmb-cta-row">
+                                <a href="https://maps.google.com/?q=Nutrislims+Health+%26+Wellness+Clinic+Rajendra+Nagar+Indore" target="_blank" class="theme-btn gmb-map-btn">
+                                    <i class="fa-solid fa-map-location-dot"></i> Open in Google Maps
+                                </a>
+                                <a href="https://maps.google.com/?q=Nutrislims+Diet+Clinic+Rajendra+Nagar+Indore" target="_blank" class="theme-btn outline-btn btn-sm gmb-review-link">
+                                    <i class="fa-solid fa-star" style="color:#f59e0b;"></i> Google Reviews &amp; Directions
+                                </a>
+                            </div>
                         </div>
 
                         <div class="booking-hotlines-box">
@@ -2112,11 +2355,12 @@
             </div>
 
             <div class="footer-widget-contact">
-                <h4>Contact Details</h4>
+                <h4>Contact &amp; Location</h4>
                 <ul class="footer-contact-list">
-                    <li><i class="fa-solid fa-location-dot"></i> <span>1st Floor B, 109, Rajendra Nagar Main Rd, Indore, M.P. 452012</span></li>
+                    <li><i class="fa-solid fa-location-dot" style="color:#4ade80;"></i> <a href="https://maps.google.com/?q=Nutrislims+Health+%26+Wellness+Clinic+Rajendra+Nagar+Indore" target="_blank" class="footer-map-link" style="color:#e2ece6; text-decoration:underline;">1st Floor B, 109, Rajendra Nagar Main Rd, Indore, M.P. 452012 (Open in Google Maps)</a></li>
                     <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@nutrislims.com">info@nutrislims.com</a></li>
                     <li><i class="fa-solid fa-phone"></i> <a href="tel:+917828149178">07828149178 (+91 78281 49178)</a></li>
+                    <li style="margin-top:10px;"><a href="https://maps.google.com/?q=Nutrislims+Diet+Clinic+Rajendra+Nagar+Indore" target="_blank" class="theme-btn btn-xs gmb-footer-btn" style="background:#4285F4; color:#fff; border-radius:8px; padding:6px 14px; display:inline-flex; align-items:center; gap:6px;"><i class="fa-brands fa-google"></i> Google Business Profile (4.9 ★)</a></li>
                 </ul>
             </div>
         </div>
@@ -2138,6 +2382,6 @@
         </a>
     </div>
 
-    <script src="app.js?v=3.2.0"></script>
+    <script src="app.js?v=3.3.0"></script>
 </body>
 </html>
