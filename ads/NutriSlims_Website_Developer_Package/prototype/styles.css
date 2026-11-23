@@ -636,12 +636,18 @@ small {
 
 /* ─── 9. Hero Section ───────────────────────────────────────────── */
 .hero {
+  display: block;
+  padding-top: 56px;
+  padding-bottom: var(--section-v);
+  width: 100%;
+}
+
+.hero-container {
   display: grid;
   grid-template-columns: 1.1fr .9fr;
   align-items: center;
   gap: 48px;
-  padding-top: 56px;
-  padding-bottom: var(--section-v);
+  width: 100%;
   max-width: var(--max-w);
   margin-inline: auto;
   padding-inline: var(--gutter-desktop);
@@ -858,13 +864,29 @@ small {
   border-color: var(--c-primary);
 }
 
-.service-card img,
-.service > img {
+.service-image-box > img,
+.service-card > img:first-child,
+.service-img {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: var(--radius-sm);
   display: block;
+}
+
+.service-inclusions img,
+.service-bullets img,
+.service-link img,
+.service-card .icon-inline,
+.icon-inline {
+  width: 14px !important;
+  height: 14px !important;
+  max-width: 14px !important;
+  max-height: 14px !important;
+  aspect-ratio: auto !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  vertical-align: middle;
 }
 
 .service-card h3,
@@ -920,7 +942,13 @@ small {
 
 /* ─── 12. Dietitian Profile ─────────────────────────────────────── */
 .about,
-.dietitian-section {
+.dietitian-section,
+.about-section {
+  display: block;
+  width: 100%;
+}
+
+.about-grid {
   display: grid;
   grid-template-columns: .85fr 1.15fr;
   gap: 48px;
@@ -929,6 +957,8 @@ small {
   border-radius: 28px;
   padding: 48px;
   overflow: hidden;
+  max-width: var(--max-w);
+  margin-inline: auto;
 }
 
 .about img,
@@ -1349,11 +1379,23 @@ small {
 }
 
 .recipe-card img,
-.recipe-grid img {
+.recipe-image-wrap > img,
+.recipe-card__image img {
   width: 100%;
-  aspect-ratio: 1;
+  height: 220px;
+  aspect-ratio: auto;
   object-fit: cover;
   display: block;
+}
+
+.recipe-card .icon-inline,
+.recipe-save-btn img,
+.recipe-controls img {
+  width: 14px !important;
+  height: 14px !important;
+  aspect-ratio: auto !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
 }
 
 .recipe-card__body {
@@ -1622,11 +1664,17 @@ small {
 }
 
 /* ─── 17. Reviews Section ───────────────────────────────────────── */
-.reviews {
+.reviews,
+.reviews-section {
+  display: block;
+  width: 100%;
+}
+
+.reviews-grid,
+.review-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  align-items: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .review-grid {
@@ -1682,13 +1730,20 @@ small {
 /* ─── 18. Booking Form ──────────────────────────────────────────── */
 .booking,
 .booking-section {
+  display: block;
+  width: 100%;
+}
+
+.booking-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.1fr;
   gap: 48px;
   background: var(--c-soft);
   border-radius: 28px;
   padding: 48px;
   align-items: start;
+  max-width: var(--max-w);
+  margin-inline: auto;
 }
 
 .booking-info {
@@ -2130,13 +2185,31 @@ footer {
 }
 
 .footer-brand img,
-footer img {
+.footer-logo img {
   width: 160px;
+  height: auto;
   background: var(--c-surface);
   border-radius: 10px;
   padding: 6px 10px;
   display: block;
   margin-bottom: 16px;
+}
+
+.footer-social img {
+  width: 18px !important;
+  height: 18px !important;
+  aspect-ratio: auto !important;
+  filter: invert(1);
+  display: block;
+}
+
+.footer-address img,
+.footer-col .icon-inline {
+  width: 14px !important;
+  height: 14px !important;
+  aspect-ratio: auto !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
 }
 
 .footer-brand p,
@@ -2356,6 +2429,10 @@ footer small,
 
   /* Hero */
   .hero {
+    display: block;
+    width: 100%;
+  }
+  .hero-container {
     gap: 28px;
     padding-inline: var(--gutter-tablet);
   }
@@ -2381,8 +2458,13 @@ footer small,
     grid-template-columns: 1fr;
   }
 
-  .reviews {
-    grid-template-columns: 1fr;
+  .reviews,
+  .reviews-section {
+    display: block;
+  }
+  .reviews-grid,
+  .review-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .footer-grid {
@@ -2405,6 +2487,9 @@ footer small,
   /* Booking */
   .booking,
   .booking-section {
+    display: block;
+  }
+  .booking-container {
     grid-template-columns: 1fr;
     padding: 32px;
     gap: 32px;
@@ -2412,7 +2497,11 @@ footer small,
 
   /* Dietitian */
   .about,
-  .dietitian-section {
+  .dietitian-section,
+  .about-section {
+    display: block;
+  }
+  .about-grid {
     gap: 32px;
     padding: 36px;
   }
@@ -2546,11 +2635,16 @@ footer small,
 
   /* Hero */
   .hero {
-    display: flex;
-    flex-direction: column;
+    display: block;
     padding-top: 32px;
     padding-bottom: var(--section-v-mob);
+    width: 100%;
+  }
+  .hero-container {
+    display: flex;
+    flex-direction: column;
     gap: 24px;
+    padding-inline: var(--gutter-mobile);
   }
 
   .hero-copy > p {
@@ -2637,7 +2731,11 @@ footer small,
 
   /* About / dietitian */
   .about,
-  .dietitian-section {
+  .dietitian-section,
+  .about-section {
+    display: block;
+  }
+  .about-grid {
     grid-template-columns: 1fr;
     padding: 24px;
     gap: 20px;
@@ -2732,8 +2830,13 @@ footer small,
   }
 
   /* Reviews */
-  .reviews {
-    grid-template-columns: 1fr;
+  .reviews,
+  .reviews-section {
+    display: block;
+  }
+  .reviews-grid,
+  .review-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .review-grid {
