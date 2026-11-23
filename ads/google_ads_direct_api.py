@@ -13,8 +13,20 @@ import sys
 
 def load_env(env_path: str = ".env") -> dict:
     env_vars = {}
-    if os.path.exists(env_path):
-        with open(env_path, "r", encoding="utf-8") as f:
+    target_path = env_path
+    if not os.path.exists(target_path):
+        # Fallback to file directory or parent
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        alt_path = os.path.join(script_dir, ".env")
+        if os.path.exists(alt_path):
+            target_path = alt_path
+        else:
+            parent_alt = os.path.join(script_dir, "..", ".env")
+            if os.path.exists(parent_alt):
+                target_path = parent_alt
+
+    if os.path.exists(target_path):
+        with open(target_path, "r", encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith("#") and "=" in line:
