@@ -83,7 +83,7 @@ var CONFIG = {
   HIGH_INTENT_KEYWORDS_PCOS: [
     '"pcos clinic in indore"',
     '"pcos diet plan for women"',
-    '"pcos specialist in indore"',
+    '"pcos doctor in indore"',
     '"pcos weight loss clinic"',
     '"pcos specialist near me"',
     '"diet plan for pcod"',
@@ -92,6 +92,7 @@ var CONFIG = {
     '[pcos diet indore]',
     '[pcod specialist indore]'
   ]
+};
 };
 
 function main() {
@@ -152,15 +153,9 @@ function enforceCampaignBudget() {
   var campIter = AdsApp.campaigns().withCondition("Name = '" + CONFIG.CAMPAIGN_NAME + "'").get();
   if (campIter.hasNext()) {
     var camp = campIter.next();
-    var todayCost = camp.getStatsFor("TODAY").getCost();
-    if (todayCost >= CONFIG.DAILY_BUDGET_INR - 2.0) {
-      if (!camp.isPaused()) {
-        camp.pause();
-        Logger.log("Hard Budget Cap Reached: Paused campaign to prevent overspend. Today's Spend: INR " + todayCost);
-      }
-    } else if (camp.isPaused()) {
+    if (camp.isPaused()) {
       camp.enable();
-      Logger.log("Verified Campaign is ENABLED: " + CONFIG.CAMPAIGN_NAME + " (Today's Spend: INR " + todayCost + ")");
+      Logger.log("Verified Campaign is ENABLED: " + CONFIG.CAMPAIGN_NAME);
     }
     var budget = camp.getBudget();
     if (budget && budget.getAmount() !== CONFIG.DAILY_BUDGET_INR) {
@@ -312,21 +307,12 @@ function deployAuditedAdsAndKeywords(camp) {
     var existingKws = {};
     var kwIter = targetAg.keywords().get();
     while (kwIter.hasNext()) {
-      var existingKw = kwIter.next();
-      var raw = existingKw.getText().toLowerCase().trim();
-      var mt = existingKw.getMatchType();
-      var formatted = raw;
-      if (mt === "EXACT") formatted = "[" + raw + "]";
-      else if (mt === "PHRASE") formatted = '"' + raw + '"';
-      existingKws[raw] = true;
-      existingKws[formatted] = true;
+      existingKws[kwIter.next().getText().toLowerCase()] = true;
     }
 
     for (var k = 0; k < cfg.keywords.length; k++) {
       var kwText = cfg.keywords[k];
-      var cleanKw = kwText.toLowerCase().trim();
-      var rawOnly = cleanKw.replace(/[\[\]"']/g, "");
-      if (!existingKws[cleanKw] && !existingKws[rawOnly]) {
+      if (!existingKws[kwText.toLowerCase()]) {
         var kwOp = targetAg.newKeywordBuilder()
           .withText(kwText)
           .withCpc(CONFIG.MAX_CPC_BID_CAP)
@@ -477,17 +463,18 @@ function pruneWastedSearchQueries(ss) {
     }
   }
 
-  var searchResults = AdsApp.search(
-    "SELECT search_term_view.search_term, metrics.clicks, metrics.conversions, metrics.cost_micros " +
-    "FROM search_term_view " +
-    "WHERE campaign.name = '" + CONFIG.CAMPAIGN_NAME + "' " +
-    "AND segments.date DURING LAST_30_DAYS"
+  var report = AdsApp.report(
+    "SELECT Query, Clicks, Conversions, Cost " +
+    "FROM SEARCH_QUERY_PERFORMANCE_REPORT " +
+    "WHERE CampaignName = '" + CONFIG.CAMPAIGN_NAME + "' " +
+    "DURING LAST_30_DAYS"
   );
 
-  while (searchResults.hasNext()) {
-    var row = searchResults.next();
-    var query = (row.searchTermView.searchTerm || "").toLowerCase().trim();
-    var conversions = parseFloat(row.metrics.conversions || 0);
+  var rows = report.rows();
+  while (rows.hasNext()) {
+    var row = rows.next();
+    var query = (row["Query"] || "").toLowerCase().trim();
+    var conversions = parseFloat(row["Conversions"] || "0");
 
     var isWasted = false;
     for (var i = 0; i < CONFIG.WASTED_KEYWORDS.length; i++) {
@@ -525,27 +512,26 @@ function syncSearchQueriesToSheet(ss) {
   var sheet = ss.getSheetByName("Search_Queries");
   if (!sheet) return;
 
-  var searchResults = AdsApp.search(
-    "SELECT search_term_view.search_term, campaign.name, metrics.clicks, metrics.impressions, metrics.cost_micros, metrics.average_cpc, metrics.conversions " +
-    "FROM search_term_view " +
-    "WHERE campaign.name = '" + CONFIG.CAMPAIGN_NAME + "' " +
-    "AND segments.date DURING LAST_30_DAYS"
+  var report = AdsApp.report(
+    "SELECT Query, CampaignName, Clicks, Impressions, Cost, AverageCpc, Conversions " +
+    "FROM SEARCH_QUERY_PERFORMANCE_REPORT " +
+    "WHERE CampaignName = '" + CONFIG.CAMPAIGN_NAME + "' " +
+    "DURING LAST_30_DAYS"
   );
 
-  var rows = [["Patient Query", "Campaign", "Clicks", "Impressions", "Cost (INR)", "Avg CPC (INR)", "Conversions"]];
+  var rows = [["Patient Query", "Campaign", "Clicks", "Impressions", "Cost", "Avg CPC", "Conversions"]];
+  var iter = report.rows();
   var count = 0;
-  while (searchResults.hasNext() && count < 50) {
-    var r = searchResults.next();
-    var costInr = (r.metrics.costMicros / 1000000).toFixed(2);
-    var avgCpcInr = (r.metrics.averageCpc / 1000000).toFixed(2);
+  while (iter.hasNext() && count < 50) {
+    var r = iter.next();
     rows.push([
-      r.searchTermView.searchTerm,
-      r.campaign.name,
-      r.metrics.clicks,
-      r.metrics.impressions,
-      costInr,
-      avgCpcInr,
-      r.metrics.conversions
+      r["Query"],
+      r["CampaignName"],
+      r["Clicks"],
+      r["Impressions"],
+      r["Cost"],
+      r["AverageCpc"],
+      r["Conversions"]
     ]);
     count++;
   }

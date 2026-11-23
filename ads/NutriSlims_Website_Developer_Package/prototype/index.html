@@ -117,7 +117,7 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="../design/tokens.css?v=3.0.0">
-  <link rel="stylesheet" href="styles.css?v=3.0.0">
+  <link rel="stylesheet" href="styles.css?v=3.1.0">
 <style id="super-premium-critical-styles">
 /* ==========================================================================
    NUTRISLIMS SUPER-PREMIUM LUXURY DESIGN SYSTEM (v3.0.0)
@@ -671,6 +671,33 @@ input[type="checkbox"] {
   }
 }
 </style>
+  <style id="section-heading-shield">
+    /* Fluid Responsive Section Headings - Zero Clipping Across 320px-1440px */
+    .section-title,
+    h2.section-title,
+    .page-title-banner h1,
+    .section-heading h2,
+    .hero-title,
+    .about-content h2,
+    .booking-info h2,
+    .contact-info-panel h2 {
+      font-size: clamp(1.65rem, 4.5vw, 2.5rem) !important;
+      line-height: 1.22 !important;
+      word-break: break-word !important;
+      overflow-wrap: break-word !important;
+      max-width: 100% !important;
+    }
+    .eyebrow,
+    .section-subtitle,
+    .sub-lbl {
+      display: inline-block !important;
+      max-width: 100% !important;
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
+      letter-spacing: clamp(1px, 0.4vw, 2px) !important;
+      font-size: clamp(0.75rem, 2vw, 0.85rem) !important;
+    }
+  </style>
 </head>
 <body>
   <!-- Accessibility Skip Navigation Link -->
@@ -2488,6 +2515,6 @@ input[type="checkbox"] {
   </button>
 
   <!-- Application Script -->
-  <script src="app.js?v=3.0.0"></script>
+  <script src="app.js?v=3.1.0"></script>
 </body>
 </html>
