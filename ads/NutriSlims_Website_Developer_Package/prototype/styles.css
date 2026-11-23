@@ -3363,3 +3363,72 @@ html, body {
     font-size: 1.5rem !important;
   }
 }
+
+
+/* ==========================================================================
+   DEFENSIVE LAYOUT & ICON / BUTTON STABILITY RULES (v2.2.0)
+   ========================================================================== */
+
+/* Prevent any portal or pill button from collapsing into 42px circle */
+.button.portal-trigger,
+.topbar-portal-btn,
+.header-portal-btn,
+.footer-portal-btn,
+#portal-open-btn,
+#mobile-portal-btn,
+#footer-portal-btn {
+  width: auto !important;
+  height: auto !important;
+  min-height: 38px !important;
+  border-radius: 9999px !important;
+  padding: 8px 18px !important;
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+}
+
+/* Service, recipe, and video card image stability */
+.service-card-img,
+.service-image-box img,
+.service-image-box > img,
+.service-card > img:first-child,
+.service-img {
+  width: 100% !important;
+  aspect-ratio: 16/9 !important;
+  object-fit: cover !important;
+  border-radius: var(--radius-sm);
+  display: block !important;
+}
+
+.recipe-card-img,
+.recipe-image-box img,
+.recipe-card img {
+  width: 100% !important;
+  aspect-ratio: 16/9 !important;
+  object-fit: cover !important;
+  border-radius: var(--radius-sm);
+  display: block !important;
+}
+
+.video-poster-img,
+.video-card img {
+  width: 100% !important;
+  aspect-ratio: 9/16 !important;
+  object-fit: cover !important;
+  border-radius: var(--radius-sm);
+  display: block !important;
+}
+
+/* About image stability */
+.about-image,
+.about-media img {
+  width: 100% !important;
+  max-width: 520px !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+  border-radius: var(--radius-md) !important;
+  display: block !important;
+}
