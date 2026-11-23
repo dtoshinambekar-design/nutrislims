@@ -3820,3 +3820,161 @@ input[type="checkbox"],
     bottom: auto !important;
   }
 }
+
+
+/* ==========================================================================
+   PRODUCTION PRECISION ALIGNMENT FIXES (v2.4.0)
+   ========================================================================== */
+
+/* 1. Recipe Grid Symmetrical 3x2 Layout (Image 2 Fix) */
+.recipe-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+}
+
+@media (max-width: 991px) {
+  .recipe-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .recipe-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* 2. Calculator Hub Panel Layout (Image 3 Fix) */
+.calc-panel-grid {
+  display: grid !important;
+  grid-template-columns: 1.15fr 0.85fr !important;
+  gap: 36px !important;
+  align-items: start !important;
+  margin-top: 20px !important;
+}
+
+.calc-info-box,
+.stat-card {
+  background: #fdfdfd !important;
+  border: 1px solid var(--c-border) !important;
+  border-radius: var(--radius-card) !important;
+  padding: 24px !important;
+  box-shadow: 0 4px 16px rgba(23, 35, 27, 0.05) !important;
+}
+
+.calc-info-box h4 {
+  font-size: 16px !important;
+  margin-bottom: 14px !important;
+  color: var(--c-primary) !important;
+}
+
+.bmi-category-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 16px 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.bmi-category-list li {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: 13.5px !important;
+  color: var(--c-text) !important;
+}
+
+.color-badge {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
+.badge-underweight { background: #3b82f6 !important; }
+.badge-normal      { background: #10b981 !important; }
+.badge-overweight  { background: #f59e0b !important; }
+.badge-obese       { background: #ef4444 !important; }
+
+.calc-formula-note {
+  font-size: 12px !important;
+  color: var(--c-muted) !important;
+  line-height: 1.5 !important;
+  border-top: 1px solid var(--c-border) !important;
+  padding-top: 12px !important;
+  margin-top: 12px !important;
+}
+
+@media (max-width: 850px) {
+  .calc-panel-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+/* 3. Booking Form Symmetrical Grid & Inline Checkbox (Image 1 Fix) */
+.booking-form .form-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+  margin-bottom: 16px !important;
+}
+
+.booking-form .form-group {
+  margin-bottom: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  text-align: left !important;
+}
+
+.booking-form .form-group label {
+  text-align: left !important;
+  margin-bottom: 6px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+}
+
+.booking-form .consent-group,
+.booking-form .consent {
+  margin: 16px 0 20px 0 !important;
+  text-align: left !important;
+}
+
+.checkbox-label {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  cursor: pointer !important;
+  text-align: left !important;
+}
+
+.checkbox-label input[type="checkbox"] {
+  appearance: auto !important;
+  -webkit-appearance: auto !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  margin: 2px 0 0 0 !important;
+  flex-shrink: 0 !important;
+  accent-color: var(--c-primary) !important;
+  cursor: pointer !important;
+}
+
+.checkbox-label span {
+  font-size: 13px !important;
+  color: var(--c-muted) !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+  display: inline-block !important;
+}
+
+@media (max-width: 600px) {
+  .booking-form .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+}
