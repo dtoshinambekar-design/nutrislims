@@ -1270,7 +1270,7 @@
   var RECIPE_DETAILS = {
     'recipe-01': {
       title: 'Spiced Moong Dal & Spinach Khichdi',
-      image: 'assets/images/spiced-moong-dal-khichdi.jpg',
+      image: 'assets/images/indian-balanced-thali.jpg',
       prepTime: '15 mins',
       cookTime: '20 mins',
       calories: '280 kcal',

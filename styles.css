@@ -878,6 +878,9 @@ small {
 .service-bullets img,
 .service-link img,
 .service-card .icon-inline,
+.recipe-save-btn svg,
+.recipe-save-btn img,
+.card-icon,
 .icon-inline {
   width: 14px !important;
   height: 14px !important;
@@ -1389,10 +1392,14 @@ small {
 }
 
 .recipe-card .icon-inline,
+.recipe-save-btn svg,
 .recipe-save-btn img,
-.recipe-controls img {
+.recipe-controls img,
+.card-icon {
   width: 14px !important;
   height: 14px !important;
+  max-width: 14px !important;
+  max-height: 14px !important;
   aspect-ratio: auto !important;
   display: inline-block !important;
   flex-shrink: 0 !important;
@@ -2618,9 +2625,11 @@ footer small,
     font-size: 15px;
   }
 
-  .header-cta { display: none; }
+  .header-cta { display: none !important; }
   .search-trigger,
-  .portal-trigger { display: none; }
+  .portal-trigger,
+  .header-portal-btn,
+  #portal-open-btn { display: none !important; }
 
   /* Container */
   .container,
@@ -2846,12 +2855,16 @@ footer small,
   /* Booking */
   .booking,
   .booking-section {
-    grid-template-columns: 1fr;
+    display: block;
+    width: 100%;
     padding: 24px 0;
     border-radius: 20px;
   }
 
   .booking-container {
+    grid-template-columns: 1fr;
+    padding: 24px 16px;
+    gap: 20px;
     min-width: 0;
     max-width: 100%;
   }
@@ -3020,7 +3033,7 @@ footer small,
   font-weight: 600 !important;
   cursor: pointer !important;
   white-space: nowrap !important;
-  display: inline-flex !important;
+  display: inline-flex;
   align-items: center !important;
   gap: 6px !important;
   transition: all 0.2s ease !important;
@@ -3036,8 +3049,13 @@ footer small,
   .booking,
   .booking-section {
     padding-inline: 0 !important;
+    display: block !important;
+    width: 100% !important;
   }
   .booking-container {
+    grid-template-columns: 1fr !important;
+    padding: 24px 16px !important;
+    gap: 20px !important;
     min-width: 0 !important;
     max-width: 100% !important;
   }
@@ -3305,6 +3323,13 @@ html, body {
   box-sizing: border-box !important;
 }
 
+/* Recipe Grid Single Column on Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .recipe-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* 2. Process Grid on Ultra-Compact Viewports (< 480px) */
 @media (max-width: 420px) {
   .process-grid {
@@ -3384,7 +3409,7 @@ html, body {
   padding: 8px 18px !important;
   font-size: 13px !important;
   line-height: 1.2 !important;
-  display: inline-flex !important;
+  display: inline-flex;
   align-items: center !important;
   justify-content: center !important;
   white-space: nowrap !important;
