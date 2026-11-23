@@ -143,33 +143,33 @@ Live sheet extraction verified the following two responsive ad sets currently li
 #### Set A: `NUTRISLIMS-WEIGHT-LOSS`
 - **Target Ad Group:** `Weight-Loss-Clinic-Indore`
 - **Status:** `LIVE_DEPLOYED` (Timestamp: `2026-10-24T23:30:56.996Z`)
-- **Landing Page:** `https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#weight-loss`
+- **Landing Page:** `https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0#weight-loss`
 - **Headlines (Sample):**
   1. `Weight Loss Clinic Indore` (25 chars)
   2. `Best Dietitian in Indore` (24 chars)
   3. `Nutrislims Wellness Clinic` (26 chars)
   4. `Customized Diet Plans` (21 chars)
-  5. `Call 07828149178 Today` (22 chars)
+  5. `Call Our Clinic Today` (21 chars)
   6. `Rajendra Nagar, Indore` (22 chars)
 - **Descriptions:**
-  1. `Expert Weight Loss & Diet Plans in Rajendra Nagar, Indore. Call 07828149178 Today!` (88 chars)
+  1. `Visit Nutrislims Health & Wellness Clinic in Rajendra Nagar, Indore. Book Today!` (80 chars)
   2. `Customized Diet & Nutrition Plans for Long-Term Health. Visit Nutrislims Clinic in Indore.` (89 chars)
 - **Target Keywords:** `"weight loss clinic in indore"`, `"dietitian in indore"`, `"dietitian near me"`, `"weight loss clinic near me"`, `[nutrislims clinic]`
 
 #### Set B: `NUTRISLIMS-PCOS-WEIGHT`
 - **Target Ad Group:** `PCOS-PCOD-Weight-Management`
 - **Status:** `LIVE_DEPLOYED` (Timestamp: `2026-10-24T23:30:57.262Z`)
-- **Landing Page:** `https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#pcos-care`
+- **Landing Page:** `https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0#pcos-care`
 - **Headlines (Sample):**
   1. `PCOS Diet & Health Clinic` (25 chars)
   2. `PCOS Weight Loss Indore` (23 chars)
   3. `Nutrislims Wellness Clinic` (26 chars)
   4. `Natural PCOS Management` (23 chars)
-  5. `Call 07828149178 Today` (22 chars)
+  5. `Call Our Clinic Today` (21 chars)
 - **Descriptions:**
-  1. `Specialized PCOS & Hormonal Weight Reversal Plans in Indore. Call 07828149178!` (77 chars)
-  2. `Certified Dietitians For Natural PCOS Treatment. Visit Nutrislims Clinic in Rajendra Nagar.` (89 chars)
-- **Target Keywords:** `"pcos clinic in indore"`, `"pcos diet plan for women"`, `"pcos doctor in indore"`, `"pcos weight loss clinic"`, `[pcos diet indore]`
+  1. `Specialized PCOS & Hormonal Weight Management Plans in Indore. Consult Today!` (77 chars)
+  2. `Certified Dietitians For Natural PCOS Care. Visit Nutrislims Clinic in Rajendra Nagar.` (84 chars)
+- **Target Keywords:** `"pcos clinic in indore"`, `"pcos diet plan for women"`, `"pcos dietitian in indore"`, `"pcos weight loss clinic"`, `[pcos diet indore]`
 
 ---
 

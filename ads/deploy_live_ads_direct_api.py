@@ -48,20 +48,23 @@ def deploy(dry_run=True):
             "path1": "indore",
             "path2": "weight-loss",
             "headlines": [
-                "Weight Loss Clinic Indore",
-                "Best Dietitian in Indore",
                 "Nutrislims Wellness Clinic",
-                "Customized Diet Plans",
-                "Customized Fat Loss Diet",
-                "Rajendra Nagar, Indore",
+                "Best Dietitian in Indore",
+                "Weight Loss Clinic Indore",
+                "Near Jain Temple, Indore",
+                "Best Diet Clinic in Indore",
                 "Call Our Clinic Today",
-                "Safe & Natural Weight Loss",
-                "Visit Our Clinic Today"
+                "Certified Clinical Nutrition",
+                "Visit Our Clinic in Indore",
+                "Customized Diet Plans",
+                "Healthy Sustainable Fat Loss",
+                "Book Consultation Today",
+                "Rajendra Nagar, Indore"
             ],
             "descriptions": [
-                "Expert Weight Loss & Diet Plans in Rajendra Nagar, Indore. Book Consultation Today!",
-                "Customized Diet & Nutrition Plans for Long-Term Health. Visit Nutrislims Clinic in Indore.",
-                "Consult Certified Dietitians For Healthy Weight Loss & Lifestyle Wellness. Book Visit Now!",
+                "Visit Nutrislims Health & Wellness Clinic in Rajendra Nagar, Indore. Book Today!",
+                "Located Near Jain Temple, Scheme 97. Customized Weight Loss & Diet Plans for You.",
+                "Consult Certified Dietitians For Healthy Weight Loss & Lifestyle Wellness. Call Today!",
                 "Near Jain Temple, Rajendra Nagar. Get Proven Diet Solutions Tailored For Your Body."
             ]
         },
@@ -72,20 +75,23 @@ def deploy(dry_run=True):
             "path2": "pcos-diet",
             "headlines": [
                 "PCOS Diet & Health Clinic",
-                "PCOS Weight Loss Indore",
                 "Nutrislims Wellness Clinic",
-                "Natural PCOS Management",
-                "Top Dietitian For Women",
-                "Rajendra Nagar, Indore",
+                "Top PCOS Specialist Indore",
+                "Near Jain Temple, Indore",
+                "PCOS Weight Loss Indore",
                 "Call Our Clinic Today",
                 "Balance Hormones Naturally",
-                "Consult PCOS Specialists"
+                "Natural PCOS Management",
+                "Top Dietitian For Women",
+                "PCOS Dietitian in Indore",
+                "Customized Hormonal Diets",
+                "Book Consultation Today"
             ],
             "descriptions": [
                 "Specialized PCOS & Hormonal Weight Management Plans in Indore. Consult Today!",
-                "Certified Dietitians For Natural PCOS Care. Visit Nutrislims Clinic in Rajendra Nagar.",
-                "Near Jain Temple, Scheme 97 Part 4. Holistic Lifestyle & Nutrition Support for Women.",
-                "Personalized Diet Programs To Manage Hormones & Healthy Weight Naturally. Book Today."
+                "Located Near Jain Temple, Scheme 97. Natural PCOS Nutrition Consultations.",
+                "Certified Dietitians For Natural PCOS Care & Hormonal Balance. Book Your Visit Today.",
+                "Visit Our Clinic Today for Customized Lifestyle & Clinical Diet Management for Women."
             ]
         }
     ]
@@ -97,7 +103,7 @@ def deploy(dry_run=True):
                 "adGroup": f"customers/{cid}/adGroups/{cfg['group_id']}",
                 "status": "ENABLED",
                 "ad": {
-                    "finalUrls": ["https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0"],
+                    "finalUrls": ["https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0"],
                     "responsiveSearchAd": {
                         "path1": cfg["path1"],
                         "path2": cfg["path2"],

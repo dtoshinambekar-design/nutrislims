@@ -83,7 +83,7 @@ var CONFIG = {
   HIGH_INTENT_KEYWORDS_PCOS: [
     '"pcos clinic in indore"',
     '"pcos diet plan for women"',
-    '"pcos doctor in indore"',
+    '"pcos dietitian in indore"',
     '"pcos weight loss clinic"',
     '"pcos specialist near me"',
     '"diet plan for pcod"',
@@ -219,22 +219,25 @@ function deployAuditedAdsAndKeywords(camp) {
       name: "Weight-Loss-Clinic-Indore",
       alias: "weight",
       keywords: CONFIG.HIGH_INTENT_KEYWORDS_WEIGHT,
-      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#weight-loss",
+      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0#weight-loss",
       headlines: [
-        "Weight Loss Clinic Indore",
-        "Best Dietitian in Indore",
         "Nutrislims Wellness Clinic",
-        "Customized Diet Plans",
-        "Diet For Belly Fat Loss",
-        "Rajendra Nagar, Indore",
+        "Best Dietitian in Indore",
+        "Weight Loss Clinic Indore",
+        "Near Jain Temple, Indore",
+        "Best Diet Clinic in Indore",
         "Call Our Clinic Today",
-        "Safe & Natural Weight Loss",
-        "Visit Our Clinic Today"
+        "Certified Clinical Nutrition",
+        "Visit Our Clinic in Indore",
+        "Customized Diet Plans",
+        "Healthy Sustainable Fat Loss",
+        "Book Consultation Today",
+        "Rajendra Nagar, Indore"
       ],
       descriptions: [
-        "Expert Weight Loss & Diet Plans in Rajendra Nagar, Indore. Call or Visit Us Today!",
-        "Customized Diet & Nutrition Plans for Long-Term Health. Visit Nutrislims Clinic in Indore.",
-        "Consult Certified Dietitians For Healthy Weight Loss & Lifestyle Wellness. Book Visit Now!",
+        "Visit Nutrislims Health & Wellness Clinic in Rajendra Nagar, Indore. Book Today!",
+        "Located Near Jain Temple, Scheme 97. Customized Weight Loss & Diet Plans for You.",
+        "Consult Certified Dietitians For Healthy Weight Loss & Lifestyle Wellness. Call Today!",
         "Near Jain Temple, Rajendra Nagar. Get Proven Diet Solutions Tailored For Your Body."
       ],
       path1: "indore",
@@ -244,23 +247,26 @@ function deployAuditedAdsAndKeywords(camp) {
       name: "PCOS-PCOD-Weight-Management",
       alias: "pcos",
       keywords: CONFIG.HIGH_INTENT_KEYWORDS_PCOS,
-      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#pcos-care",
+      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0#pcos-care",
       headlines: [
         "PCOS Diet & Health Clinic",
-        "PCOS Weight Loss Indore",
         "Nutrislims Wellness Clinic",
-        "Natural PCOS Management",
-        "Top Dietitian For Women",
-        "Rajendra Nagar, Indore",
+        "Top PCOS Specialist Indore",
+        "Near Jain Temple, Indore",
+        "PCOS Weight Loss Indore",
         "Call Our Clinic Today",
         "Balance Hormones Naturally",
-        "Consult PCOS Specialists"
+        "Natural PCOS Management",
+        "Top Dietitian For Women",
+        "PCOS Dietitian in Indore",
+        "Customized Hormonal Diets",
+        "Book Consultation Today"
       ],
       descriptions: [
-        "Specialized PCOS & Hormonal Weight Reversal Plans in Indore. Call or Visit Us Today!",
-        "Certified Dietitians For Natural PCOS Care. Visit Nutrislims Clinic in Rajendra Nagar.",
-        "Near Jain Temple, Scheme 97 Part 4. Holistic Lifestyle & Nutrition Support for Women.",
-        "Personalized Diet Programs To Manage Hormones & Reverse PCOS Naturally. Consult Today."
+        "Specialized PCOS & Hormonal Weight Management Plans in Indore. Consult Today!",
+        "Located Near Jain Temple, Scheme 97. Natural PCOS Nutrition Consultations.",
+        "Certified Dietitians For Natural PCOS Care & Hormonal Balance. Book Your Visit Today.",
+        "Visit Our Clinic Today for Customized Lifestyle & Clinical Diet Management for Women."
       ],
       path1: "indore",
       path2: "pcos-diet"
@@ -336,7 +342,7 @@ function deployAuditedAdsAndKeywords(camp) {
     var adOp = targetAg.newAd().responsiveSearchAdBuilder()
       .withHeadlines(cfg.headlines)
       .withDescriptions(cfg.descriptions)
-      .withFinalUrl(cfg.finalUrl || "https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0")
+      .withFinalUrl(cfg.finalUrl || "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0")
       .withPath1(cfg.path1)
       .withPath2(cfg.path2)
       .build();

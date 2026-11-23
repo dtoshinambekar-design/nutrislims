@@ -1,41 +1,49 @@
 # Character and Policy Audit Script for Google Ads
 import re
 
-# Policy-Compliant Audited Headlines and Descriptions
+# Policy-Compliant Audited Headlines and Descriptions (Excellent Ad Strength: 12 Distinct Headlines, 4 Descriptions)
 headlines_group1 = [
     "Nutrislims Wellness Clinic",
-    "Top Diet Clinic in Indore",
+    "Best Dietitian in Indore",
     "Weight Loss Clinic Indore",
     "Near Jain Temple, Indore",
     "Best Diet Clinic in Indore",
     "Call Our Clinic Today",
-    "Highly Rated Dietitian",
+    "Certified Clinical Nutrition",
     "Visit Our Clinic in Indore",
-    "Customized Diet Plans"
+    "Customized Diet Plans",
+    "Healthy Sustainable Fat Loss",
+    "Book Consultation Today",
+    "Rajendra Nagar, Indore"
 ]
 
 descriptions_group1 = [
     "Visit Nutrislims Health & Wellness Clinic in Rajendra Nagar, Indore. Book Today!",
     "Located Near Jain Temple, Scheme 97. Customized Weight Loss & Diet Plans for You.",
-    "Top Rated Dietitian Clinic in Indore. Book In-Person Consultation or Get Directions."
+    "Consult Certified Dietitians For Healthy Weight Loss & Lifestyle Wellness. Call Today!",
+    "Near Jain Temple, Rajendra Nagar. Get Proven Diet Solutions Tailored For Your Body."
 ]
 
 headlines_group2 = [
     "PCOS Diet & Health Clinic",
     "Nutrislims Wellness Clinic",
-    "Top PCOS Specialist in Indore",
+    "Top PCOS Specialist Indore",
     "Near Jain Temple, Indore",
     "PCOS Weight Loss Indore",
     "Call Our Clinic Today",
-    "Visit Clinic In Indore",
-    "Natural Lifestyle Care",
-    "Top Dietitian For Women"
+    "Balance Hormones Naturally",
+    "Natural PCOS Management",
+    "Top Dietitian For Women",
+    "PCOS Dietitian in Indore",
+    "Customized Hormonal Diets",
+    "Book Consultation Today"
 ]
 
 descriptions_group2 = [
-    "Specialized PCOS & Hormonal Weight Clinic in Rajendra Nagar, Indore. Consult Today!",
+    "Specialized PCOS & Hormonal Weight Management Plans in Indore. Consult Today!",
     "Located Near Jain Temple, Scheme 97. Natural PCOS Nutrition Consultations.",
-    "Visit Our Clinic Today for Customized Lifestyle & Diet Management Plans for Women."
+    "Certified Dietitians For Natural PCOS Care & Hormonal Balance. Book Your Visit Today.",
+    "Visit Our Clinic Today for Customized Lifestyle & Clinical Diet Management for Women."
 ]
 
 def audit(name, headlines, descriptions):
@@ -96,6 +104,6 @@ if __name__ == "__main__":
     print("RUNNING GOOGLE ADS FORMAT & POLICY AUDIT...")
     err1 = audit("GROUP 1: WEIGHT LOSS CLINIC", headlines_group1, descriptions_group1)
     err2 = audit("GROUP 2: PCOS / HORMONAL WEIGHT", headlines_group2, descriptions_group2)
-    err3 = audit_urls(["https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0"])
+    err3 = audit_urls(["https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0"])
     print("=" * 60)
     print(f"OVERALL AUDIT RESULT: {'ERRORS FOUND - NEEDS FIX' if (err1 or err2 or err3) else '100% PERFECT COMPLIANCE'}")
