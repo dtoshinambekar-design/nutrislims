@@ -3457,3 +3457,366 @@ html, body {
   border-radius: var(--radius-md) !important;
   display: block !important;
 }
+
+
+/* ==========================================================================
+   PRODUCTION POLISH & VISUAL ALIGNMENT FIXES (v2.3.0)
+   ========================================================================== */
+
+/* 1. Trust Facts Bar (Image 2 Fix) */
+.facts,
+.facts-bar {
+  display: block !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 32px auto !important;
+}
+
+.facts .facts-grid,
+.facts-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+  background: var(--c-surface) !important;
+  border: 1px solid var(--c-border) !important;
+  border-radius: var(--radius-card) !important;
+  padding: 24px 32px !important;
+  box-shadow: var(--shadow-card) !important;
+  width: 100% !important;
+}
+
+.fact-card {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
+  text-align: left !important;
+  border: none !important;
+  padding: 8px !important;
+}
+
+.fact-card .fact-icon {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 12px !important;
+  background: var(--c-soft) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.fact-card .fact-icon img {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+.fact-card .fact-content strong {
+  display: block !important;
+  font-family: var(--font-heading) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--c-primary) !important;
+  margin-bottom: 4px !important;
+}
+
+.fact-card .fact-content span {
+  font-size: 12.5px !important;
+  color: var(--c-muted) !important;
+  line-height: 1.4 !important;
+  display: block !important;
+}
+
+@media (max-width: 900px) {
+  .facts .facts-grid,
+  .facts-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 20px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .facts .facts-grid,
+  .facts-grid {
+    grid-template-columns: 1fr !important;
+    padding: 16px !important;
+  }
+}
+
+/* 2. Calculator Hub Unit Toggle (Image 3 Fix) */
+.unit-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 22px !important;
+  background: #eef5ed !important;
+  padding: 4px 6px !important;
+  border-radius: 9999px !important;
+  border: 1px solid var(--c-border) !important;
+  width: fit-content !important;
+}
+
+.unit-option {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--c-text) !important;
+  padding: 6px 14px !important;
+  border-radius: 9999px !important;
+  margin: 0 !important;
+  user-select: none !important;
+}
+
+.unit-toggle input[type="radio"],
+.calc-card input[type="radio"],
+input[type="radio"] {
+  appearance: auto !important;
+  -webkit-appearance: auto !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  accent-color: var(--c-primary) !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+}
+
+/* 3. Booking Form & Global Checkbox / Radios (Image 7 Fix) */
+input[type="checkbox"],
+.booking-form input[type="checkbox"],
+#booking-form input[type="checkbox"],
+.remember-label input[type="checkbox"] {
+  appearance: auto !important;
+  -webkit-appearance: auto !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  min-height: 18px !important;
+  padding: 0 !important;
+  margin: 2px 10px 0 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  accent-color: var(--c-primary) !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+}
+
+.consent,
+.form-checkbox-label {
+  display: flex !important;
+  align-items: flex-start !important;
+  cursor: pointer !important;
+  font-size: 13px !important;
+  color: var(--c-muted) !important;
+  line-height: 1.5 !important;
+}
+
+/* 4. Reviews Grid Balanced 3 Columns (Image 6 Fix) */
+.reviews-grid,
+.review-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+}
+
+@media (max-width: 991px) {
+  .reviews-grid,
+  .review-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* 5. Contact Section & Map Alignment (Image 8 Fix) */
+.contact-section,
+.contact {
+  text-align: left !important;
+}
+
+.contact-grid {
+  display: grid !important;
+  grid-template-columns: 1.1fr 0.9fr !important;
+  gap: 40px !important;
+  align-items: start !important;
+  text-align: left !important;
+}
+
+.contact-info-panel {
+  text-align: left !important;
+}
+
+.contact-card-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  margin-top: 24px !important;
+}
+
+.contact-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 16px !important;
+  text-align: left !important;
+  background: var(--c-surface) !important;
+  padding: 16px 20px !important;
+  border-radius: var(--radius-card) !important;
+  border: 1px solid var(--c-border) !important;
+  box-shadow: 0 2px 8px rgba(23,35,27,0.04) !important;
+}
+
+.contact-item img {
+  width: 24px !important;
+  height: 24px !important;
+  flex-shrink: 0 !important;
+  margin-top: 2px !important;
+  display: block !important;
+}
+
+.contact-item div {
+  flex: 1 !important;
+  text-align: left !important;
+}
+
+.contact-item strong {
+  display: block !important;
+  font-size: 14px !important;
+  color: var(--c-primary) !important;
+  margin-bottom: 2px !important;
+}
+
+.contact-item address,
+.contact-item p {
+  margin: 0 !important;
+  font-size: 13.5px !important;
+  color: var(--c-text) !important;
+  line-height: 1.5 !important;
+  font-style: normal !important;
+}
+
+.contact-map-panel {
+  text-align: left !important;
+}
+
+.map-card {
+  background: var(--c-surface) !important;
+  border: 1px solid var(--c-border) !important;
+  border-radius: var(--radius-card) !important;
+  padding: 24px !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.map-placeholder-box {
+  background: #f4f8f3 !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 40px 24px !important;
+  text-align: center !important;
+  margin: 16px 0 !important;
+  border: 1.5px dashed var(--c-border) !important;
+}
+
+.map-inner h4 {
+  font-size: 17px !important;
+  margin: 10px 0 4px !important;
+  color: var(--c-dark) !important;
+}
+
+.map-inner p {
+  font-size: 13px !important;
+  color: var(--c-muted) !important;
+  margin-bottom: 16px !important;
+}
+
+.map-note {
+  font-size: 12px !important;
+  color: var(--c-muted) !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 850px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+/* 6. Hero Media & BMI Card Harmony (Image 1 Fix) */
+.hero-container {
+  display: grid !important;
+  grid-template-columns: 1.15fr 0.85fr !important;
+  gap: 48px !important;
+  align-items: center !important;
+}
+
+.hero-media {
+  position: relative !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+.hero-image-wrapper {
+  width: 100% !important;
+  border-radius: 28px !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.hero-image-wrapper img,
+.hero-image {
+  width: 100% !important;
+  height: 480px !important;
+  object-fit: cover !important;
+  object-position: center left !important;
+  display: block !important;
+}
+
+.hero-bmi-card,
+.bmi-card {
+  position: absolute !important;
+  right: -16px !important;
+  bottom: -24px !important;
+  width: 310px !important;
+  max-width: 88% !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid var(--c-border) !important;
+  border-radius: 20px !important;
+  padding: 22px !important;
+  box-shadow: 0 16px 40px rgba(23, 35, 27, 0.16) !important;
+  z-index: 10 !important;
+}
+
+@media (max-width: 991px) {
+  .hero-container {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+  .hero-media {
+    justify-content: center !important;
+  }
+  .hero-image-wrapper img,
+  .hero-image {
+    height: 380px !important;
+  }
+  .hero-bmi-card,
+  .bmi-card {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 20px !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+}
