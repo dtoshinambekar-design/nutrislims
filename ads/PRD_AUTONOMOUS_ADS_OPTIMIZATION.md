@@ -143,7 +143,7 @@ Live sheet extraction verified the following two responsive ad sets currently li
 #### Set A: `NUTRISLIMS-WEIGHT-LOSS`
 - **Target Ad Group:** `Weight-Loss-Clinic-Indore`
 - **Status:** `LIVE_DEPLOYED` (Timestamp: `2026-10-24T23:30:56.996Z`)
-- **Landing Page:** `https://nutrislims.com`
+- **Landing Page:** `https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#weight-loss`
 - **Headlines (Sample):**
   1. `Weight Loss Clinic Indore` (25 chars)
   2. `Best Dietitian in Indore` (24 chars)
@@ -159,7 +159,7 @@ Live sheet extraction verified the following two responsive ad sets currently li
 #### Set B: `NUTRISLIMS-PCOS-WEIGHT`
 - **Target Ad Group:** `PCOS-PCOD-Weight-Management`
 - **Status:** `LIVE_DEPLOYED` (Timestamp: `2026-10-24T23:30:57.262Z`)
-- **Landing Page:** `https://nutrislims.com`
+- **Landing Page:** `https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#pcos-care`
 - **Headlines (Sample):**
   1. `PCOS Diet & Health Clinic` (25 chars)
   2. `PCOS Weight Loss Indore` (23 chars)

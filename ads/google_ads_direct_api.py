@@ -31,6 +31,7 @@ class GoogleAdsDirectAPI:
         self.refresh_token = self.config.get("GOOGLE_ADS_REFRESH_TOKEN")
         self.customer_id = self.config.get("GOOGLE_ADS_CUSTOMER_ID", "7183123393").replace("-", "")
         self.login_customer_id = self.config.get("GOOGLE_ADS_LOGIN_CUSTOMER_ID", "").replace("-", "")
+        self.login_cid = self.login_customer_id
         self.access_token = None
 
     def refresh_access_token(self) -> str:
@@ -50,10 +51,17 @@ class GoogleAdsDirectAPI:
             data=payload,
             headers={"Content-Type": "application/x-www-form-urlencoded"}
         )
-        with urllib.request.urlopen(req) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            self.access_token = data.get("access_token")
-            return self.access_token
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                self.access_token = data.get("access_token")
+                return self.access_token
+        except urllib.error.HTTPError as e:
+            err_msg = e.read().decode("utf-8")
+            print(f"[OAUTH ERROR] ({e.code}): {err_msg}")
+            if "invalid_grant" in err_msg:
+                print("[NOTE] OAuth Refresh Token has expired or been revoked. Run generate_refresh_token.py to re-authenticate.")
+            raise
 
     def _get_headers(self) -> dict:
         if not self.access_token:

@@ -93,7 +93,6 @@ var CONFIG = {
     '[pcod specialist indore]'
   ]
 };
-};
 
 function main() {
   Logger.log("=== EXECUTION GATE: CHECKING AUTHORIZATION ===");
@@ -220,7 +219,7 @@ function deployAuditedAdsAndKeywords(camp) {
       name: "Weight-Loss-Clinic-Indore",
       alias: "weight",
       keywords: CONFIG.HIGH_INTENT_KEYWORDS_WEIGHT,
-      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/#weight-loss",
+      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#weight-loss",
       headlines: [
         "Weight Loss Clinic Indore",
         "Best Dietitian in Indore",
@@ -245,7 +244,7 @@ function deployAuditedAdsAndKeywords(camp) {
       name: "PCOS-PCOD-Weight-Management",
       alias: "pcos",
       keywords: CONFIG.HIGH_INTENT_KEYWORDS_PCOS,
-      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/#pcos-care",
+      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#pcos-care",
       headlines: [
         "PCOS Diet & Health Clinic",
         "PCOS Weight Loss Indore",
@@ -337,7 +336,7 @@ function deployAuditedAdsAndKeywords(camp) {
     var adOp = targetAg.newAd().responsiveSearchAdBuilder()
       .withHeadlines(cfg.headlines)
       .withDescriptions(cfg.descriptions)
-      .withFinalUrl(cfg.finalUrl || "https://dtoshinambekar-design.github.io/nutrislims/")
+      .withFinalUrl(cfg.finalUrl || "https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0")
       .withPath1(cfg.path1)
       .withPath2(cfg.path2)
       .build();

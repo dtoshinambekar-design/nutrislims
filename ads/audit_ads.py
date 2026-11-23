@@ -77,9 +77,25 @@ def audit(name, headlines, descriptions):
 
     return has_error
 
+def audit_urls(urls):
+    print("\n" + "=" * 60)
+    print("AUDITING FINAL LANDING URLS")
+    print("=" * 60)
+    has_error = False
+    for i, u in enumerate(urls, 1):
+        is_https = u.startswith("https://")
+        no_fragment = "#" not in u
+        valid = is_https and no_fragment and len(u) <= 2048
+        status = "PASS" if valid else "FAIL"
+        if not valid:
+            has_error = True
+        print(f"  [{status}] URL #{i}: \"{u}\" -> HTTPS: {is_https} | No-Fragment: {no_fragment} | Len: {len(u)}/2048")
+    return has_error
+
 if __name__ == "__main__":
     print("RUNNING GOOGLE ADS FORMAT & POLICY AUDIT...")
     err1 = audit("GROUP 1: WEIGHT LOSS CLINIC", headlines_group1, descriptions_group1)
     err2 = audit("GROUP 2: PCOS / HORMONAL WEIGHT", headlines_group2, descriptions_group2)
+    err3 = audit_urls(["https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0"])
     print("=" * 60)
-    print(f"OVERALL AUDIT RESULT: {'ERRORS FOUND - NEEDS FIX' if (err1 or err2) else '100% PERFECT COMPLIANCE'}")
+    print(f"OVERALL AUDIT RESULT: {'ERRORS FOUND - NEEDS FIX' if (err1 or err2 or err3) else '100% PERFECT COMPLIANCE'}")

@@ -17,15 +17,21 @@ from google_ads_direct_api import GoogleAdsDirectAPI
 
 def deploy(dry_run=True):
     api = GoogleAdsDirectAPI()
-    token = api.refresh_access_token()
+    try:
+        token = api.refresh_access_token()
+    except Exception as e:
+        print(f"[OAUTH ERROR] Could not refresh access token: {e}")
+        print("Please check your .env credentials or re-run generate_refresh_token.py.")
+        return
+
     cid = api.customer_id or "7496638717"
     headers = {
         "Authorization": f"Bearer {token}",
         "developer-token": api.dev_token,
         "Content-Type": "application/json"
     }
-    if api.login_cid:
-        headers["login-customer-id"] = api.login_cid
+    if getattr(api, "login_cid", None) or getattr(api, "login_customer_id", None):
+        headers["login-customer-id"] = api.login_cid or api.login_customer_id
 
     url = f"https://googleads.googleapis.com/v23/customers/{cid}/adGroupAds:mutate"
 
@@ -91,7 +97,7 @@ def deploy(dry_run=True):
                 "adGroup": f"customers/{cid}/adGroups/{cfg['group_id']}",
                 "status": "ENABLED",
                 "ad": {
-                    "finalUrls": ["https://nutrislims.com"],
+                    "finalUrls": ["https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0"],
                     "responsiveSearchAd": {
                         "path1": cfg["path1"],
                         "path2": cfg["path2"],
@@ -129,7 +135,7 @@ def deploy(dry_run=True):
     }
     req_create = urllib.request.Request(url, data=json.dumps(payload_create).encode("utf-8"), headers=headers)
     try:
-        with urllib.request.urlopen(req_create) as resp:
+        with urllib.request.urlopen(req_create, timeout=30) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             status_text = "[DRY-RUN VALIDATION PASSED]" if dry_run else "[SUCCESS] New Audited RSAs Deployed Live:"
             print(f"\n{status_text}")
@@ -147,7 +153,7 @@ def deploy(dry_run=True):
     }
     req_pause = urllib.request.Request(url, data=json.dumps(payload_pause).encode("utf-8"), headers=headers)
     try:
-        with urllib.request.urlopen(req_pause) as resp:
+        with urllib.request.urlopen(req_pause, timeout=30) as resp:
             data_pause = json.loads(resp.read().decode("utf-8"))
             action_text = "Validated pausing" if dry_run else "Paused"
             print(f"[SUCCESS] {action_text} {len(data_pause.get('results', []))} older duplicate ads.")

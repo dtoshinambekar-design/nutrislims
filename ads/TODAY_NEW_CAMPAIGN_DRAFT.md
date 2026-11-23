@@ -3,7 +3,7 @@
 **Client:** Nutrislims Health & Wellness Clinic  
 **Address:** 1st Floor B, 109, Rajendra Nagar Main Rd (Near Jain Temple, Scheme 97 Part 4), Indore 452012  
 **Phone:** `07828149178`  
-**Website:** `https://nutrislims.com`  
+**Website:** `https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0`  
 **Daily Budget:** ₹60.00 / Day  
 **Primary Goal:** Direct Patient Phone Calls & In-Clinic Walk-ins  
 
@@ -73,14 +73,14 @@
 * **Location Asset:** Linked to Google Business Profile: *1st Floor B, 109, Rajendra Nagar Main Rd, Near Jain Temple*
 * **Callout Assets:**
   * `Customized Diet Plans`
-  * `PCOS Reversal Programs`
-  * `100% Natural Approach`
+  * `PCOS Management Plans`
+  * `Evidence-Based Nutrition`
   * `Near Jain Temple Indore`
 * **Sitelink Assets:**
-  * *Weight Loss Programs* $\rightarrow$ `https://nutrislims.com/#services`
-  * *PCOS Management* $\rightarrow$ `https://nutrislims.com/#pcos`
-  * *Call Clinic Now* $\rightarrow$ `tel:07828149178`
-  * *Clinic Location* $\rightarrow$ `https://nutrislims.com/#contact`
+  * *Weight Loss Programs* $\rightarrow$ `https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#weight-loss`
+  * *PCOS Management* $\rightarrow$ `https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#pcos-care`
+  * *Contact & Directions* $\rightarrow$ `https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#contact`
+  * *About Dietitian* $\rightarrow$ `https://dtoshinambekar-design.github.io/nutrislims/?v=3.2.0#about`
 
 ---
 
