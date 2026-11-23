@@ -3978,3 +3978,25 @@ input[type="checkbox"],
     gap: 12px !important;
   }
 }
+
+
+/* Explicit Checkbox Row Direction */
+.checkbox-label,
+label.checkbox-label,
+.consent label,
+.form-group.consent-group label,
+.form-group.consent label {
+  flex-direction: row !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  cursor: pointer !important;
+}
+
+.checkbox-label input[type="checkbox"],
+.form-group.consent-group input[type="checkbox"] {
+  flex-shrink: 0 !important;
+  margin-top: 3px !important;
+  width: 18px !important;
+  height: 18px !important;
+}
