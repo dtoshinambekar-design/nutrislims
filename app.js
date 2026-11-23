@@ -1607,11 +1607,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 10. CLIENT DASHBOARD PORTAL & STATE LOGS
     // ==========================================
 
-    // Show authentication portal
-    headerPortalBtn.addEventListener('click', () => {
-        playClick();
-        document.querySelector('[data-target="dashboard-section"]').click();
-    });
+    // Show authentication portal (Guarded)
+    if (headerPortalBtn) {
+        headerPortalBtn.addEventListener('click', () => {
+            playClick();
+            const dashSec = document.querySelector('[data-target="dashboard-section"]');
+            if (dashSec) dashSec.click();
+        });
+    }
 
     // Handle authentication login
     if (clientLoginForm) {
@@ -1658,12 +1661,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('[data-target="home-section"]').click();
     }
     
-    dashboardLogoutBtn.addEventListener('click', handleLogout);
-    headerPortalBtn.addEventListener('click', () => {
-        if (isUserLoggedIn) {
-            handleLogout();
-        }
-    });
+    if (dashboardLogoutBtn) {
+        dashboardLogoutBtn.addEventListener('click', handleLogout);
+    }
+    if (headerPortalBtn) {
+        headerPortalBtn.addEventListener('click', () => {
+            if (isUserLoggedIn) {
+                handleLogout();
+            }
+        });
+    }
 
     // Helper functions for Dashboard UI values updates
     function updateDashboardConsole() {
