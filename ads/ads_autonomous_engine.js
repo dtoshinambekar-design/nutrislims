@@ -23,6 +23,7 @@
 
 var CONFIG = {
   EXECUTION_MODE: "ACTIVE_EXECUTE_APPROVED", // Approved for direct live optimization
+  FORCE_UPDATE_ADS: false, // Set true to force re-creating RSAs even if v3.3.0 ad exists
   SPREADSHEET_URL: "https://docs.google.com/spreadsheets/d/1qfk-f61sTJI1Ynt9-4lM52jV9s5W05kZgbxbTr_Catg/edit",
   CAMPAIGN_NAME: "Sales-Search-1",
   DAILY_BUDGET_INR: 60.00,
@@ -328,11 +329,26 @@ function deployAuditedAdsAndKeywords(camp) {
       }
     }
 
-    // 2. Responsive Search Ad Idempotency Check
+    // 2. Responsive Search Ad Idempotency & Legacy Ad Pausing
     var activeAdsIter = targetAg.ads().withCondition("Type = 'RESPONSIVE_SEARCH_AD' AND Status = 'ENABLED'").get();
-    if (activeAdsIter.hasNext()) {
+    var hasUpdatedAd = false;
+    while (activeAdsIter.hasNext()) {
       var existingAd = activeAdsIter.next();
-      Logger.log("Active RSA already verified (ID: " + existingAd.getId() + ") in " + targetAg.getName() + " - skipping duplicate creation.");
+      var currentUrl = "";
+      try {
+        currentUrl = existingAd.urls().getFinalUrl() || "";
+      } catch (e) {}
+
+      if (currentUrl.indexOf("v=3.3.0") !== -1 && !CONFIG.FORCE_UPDATE_ADS) {
+        hasUpdatedAd = true;
+        Logger.log("Active RSA already up-to-date (ID: " + existingAd.getId() + ") in " + targetAg.getName());
+      } else {
+        existingAd.pause();
+        Logger.log("Paused legacy ad (ID: " + existingAd.getId() + ", URL: " + currentUrl + ") to deploy audited v3.3.0 RSA.");
+      }
+    }
+
+    if (hasUpdatedAd) {
       continue;
     }
 
@@ -350,16 +366,6 @@ function deployAuditedAdsAndKeywords(camp) {
     if (adOp.isSuccessful()) {
       var newAd = adOp.getResult();
       Logger.log("SUCCESS: Created compliant RSA (ID: " + newAd.getId() + ") in " + targetAg.getName());
-      
-      // Pause any older un-audited ads
-      var oldAds = targetAg.ads().withCondition("Type = 'RESPONSIVE_SEARCH_AD' AND Status = 'ENABLED'").get();
-      while (oldAds.hasNext()) {
-        var oldAd = oldAds.next();
-        if (oldAd.getId() !== newAd.getId()) {
-          oldAd.pause();
-          Logger.log("Paused legacy ad (ID: " + oldAd.getId() + ")");
-        }
-      }
     } else {
       Logger.log("Ad Creation Notice / Errors in " + targetAg.getName() + ": " + adOp.getErrors());
     }
