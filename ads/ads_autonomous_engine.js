@@ -236,7 +236,7 @@ function deployAuditedAdsAndKeywords(camp) {
       keywords: CONFIG.HIGH_INTENT_KEYWORDS_WEIGHT,
       finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1#weight-loss",
       headlines: [
-        "{KeyWord:Weight Loss Clinic Indore}",
+        "{KeyWord:Diet Clinic Indore}",
         "Nutrislims Wellness Clinic",
         "Best Dietitian in Indore",
         "Weight Loss Clinic Indore",
@@ -267,7 +267,7 @@ function deployAuditedAdsAndKeywords(camp) {
       keywords: CONFIG.HIGH_INTENT_KEYWORDS_PCOS,
       finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1#pcos-care",
       headlines: [
-        "{KeyWord:PCOS Diet Clinic Indore}",
+        "{KeyWord:PCOS Diet Clinic}",
         "PCOS Diet & Health Clinic",
         "Nutrislims Wellness Clinic",
         "Top PCOS Specialist Indore",

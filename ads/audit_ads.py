@@ -1,11 +1,14 @@
 # Character and Policy Audit Script for Google Ads
 import re
 
-# Policy-Compliant Audited Headlines and Descriptions (Excellent Ad Strength: 12 Distinct Headlines, 4 Descriptions)
+# Policy-Compliant Audited Headlines and Descriptions (15 Distinct Headlines, 4 Descriptions, DKI Enabled)
 headlines_group1 = [
+    "{KeyWord:Diet Clinic Indore}",
     "Nutrislims Wellness Clinic",
     "Best Dietitian in Indore",
     "Weight Loss Clinic Indore",
+    "Clinical Nutrition Clinic",
+    "Consultation by Appointment",
     "Near Jain Temple, Indore",
     "Best Diet Clinic in Indore",
     "Call Our Clinic Today",
@@ -25,9 +28,12 @@ descriptions_group1 = [
 ]
 
 headlines_group2 = [
+    "{KeyWord:PCOS Diet Clinic}",
     "PCOS Diet & Health Clinic",
     "Nutrislims Wellness Clinic",
     "Top PCOS Specialist Indore",
+    "Clinical Nutrition Clinic",
+    "Consultation by Appointment",
     "Near Jain Temple, Indore",
     "PCOS Weight Loss Indore",
     "Call Our Clinic Today",
@@ -104,6 +110,6 @@ if __name__ == "__main__":
     print("RUNNING GOOGLE ADS FORMAT & POLICY AUDIT...")
     err1 = audit("GROUP 1: WEIGHT LOSS CLINIC", headlines_group1, descriptions_group1)
     err2 = audit("GROUP 2: PCOS / HORMONAL WEIGHT", headlines_group2, descriptions_group2)
-    err3 = audit_urls(["https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0"])
+    err3 = audit_urls(["https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1"])
     print("=" * 60)
     print(f"OVERALL AUDIT RESULT: {'ERRORS FOUND - NEEDS FIX' if (err1 or err2 or err3) else '100% PERFECT COMPLIANCE'}")

@@ -48,9 +48,12 @@ def deploy(dry_run=True):
             "path1": "indore",
             "path2": "weight-loss",
             "headlines": [
+                "{KeyWord:Diet Clinic Indore}",
                 "Nutrislims Wellness Clinic",
                 "Best Dietitian in Indore",
                 "Weight Loss Clinic Indore",
+                "Clinical Nutrition Clinic",
+                "Consultation by Appointment",
                 "Near Jain Temple, Indore",
                 "Best Diet Clinic in Indore",
                 "Call Our Clinic Today",
@@ -74,9 +77,12 @@ def deploy(dry_run=True):
             "path1": "indore",
             "path2": "pcos-diet",
             "headlines": [
+                "{KeyWord:PCOS Diet Clinic}",
                 "PCOS Diet & Health Clinic",
                 "Nutrislims Wellness Clinic",
                 "Top PCOS Specialist Indore",
+                "Clinical Nutrition Clinic",
+                "Consultation by Appointment",
                 "Near Jain Temple, Indore",
                 "PCOS Weight Loss Indore",
                 "Call Our Clinic Today",
@@ -103,7 +109,7 @@ def deploy(dry_run=True):
                 "adGroup": f"customers/{cid}/adGroups/{cfg['group_id']}",
                 "status": "ENABLED",
                 "ad": {
-                    "finalUrls": ["https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0"],
+                    "finalUrls": ["https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1"],
                     "responsiveSearchAd": {
                         "path1": cfg["path1"],
                         "path2": cfg["path2"],
