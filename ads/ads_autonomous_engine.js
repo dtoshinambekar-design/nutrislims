@@ -30,7 +30,7 @@ var CONFIG = {
   MAX_CPC_BID_CAP: 5.00, // INR 5 max CPC ensures >= 12 clicks/day on INR 60 budget
 
   // ----------------------------------------------------------------
-  // NEGATIVE INTENT SHIELD (V3 EXPANDED — 55+ terms from real data)
+  // NEGATIVE INTENT SHIELD (V4 EXPANDED — 85+ terms from live data)
   // ----------------------------------------------------------------
   WASTED_KEYWORDS: [
     // Info-only / No commercial intent
@@ -41,6 +41,17 @@ var CONFIG = {
     "dawa", "dawai", "upchar", "tips", "kaise kare", "tarika",
     "challenge", "meal plan", "diet plan free", "1500 calorie",
     "1800 calorie", "7 days", "30 day", "15 days",
+
+    // Viral Gimmicks & Extreme DIY Promises
+    "32 baar", "32 bar", "32 times", "10 kg", "5 kg", "2 months", "in 1 month",
+    "after pregnancy", "post pregnancy", "belly wrap", "slimming belt",
+
+    // Calorie-specific DIY Diets
+    "600 calorie", "1200 calorie", "1400 calorie", "1600 calorie", "2000 calorie", "calorie diet",
+
+    // Celebrity Dietitians / Competitors (Zero local walk-in intent)
+    "amita gadre", "amruta kulkarni", "rujuta diwekar", "pooja makhija",
+    "shikha sharma", "simrun chopra", "anjali mukerjee", "diet mantra",
 
     // Competitor / Alternative / Ayurvedic products
     "ayurvedic", "patanjali", "herbalife", "homeopathy",
@@ -129,17 +140,20 @@ function main() {
   // 5. Mobile Priority Bidding (Prioritizes direct phone calls)
   optimizeDeviceBids();
 
-  // 6. Autonomous Negative Keyword Pruner (ROAS Protector)
+  // 6. Clinic Hours Dayparting (Mon-Sat 09:00-20:00)
+  enforceClinicAdSchedule();
+
+  // 7. Autonomous Negative Keyword Pruner (ROAS Protector)
   var prunedCount = pruneWastedSearchQueries(ss);
 
-  // 7. Sync Performance & Patient Search Terms to Google Sheet
+  // 8. Sync Performance & Patient Search Terms to Google Sheet
   if (ss) {
     syncSearchQueriesToSheet(ss);
     syncPerformanceToSheet(ss);
     logOptimizationAction(
       ss, 
       "V2 Engine Executed: Pruned " + prunedCount + " wasted terms, paused " + pausedBroadCount + 
-      " wasteful broad keywords, capped bids on " + tunedKeywords + " keywords, mobile call priority boosted (+20%)."
+      " wasteful broad keywords, tiered bids on " + tunedKeywords + " keywords, mobile call priority boosted (+20%), clinic dayparting active."
     );
   }
 
@@ -220,11 +234,14 @@ function deployAuditedAdsAndKeywords(camp) {
       name: "Weight-Loss-Clinic-Indore",
       alias: "weight",
       keywords: CONFIG.HIGH_INTENT_KEYWORDS_WEIGHT,
-      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0#weight-loss",
+      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1#weight-loss",
       headlines: [
+        "{KeyWord:Weight Loss Clinic Indore}",
         "Nutrislims Wellness Clinic",
         "Best Dietitian in Indore",
         "Weight Loss Clinic Indore",
+        "Clinical Nutrition Clinic",
+        "Consultation by Appointment",
         "Near Jain Temple, Indore",
         "Best Diet Clinic in Indore",
         "Call Our Clinic Today",
@@ -248,11 +265,14 @@ function deployAuditedAdsAndKeywords(camp) {
       name: "PCOS-PCOD-Weight-Management",
       alias: "pcos",
       keywords: CONFIG.HIGH_INTENT_KEYWORDS_PCOS,
-      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0#pcos-care",
+      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1#pcos-care",
       headlines: [
+        "{KeyWord:PCOS Diet Clinic Indore}",
         "PCOS Diet & Health Clinic",
         "Nutrislims Wellness Clinic",
         "Top PCOS Specialist Indore",
+        "Clinical Nutrition Clinic",
+        "Consultation by Appointment",
         "Near Jain Temple, Indore",
         "PCOS Weight Loss Indore",
         "Call Our Clinic Today",
@@ -339,12 +359,12 @@ function deployAuditedAdsAndKeywords(camp) {
         currentUrl = existingAd.urls().getFinalUrl() || "";
       } catch (e) {}
 
-      if (currentUrl.indexOf("v=3.3.0") !== -1 && !CONFIG.FORCE_UPDATE_ADS) {
+      if (currentUrl.indexOf("v=3.3.1") !== -1 && !CONFIG.FORCE_UPDATE_ADS) {
         hasUpdatedAd = true;
         Logger.log("Active RSA already up-to-date (ID: " + existingAd.getId() + ") in " + targetAg.getName());
       } else {
         existingAd.pause();
-        Logger.log("Paused legacy ad (ID: " + existingAd.getId() + ", URL: " + currentUrl + ") to deploy audited v3.3.0 RSA.");
+        Logger.log("Paused legacy ad (ID: " + existingAd.getId() + ", URL: " + currentUrl + ") to deploy upgraded v3.3.1 RSA.");
       }
     }
 
@@ -358,7 +378,7 @@ function deployAuditedAdsAndKeywords(camp) {
     var adOp = targetAg.newAd().responsiveSearchAdBuilder()
       .withHeadlines(cfg.headlines)
       .withDescriptions(cfg.descriptions)
-      .withFinalUrl(cfg.finalUrl || "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.0")
+      .withFinalUrl(cfg.finalUrl || "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1")
       .withPath1(cfg.path1)
       .withPath2(cfg.path2)
       .build();
@@ -402,7 +422,10 @@ function pauseWastefulBroadKeywords() {
 }
 
 /**
- * Caps keyword bids at INR 5.00 so budget doesn't get consumed in 5-6 clicks
+ * Tiered Bidding Architecture (Guarantees maximum clicks & priority for high-intent queries):
+ * Tier 1: Exact Match ([...]) -> INR 5.00
+ * Tier 2: Local Phrase Match ("...indore...", "near me", "clinic", "rajendra nagar") -> INR 3.80
+ * Tier 3: Broader Phrase Match -> INR 2.50
  */
 function enforceMaxCpcCap() {
   var campIter = AdsApp.campaigns().withCondition("Name = '" + CONFIG.CAMPAIGN_NAME + "'").get();
@@ -413,17 +436,34 @@ function enforceMaxCpcCap() {
   var kwIter = camp.keywords().withCondition("Status = 'ENABLED'").get();
   while (kwIter.hasNext()) {
     var kw = kwIter.next();
+    var matchType = kw.getMatchType();
+    var text = kw.getText().toLowerCase().trim();
+    
+    var targetCap = 2.50; // Tier 3 default (broad service phrase)
+    if (matchType === "EXACT") {
+      targetCap = 5.00; // Tier 1: High-intent exact local match
+    } else if (matchType === "PHRASE") {
+      if (text.indexOf("indore") !== -1 || text.indexOf("rajendra nagar") !== -1 || 
+          text.indexOf("near me") !== -1 || text.indexOf("clinic") !== -1) {
+        targetCap = 3.80; // Tier 2: Local geo-targeted phrase
+      } else {
+        targetCap = 2.50; // Tier 3: General phrase
+      }
+    } else {
+      targetCap = 2.00; // Legacy broad
+    }
+
     var currentCpc = kw.bidding().getCpc();
-    if (currentCpc === null || currentCpc > CONFIG.MAX_CPC_BID_CAP) {
+    if (currentCpc === null || currentCpc !== targetCap) {
       try {
-        kw.bidding().setCpc(CONFIG.MAX_CPC_BID_CAP);
+        kw.bidding().setCpc(targetCap);
         kwCount++;
       } catch (e) {
         // May be controlled by smart bidding strategy at campaign level
       }
     }
   }
-  Logger.log("CPC Bid Cap Enforced: " + kwCount + " keywords tuned to <= INR " + CONFIG.MAX_CPC_BID_CAP);
+  Logger.log("Tiered CPC Bidding Enforced on " + kwCount + " keywords (Exact: ₹5.00, Local Phrase: ₹3.80, General Phrase: ₹2.50).");
   return kwCount;
 }
 
@@ -449,6 +489,35 @@ function optimizeDeviceBids() {
     }
   } catch (e) {
     Logger.log("Device modifier note: " + e.message);
+  }
+}
+
+/**
+ * Restricts ad delivery to clinic operating hours: Monday - Saturday, 09:00 - 20:00 IST
+ */
+function enforceClinicAdSchedule() {
+  var campIter = AdsApp.campaigns().withCondition("Name = '" + CONFIG.CAMPAIGN_NAME + "'").get();
+  if (!campIter.hasNext()) return;
+  var camp = campIter.next();
+
+  var days = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+  try {
+    var existingSchedules = camp.targeting().adSchedules().get();
+    if (!existingSchedules.hasNext()) {
+      for (var i = 0; i < days.length; i++) {
+        camp.addAdSchedule({
+          dayOfWeek: days[i],
+          startHour: 9,
+          startMinute: "ZERO",
+          endHour: 20,
+          endMinute: "ZERO",
+          bidModifier: 1.0
+        });
+      }
+      Logger.log("Enforced Clinic Ad Schedule: Mon-Sat 09:00-20:00 (Clinic Operating Hours).");
+    }
+  } catch (e) {
+    Logger.log("Ad Schedule note: " + e.message);
   }
 }
 
@@ -555,34 +624,48 @@ function syncSearchQueriesToSheet(ss) {
 }
 
 /**
- * Pushes live campaign metrics into Campaigns_Data tab
+ * Pushes live campaign metrics into Campaigns_Data tab across TODAY, LAST_7_DAYS, and ALL_TIME
  */
 function syncPerformanceToSheet(ss) {
   var sheet = ss.getSheetByName("Campaigns_Data");
   if (!sheet) return;
 
   var campIter = AdsApp.campaigns().withCondition("Status IN ['ENABLED', 'PAUSED']").get();
-  var rows = [["Campaign ID", "Campaign Name", "Status", "Daily Budget (INR)", "Clicks", "Impressions", "Cost", "Avg CPC", "Conversions"]];
+  var rows = [[
+    "Campaign ID", "Campaign Name", "Status", "Daily Budget (INR)",
+    "Today Spend", "Today Clicks", "Today Conv",
+    "7D Spend", "7D Clicks", "7D Avg CPC", "7D Conv",
+    "All Time Spend", "All Time Clicks", "All Time Avg CPC", "All Time Conv"
+  ]];
 
   while (campIter.hasNext()) {
     var c = campIter.next();
-    var stats = c.getStatsFor("ALL_TIME");
+    var today = c.getStatsFor("TODAY");
+    var week = c.getStatsFor("LAST_7_DAYS");
+    var allTime = c.getStatsFor("ALL_TIME");
+
     rows.push([
       c.getId().toString(),
       c.getName(),
       c.isPaused() ? "PAUSED" : "ENABLED",
       c.getBudget() ? c.getBudget().getAmount() : 0,
-      stats.getClicks(),
-      stats.getImpressions(),
-      stats.getCost(),
-      stats.getAverageCpc(),
-      stats.getConversions()
+      today.getCost(),
+      today.getClicks(),
+      today.getConversions(),
+      week.getCost(),
+      week.getClicks(),
+      week.getAverageCpc(),
+      week.getConversions(),
+      allTime.getCost(),
+      allTime.getClicks(),
+      allTime.getAverageCpc(),
+      allTime.getConversions()
     ]);
   }
 
   sheet.clearContents();
   sheet.getRange(1, 1, rows.length, rows[0].length).setValues(rows);
-  Logger.log("Synced " + (rows.length - 1) + " campaigns performance to Google Sheet.");
+  Logger.log("Synced multi-timeframe performance (TODAY, 7D, ALL_TIME) for " + (rows.length - 1) + " campaigns to Google Sheet.");
 }
 
 /**
