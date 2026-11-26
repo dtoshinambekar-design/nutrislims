@@ -12,6 +12,7 @@ import json
 import webbrowser
 import sys
 import os
+import argparse
 
 PORT = 8080
 REDIRECT_URI = f"http://localhost:{PORT}/"
@@ -43,20 +44,29 @@ class OAuthCallbackHandler(http.server.BaseHTTPRequestHandler):
         return
 
 def run_flow():
+    parser = argparse.ArgumentParser(description="Google Ads OAuth2 Refresh Token Generator")
+    parser.add_argument("--code", type=str, default=None, help="Authorization code received from Google")
+    parser.add_argument("--port", type=int, default=8080, help="Local port for OAuth callback (default: 8080)")
+    args = parser.parse_args()
+
     client_id = None
     client_secret = None
 
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    secret_path = os.path.join(script_dir, "client_secret.json") if not os.path.exists("client_secret.json") else "client_secret.json"
+
     # Try loading from client_secret.json
-    if os.path.exists("client_secret.json"):
-        with open("client_secret.json", "r", encoding="utf-8") as f:
+    if os.path.exists(secret_path):
+        with open(secret_path, "r", encoding="utf-8") as f:
             data = json.load(f)
             info = data.get("installed") or data.get("web") or {}
             client_id = info.get("client_id")
             client_secret = info.get("client_secret")
 
     # Fallback to .env
-    if not client_id and os.path.exists(".env"):
-        with open(".env", "r", encoding="utf-8") as f:
+    target_env = ".env" if os.path.exists(".env") else os.path.join(script_dir, ".env")
+    if not client_id and os.path.exists(target_env):
+        with open(target_env, "r", encoding="utf-8") as f:
             for l in f:
                 if l.startswith("GOOGLE_ADS_CLIENT_ID="):
                     client_id = l.split("=", 1)[1].strip()
@@ -67,9 +77,12 @@ def run_flow():
         print("Error: Could not find client_id or client_secret in client_secret.json or .env.")
         sys.exit(1)
 
+    port = args.port
+    redirect_uri = f"http://localhost:{port}/"
+
     params = {
         "client_id": client_id,
-        "redirect_uri": REDIRECT_URI,
+        "redirect_uri": redirect_uri,
         "response_type": "code",
         "scope": SCOPE,
         "access_type": "offline",
@@ -77,16 +90,25 @@ def run_flow():
     }
     login_url = f"{AUTH_URL}?{urllib.parse.urlencode(params)}"
 
-    print("=" * 65)
-    print("STEP: GENERATING GOOGLE ADS REFRESH TOKEN")
-    print("=" * 65)
-    print(f"\n1. Click or open this authorization URL in your browser:\n\n{login_url}\n")
-    webbrowser.open(login_url)
+    global auth_code
+    if args.code:
+        auth_code = args.code.strip()
+        print("[OK] Using authorization code provided via command-line arguments.")
+    else:
+        print("=" * 65)
+        print("STEP: GENERATING GOOGLE ADS REFRESH TOKEN")
+        print("=" * 65)
+        print(f"\n1. Click or open this authorization URL in your browser:\n\n{login_url}\n")
+        try:
+            webbrowser.open(login_url)
+        except Exception:
+            pass
 
-    print(f"2. Waiting for your Google login callback on {REDIRECT_URI}...")
-    with socketserver.TCPServer(("localhost", PORT), OAuthCallbackHandler) as httpd:
-        while auth_code is None:
-            httpd.handle_request()
+        print(f"2. Waiting for your Google login callback on {redirect_uri}...")
+        socketserver.TCPServer.allow_reuse_address = True
+        with socketserver.TCPServer(("localhost", port), OAuthCallbackHandler) as httpd:
+            while auth_code is None:
+                httpd.handle_request()
 
     print("\nAuthorization code received! Requesting Refresh Token from Google...")
 
@@ -94,7 +116,7 @@ def run_flow():
         "code": auth_code,
         "client_id": client_id,
         "client_secret": client_secret,
-        "redirect_uri": REDIRECT_URI,
+        "redirect_uri": redirect_uri,
         "grant_type": "authorization_code"
     }).encode("utf-8")
 
@@ -115,16 +137,21 @@ def run_flow():
             print("SUCCESS! Refresh Token obtained.")
             print("=" * 65)
 
-            # Update .env
-            env_file = ".env"
-            lines = []
-            if os.path.exists(env_file):
-                with open(env_file, "r", encoding="utf-8") as f:
-                    lines = [l for l in f.readlines() if not l.startswith("GOOGLE_ADS_REFRESH_TOKEN=")]
-            lines.append(f"GOOGLE_ADS_REFRESH_TOKEN={refresh_token}\n")
-            with open(env_file, "w", encoding="utf-8") as f:
-                f.writelines(lines)
-            print(f"[OK] Saved GOOGLE_ADS_REFRESH_TOKEN into {env_file} successfully!")
+            # Update .env files
+            env_paths = [target_env]
+            if os.path.exists(".env") and ".env" not in env_paths:
+                env_paths.append(".env")
+            if os.path.exists(os.path.join(script_dir, ".env")) and os.path.join(script_dir, ".env") not in env_paths:
+                env_paths.append(os.path.join(script_dir, ".env"))
+
+            for ep in set(env_paths):
+                if os.path.exists(ep):
+                    with open(ep, "r", encoding="utf-8") as f:
+                        lines = [l for l in f.readlines() if not l.startswith("GOOGLE_ADS_REFRESH_TOKEN=")]
+                    lines.append(f"GOOGLE_ADS_REFRESH_TOKEN={refresh_token}\n")
+                    with open(ep, "w", encoding="utf-8") as f:
+                        f.writelines(lines)
+                    print(f"[OK] Saved GOOGLE_ADS_REFRESH_TOKEN into {ep} successfully!")
 
     except urllib.error.HTTPError as e:
         print(f"\n[ERROR] Failed to exchange token: {e.read().decode('utf-8')}")

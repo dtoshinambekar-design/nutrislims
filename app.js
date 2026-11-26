@@ -1674,32 +1674,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Helper functions for Dashboard UI values updates
     function updateDashboardConsole() {
+        const calTargetEl = document.getElementById('dash-cal-target');
+        if (!calTargetEl) return;
+
         // Text labels
-        document.getElementById('dash-cal-target').innerText = userStats.caloriesTarget;
-        document.getElementById('dash-cal-logged').innerText = userStats.caloriesLogged;
+        calTargetEl.innerText = userStats.caloriesTarget;
+        const calLoggedEl = document.getElementById('dash-cal-logged');
+        if (calLoggedEl) calLoggedEl.innerText = userStats.caloriesLogged;
         
         const calRem = Math.max(0, userStats.caloriesTarget - userStats.caloriesLogged);
-        document.getElementById('dash-cal-rem').innerText = calRem;
+        const calRemEl = document.getElementById('dash-cal-rem');
+        if (calRemEl) calRemEl.innerText = calRem;
         
-        document.getElementById('dash-water-target').innerText = userStats.waterTarget;
-        document.getElementById('dash-water-logged').innerText = userStats.waterLogged.toFixed(2);
+        const waterTargetEl = document.getElementById('dash-water-target');
+        if (waterTargetEl) waterTargetEl.innerText = userStats.waterTarget;
+        const waterLoggedEl = document.getElementById('dash-water-logged');
+        if (waterLoggedEl) waterLoggedEl.innerText = userStats.waterLogged.toFixed(2);
         
-        document.getElementById('dash-sleep-target').innerText = userStats.sleepTarget;
-        document.getElementById('dash-sleep-logged').innerText = userStats.sleepLogged;
+        const sleepTargetEl = document.getElementById('dash-sleep-target');
+        if (sleepTargetEl) sleepTargetEl.innerText = userStats.sleepTarget;
+        const sleepLoggedEl = document.getElementById('dash-sleep-logged');
+        if (sleepLoggedEl) sleepLoggedEl.innerText = userStats.sleepLogged;
         
-        document.getElementById('dash-streak-count').innerText = userStats.streakDays;
+        const streakEl = document.getElementById('dash-streak-count');
+        if (streakEl) streakEl.innerText = userStats.streakDays;
 
         // Circular progress rings logic (dashoffset)
         const totalOffset = 264; // ring circumf
         
         const calPct = Math.min(1.0, userStats.caloriesLogged / userStats.caloriesTarget);
-        document.getElementById('ring-calories-fill').style.strokeDashoffset = totalOffset - (calPct * totalOffset);
+        const ringCal = document.getElementById('ring-calories-fill');
+        if (ringCal) ringCal.style.strokeDashoffset = totalOffset - (calPct * totalOffset);
         
         const watPct = Math.min(1.0, userStats.waterLogged / userStats.waterTarget);
-        document.getElementById('ring-water-fill').style.strokeDashoffset = totalOffset - (watPct * totalOffset);
+        const ringWat = document.getElementById('ring-water-fill');
+        if (ringWat) ringWat.style.strokeDashoffset = totalOffset - (watPct * totalOffset);
         
         const slpPct = Math.min(1.0, userStats.sleepLogged / userStats.sleepTarget);
-        document.getElementById('ring-sleep-fill').style.strokeDashoffset = totalOffset - (slpPct * totalOffset);
+        const ringSlp = document.getElementById('ring-sleep-fill');
+        if (ringSlp) ringSlp.style.strokeDashoffset = totalOffset - (slpPct * totalOffset);
 
         // Update list of logged foods
         renderLoggedFoodsList();
@@ -1716,25 +1729,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsTargetsPanel = document.getElementById('settings-targets-panel');
     const btnSaveTargets = document.getElementById('btn-save-targets');
 
-    btnShowSettings.addEventListener('click', () => {
-        playClick();
-        settingsTargetsPanel.classList.toggle('hidden');
-    });
+    if (btnShowSettings) {
+        btnShowSettings.addEventListener('click', () => {
+            playClick();
+            if (settingsTargetsPanel) settingsTargetsPanel.classList.toggle('hidden');
+        });
+    }
 
-    btnSaveTargets.addEventListener('click', () => {
-        playClick();
-        const cal = parseInt(document.getElementById('set-cal-target').value);
-        const wat = parseFloat(document.getElementById('set-water-target').value);
-        const slp = parseInt(document.getElementById('set-sleep-target').value);
-        
-        userStats.caloriesTarget = cal;
-        userStats.waterTarget = wat;
-        userStats.sleepTarget = slp;
-        
-        settingsTargetsPanel.classList.add('hidden');
-        updateDashboardConsole();
-        showToast("Health goals targets updated!", "success");
-    });
+    if (btnSaveTargets) {
+        btnSaveTargets.addEventListener('click', () => {
+            playClick();
+            const cal = parseInt(document.getElementById('set-cal-target')?.value) || 0;
+            const wat = parseFloat(document.getElementById('set-water-target')?.value) || 0;
+            const slp = parseInt(document.getElementById('set-sleep-target')?.value) || 0;
+            
+            userStats.caloriesTarget = cal;
+            userStats.waterTarget = wat;
+            userStats.sleepTarget = slp;
+            
+            if (settingsTargetsPanel) settingsTargetsPanel.classList.add('hidden');
+            updateDashboardConsole();
+            showToast("Health goals targets updated!", "success");
+        });
+    }
 
     // Hydration tracking log buttons
     document.getElementById('btn-add-water')?.addEventListener('click', () => {
@@ -1806,6 +1823,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderLoggedFoodsList() {
         const listUl = document.getElementById('logged-foods-list');
+        if (!listUl) return;
         listUl.innerHTML = '';
         
         if (userStats.loggedFoods.length === 0) {
@@ -1859,6 +1877,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderWorkoutList() {
         const listUl = document.getElementById('workout-list-ul');
+        if (!listUl) return;
         listUl.innerHTML = '';
         
         if (userStats.loggedWorkouts.length === 0) {
