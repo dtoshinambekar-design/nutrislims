@@ -109,7 +109,7 @@ def deploy(dry_run=True):
                 "adGroup": f"customers/{cid}/adGroups/{cfg['group_id']}",
                 "status": "ENABLED",
                 "ad": {
-                    "finalUrls": ["https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1"],
+                    "finalUrls": ["https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.2"],
                     "responsiveSearchAd": {
                         "path1": cfg["path1"],
                         "path2": cfg["path2"],

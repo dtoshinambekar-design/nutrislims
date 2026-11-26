@@ -102,7 +102,10 @@ var CONFIG = {
     '"pcod diet clinic indore"',
     '"hormonal imbalance dietitian indore"',
     '[pcos diet indore]',
-    '[pcod specialist indore]'
+    '[pcod specialist indore]',
+    '[pcos dietitian in indore]',
+    '[pcos clinic indore]',
+    '[pcod diet clinic]'
   ]
 };
 
@@ -234,7 +237,7 @@ function deployAuditedAdsAndKeywords(camp) {
       name: "Weight-Loss-Clinic-Indore",
       alias: "weight",
       keywords: CONFIG.HIGH_INTENT_KEYWORDS_WEIGHT,
-      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1#weight-loss",
+      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.2#weight-loss",
       headlines: [
         "{KeyWord:Diet Clinic Indore}",
         "Nutrislims Wellness Clinic",
@@ -265,7 +268,7 @@ function deployAuditedAdsAndKeywords(camp) {
       name: "PCOS-PCOD-Weight-Management",
       alias: "pcos",
       keywords: CONFIG.HIGH_INTENT_KEYWORDS_PCOS,
-      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1#pcos-care",
+      finalUrl: "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.2#pcos-care",
       headlines: [
         "{KeyWord:PCOS Diet Clinic}",
         "PCOS Diet & Health Clinic",
@@ -359,12 +362,12 @@ function deployAuditedAdsAndKeywords(camp) {
         currentUrl = existingAd.urls().getFinalUrl() || "";
       } catch (e) {}
 
-      if (currentUrl.indexOf("v=3.3.1") !== -1 && !CONFIG.FORCE_UPDATE_ADS) {
+      if (currentUrl.indexOf("v=3.3.2") !== -1 && !CONFIG.FORCE_UPDATE_ADS) {
         hasUpdatedAd = true;
         Logger.log("Active RSA already up-to-date (ID: " + existingAd.getId() + ") in " + targetAg.getName());
       } else {
         existingAd.pause();
-        Logger.log("Paused legacy ad (ID: " + existingAd.getId() + ", URL: " + currentUrl + ") to deploy upgraded v3.3.1 RSA.");
+        Logger.log("Paused legacy ad (ID: " + existingAd.getId() + ", URL: " + currentUrl + ") to deploy upgraded v3.3.2 RSA.");
       }
     }
 
@@ -378,7 +381,7 @@ function deployAuditedAdsAndKeywords(camp) {
     var adOp = targetAg.newAd().responsiveSearchAdBuilder()
       .withHeadlines(cfg.headlines)
       .withDescriptions(cfg.descriptions)
-      .withFinalUrl(cfg.finalUrl || "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1")
+      .withFinalUrl(cfg.finalUrl || "https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.2")
       .withPath1(cfg.path1)
       .withPath2(cfg.path2)
       .build();
@@ -567,7 +570,9 @@ function pruneWastedSearchQueries(ss) {
     if (isWasted && conversions === 0) {
       try {
         var cleanQuery = query.replace(/[?!,;:\"\'\[\]]/g, "").trim();
-        if (cleanQuery.length > 0) {
+        var words = cleanQuery.split(/\s+/).filter(Boolean);
+        // Google Ads enforces a maximum of 10 words per negative keyword
+        if (cleanQuery.length > 0 && words.length <= 10) {
           camp.createNegativeKeyword("[" + cleanQuery + "]");
           prunedCount++;
           Logger.log("Blocked wasted query: [" + cleanQuery + "]");

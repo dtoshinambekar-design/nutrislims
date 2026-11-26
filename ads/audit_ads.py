@@ -110,6 +110,6 @@ if __name__ == "__main__":
     print("RUNNING GOOGLE ADS FORMAT & POLICY AUDIT...")
     err1 = audit("GROUP 1: WEIGHT LOSS CLINIC", headlines_group1, descriptions_group1)
     err2 = audit("GROUP 2: PCOS / HORMONAL WEIGHT", headlines_group2, descriptions_group2)
-    err3 = audit_urls(["https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.1"])
+    err3 = audit_urls(["https://dtoshinambekar-design.github.io/nutrislims/?v=3.3.2"])
     print("=" * 60)
     print(f"OVERALL AUDIT RESULT: {'ERRORS FOUND - NEEDS FIX' if (err1 or err2 or err3) else '100% PERFECT COMPLIANCE'}")
