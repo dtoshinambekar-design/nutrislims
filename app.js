@@ -2205,6 +2205,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 2. Google Ads Conversion Tracking Trigger
             if (typeof gtag === 'function') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-7183123393',
+                    'event_category': 'Appointment Form Lead',
+                    'event_label': program,
+                    'transaction_id': bookingId,
+                    'value': 1.0
+                });
                 gtag('event', 'generate_lead', {
                     'event_category': 'Appointments',
                     'event_label': program,
@@ -2212,6 +2219,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     'value': 1.0
                 });
             }
+            try {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'nutrislims_conversion',
+                    'conversion_type': 'appointment_booking',
+                    'booking_id': bookingId,
+                    'program': program
+                });
+            } catch (err) {}
 
             // 3. Local Backup Storage
             try {
@@ -2260,15 +2276,73 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 6. Track Click-to-Call Conversions on all phone buttons
+        // 6. Track Click-to-WhatsApp Conversions on all WhatsApp buttons
+        document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+            link.addEventListener('click', () => {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-7183123393',
+                        'event_category': 'WhatsApp Lead',
+                        'event_label': link.getAttribute('href') || 'WhatsApp Consultation'
+                    });
+                    gtag('event', 'generate_lead', {
+                        'event_category': 'WhatsApp',
+                        'event_label': 'Dietitian Oshin WhatsApp'
+                    });
+                }
+                try {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'nutrislims_conversion',
+                        'conversion_type': 'whatsapp_chat',
+                        'target': link.getAttribute('href')
+                    });
+                } catch (err) {}
+            });
+        });
+
+        // 7. Track Click-to-Call Conversions on all phone buttons
         document.querySelectorAll('a[href^="tel:"]').forEach(link => {
             link.addEventListener('click', () => {
                 if (typeof gtag === 'function') {
                     gtag('event', 'conversion', {
+                        'send_to': 'AW-7183123393',
+                        'event_category': 'Phone Call Lead',
+                        'event_label': link.getAttribute('href') || '07828149178'
+                    });
+                    gtag('event', 'generate_lead', {
                         'event_category': 'Phone Call',
-                        'event_label': link.getAttribute('href')
+                        'event_label': '07828149178'
                     });
                 }
+                try {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'nutrislims_conversion',
+                        'conversion_type': 'phone_call',
+                        'target': link.getAttribute('href')
+                    });
+                } catch (err) {}
+            });
+        });
+
+        // 8. Track Google Maps Clinic Direction Clicks
+        document.querySelectorAll('a[href*="maps.google.com"]').forEach(link => {
+            link.addEventListener('click', () => {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-7183123393',
+                        'event_category': 'Clinic Directions',
+                        'event_label': 'Rajendra Nagar Clinic'
+                    });
+                }
+                try {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'nutrislims_conversion',
+                        'conversion_type': 'maps_directions'
+                    });
+                } catch (err) {}
             });
         });
     }
